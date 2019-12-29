@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <title>CheckMySchool Data Portal</title>
+    <link rel="stylesheet" type="text/css" href="{% static "css/reset.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/style_here.css" %}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Bitter|Lobster|Manjari|Schoolbell" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+</head>
+
+<body>
+
+    <section style="background-color: #ffffff;  margin: 0 auto; width: 100%; background: #ffffff; height: 12vh;">
+        <a href="https://www.checkmyschool.org"><img src="{% static "myapp/CMS Logo hi res.jpg" %}" style="float: left;" width="315vh", height="100vh"></a>
+        <ul style="height: 100%; display: flex; justify-content: flex-end; align-items: center; font-family: Manjari; height: 10vh;">
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/" style="color: #002036; text-decoration: none; font-size: 20px;">Home</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/about/" style="color: #002036; text-decoration: none; font-size: 20px;">About</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/schools_list/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Profiles</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/full_map/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Map</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/IndexCalculator/"  style="color: #002036; text-decoration: none; font-size: 20px;">SNI Calculator</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/OpenData/"  style="color: #002036; text-decoration: none; font-size: 20px;" >Data</a></li>
+        </ul>
+    </section>
+
+    <h1 style="background-color: #ffffff; color: #002036; padding-top: 5vh; padding-bottom: 5vh; font-family: Manjari;"><u>{{ school_id.0.school_name }}</u></h1>
+
+    <h1 style="background-color: #ffffff"> </h1>
+
+    <style>
+        /* Tooltip container */
+            .tooltip {
+                position: relative;
+                border-bottom: 1px dotted black;  /* If you want dots under the hoverable text */
+                text-align: left;
+                width: 60%;
+            }
+        
+            /* Tooltip text */
+            .tooltip .tooltiptext {
+                visibility: hidden;
+                width: 140px;
+                background-color: black;
+                color: #fff;
+                text-align: center;
+                padding: 10px 0;
+                border-radius: 6px;
+                text-align: center;
+                /* Position the tooltip text - see examples below! */
+                position: absolute;
+                z-index: 1;
+            }
+        
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+        }
+      </style>
+
+    <section style="background-color: #ffffff; height: 150vh;">
+        <div style="margin-left: 2vh; height: 91vh; background-color: #ffffff; width:35%;  float:left">
+            <h1> </h1>
+            <h3 style="text-align: left; margin-left: 1vh; font-size: 20px; font-weight: bold; font-family: Manjari;">Fast Facts</h3>
+            <hr style="width:90%; margin-left: 1vh;">
+            <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;">Region: {{ school_id.0.region }}</p>
+            <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;">District: {{ school_id.0.district }}</p>
+            <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;">Division: {{ school_id.0.division }}</p>
+            <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;">Total Teachers: {{ school_id.0.total_teachers }}</p>
+            <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;">Total Enrollment: {{ school_id.0.total_enrollment }}</p>
+            <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;">Students with Disabilities: {{ school_id.0.pwd_total }}</p>
+            <br>
+            <h3 style="text-align: left; margin-left: 1vh; font-size: 20px; font-weight: bold; font-family: Manjari;">Location</h3>
+            <hr style="width:90%; margin-left: 1vh;">
+            <br>
+            <div id="map" style="width:85%; height: 30vh; margin-left: 4vh;"></div>
+
+            <script type="text/javascript">
+                var map = L.map('map').setView([{{ school_id.0.latitude }}, {{ school_id.0.longitude }}], 14);
+                var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 18
+                });
+                map.addLayer(osmLayer);
+                var marker = L.marker([{{ school_id.0.latitude }}, {{ school_id.0.longitude }}]).addTo(map);
+            </script>
+        </div>
+
+    <div style="border-color: #808080; border-width: 2px; border-style: solid; width: 60%; height: 45vh; float: right; margin-right: 5vh;">
+        <div style="float: left; width: 40%; height: 26vh; margin-top: 2vh; margin-left: 2vh">
+            <h3 style="text-align: left; margin-left: 4vh; font-size: 20px; font-weight: bold; margin-top: 4vh; padding-bottom: 2vh; font-family: Manjari;">School Neediness Data</h3>
+            <p class="tooltip" style="text-align: left; margin-left: 3vh; padding:1vh; font-size: 15px; font-family: Manjari;">
+                Remoteness Index: {{ school_id.0.remoteness_index }}
+                <span class="tooltiptext">A measure of how accessible a school is. Lower scores indicate higher accesibility while higher scores indicate greater remoteness.</span>
+            </p>
+            <p style="text-align: left; margin-left: 3vh; padding:1vh; font-size: 15px; font-family: Manjari;">Percentage of Students Recieving Conditional Cash Transfers: {{ school_id.0.cct_percentage }}</p>
+            <p style="text-align: left; margin-left: 3vh; padding:1vh; font-size: 15px; font-family: Manjari;">Water Access: {{ school_id.0.original_water_boolean }}</p>
+            <p style="text-align: left; margin-left: 3vh; padding:1vh; font-size: 15px; font-family: Manjari;">Internet Access: {{ school_id.0.original_internet_boolean }}</p>
+            <p style="text-align: left; margin-left: 3vh; padding:1vh; font-size: 15px; font-family: Manjari;">Electricty Access: {{ school_id.0.original_electricity_boolean }}</p>
+            <p style="text-align: left; margin-left: 3vh; padding:1vh; font-size: 15px; font-family: Manjari;">Student-Teacher Ratio {{ school_id.0.student_teeacher_ratio }}</p>
+            <p style="text-align: left; margin-left: 3vh; padding:1vh; font-size: 15px; font-family: Manjari;">Student-Classroom Ratio: {{ school_id.0.student_classroom_ratio }}</p>
+        </div>
+
+        <div id="sniColumn" style="float: right; width:40%; height:40vh; margin-top: 5vh; margin-right: 5vh;"></div>
+
+    <script>
+
+        Highcharts.chart('sniColumn', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'School Neediness Categories'
+            },
+            xAxis: {
+                categories: ['Accessibility', 'Amenities', 'Classroom Conditions'],
+                title: {
+                    text: 'Category'
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Score',
+                    align: 'middle'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'Category',
+                data: [{{ school_id.0.accessibility }}, {{ school_id.0.amenities }}, {{ school_id.0.conditions }}]
+            }]
+        });
+
+    </script>
+        
+    </div>
+
+    <!--you needa go back and fix this yo-->
+    <div style="float:right; height:5vh; background-color:#ffffff; color:#ffffff">haaaaaaaaaaaaaaaaay </div>
+
+    <div style="border-color: #808080; border-width: 2px; border-style: solid; width: 60%; height: 40vh; float: right; margin-right: 5vh;">
+        <div id="container" style="float: left; width:40%; height:30vh; margin-top: 5vh"></div>
+            <script>
+                Highcharts.chart('container', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Student Gender Distribution'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Gender',
+                        colorByPoint: true,
+                        data: [{
+                            name: 'Male',
+                            y: {{ school_id.0.total_male }},
+                            sliced: true,
+                            selected: true,
+                            color: "#347dc1"
+                        }, {
+                            name: 'Female',
+                            y: {{ school_id.0.total_female }},
+                            color: "#e6a6c7"
+                        }]
+                    }]
+                });
+            
+            </script>
+        </div>
+    </section>
+
+    <footer style="background-color: #002036; height:250px;">
+        <div>
+            <a href="https://github.com/heatherbaier/cms_django"><i class="fa fa-github fa-3x" aria-hidden="true"></i></a>
+            <a href="https://www.youtube.com/user/onlinecms"><i class="fa fa-youtube fa-3x" aria-hidden="true"></i></a>
+            <a href="https://twitter.com/onlinecms"><i class="fa fa-twitter fa-3x" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/CheckMySchool/"><i class="fa fa-facebook fa-3x" aria-hidden="true"></i></a>
+            <a href="info@checkmyschool.org"><i class="fa fa-envelope fa-3x" aria-hidden="true"></i></a>
+        </div>
+        <h4 style="color:white; font-family: Manjari;">
+            ANSA-EAP Satellite Office, 3rd Floor Mansi Bldg, 337 Katipunan Avenue Loyola <br>
+            Heights, Quezon City, Metro Manila Philippines 1108
+        </h4>
+    </footer>
+
+</body>
+
+</html>
+

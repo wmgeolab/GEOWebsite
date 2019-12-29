@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  {% load static %}
+  <script src="{% static 'leaflet-ajax/dist/leaflet.ajax.min.js' %}"></script>
+  <script src="{% static 'spin.js/spin.min.js' %}"></script>
+  <script src="{% static 'leaflet-spin/leaflet.spin.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.Spin/1.1.0/leaflet.spin.js"></script>
+  <meta charset="utf-8">
+  <title>CheckMySchool Data Portal</title>
+  <!--
+  <link rel="stylesheet" type="text/css" href="{% static "css/reset.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/style_here.css" %}">
+  -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto|Bitter|Lobster|Manjari|Schoolbell" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+  <script src="https://code.highcharts.com/highcharts.src.js"></script>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+</head>
+
+
+<body style="background-image: url({% static 'myapp/index1.png' %}); background-size:100%">
+
+  <section style="color: #ffffff; margin: 0 auto; width: 100%; height: 12vh;">
+    <!-- <a href="https://www.checkmyschool.org"><img src="{% static "myapp/CMS Logo hi res.jpg" %}" style="float: left;" width="315vh", height="100vh"></a> -->
+    <ul style="height: 100%; display: flex; justify-content: flex-end; align-items: center; font-family: Manjari; height: 10vh;">
+      <!-- <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/" style="color: #002036; text-decoration: none; font-size: 20px;">Home</a></li> -->
+      <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/about/" style="color: #002036; text-decoration: none; font-size: 20px;">About</a></li>
+      <li style="display: inline-block; width: ç100px; padding: 10px; text-align: center;"><a href="/schools_list/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Profiles</a></li>
+      <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/full_map/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Map</a></li>
+      <!-- <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/IndexCalculator/"  style="color: #002036; text-decoration: none; font-size: 20px;">SNI Calculator</a></li> -->
+      <!-- <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/OpenData/"  style="color: #002036; text-decoration: none; font-size: 20px;" >Data</a></li> -->
+    </ul>
+  </section>
+
+  <section style="width: 100%; text-align: center; margin-top: 10%; color: #ffffff;">
+    <h1 style="font-family: Schoolbell; font-size: 70px; padding-bottom: 40px">Welcome to the CheckMySchool Philippines <br> Open Data Portal</h1>
+    <h1 style="font-family: Manjari;">Search for a school below to get started...</h1>
+    <form action="" method="get" style="color:black; font-family: Manjari; margin: 25px;">
+        <h3 style="padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.1 }}:</h3>
+        <!-- <input type="submit" style="background-color: #ffffff; color: #002036; font-family: Manjari;"/> -->
+        <h2><a href="/schools_list/?school_nam=rizal&region=&district=&division=&province=">Go</a></h2>
+    </form>
+  </section>
+
+</body>
+
+
+
+</html>
