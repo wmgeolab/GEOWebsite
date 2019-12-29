@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <title>CheckMySchool Map</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Bitter|Lobster|Manjari|Schoolbell" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+    <meta charset="utf-8" />
+</head>
+
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+    }
+    html, body, #map {
+        height: 100%;
+        width: 100%;
+    }
+
+</style>
+
+<body>
+
+
+        <section style="background-color: #ffffff;  margin: 0 auto; width: 100%; background: #ffffff; height: 12vh;">
+                <section style="background-color: #ffffff;  margin: 0 auto; width: 100%; background: #ffffff; height: 12vh;">
+                    <a href="https://www.checkmyschool.org"><img src="{% static "myapp/CMS Logo hi res.jpg" %}" style="float: left;" width="315vh", height="100vh"></a>
+                    <ul style="height: 100%; display: flex; justify-content: flex-end; align-items: center; font-family: Manjari; height: 10vh;">
+                        <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/" style="color: #002036; text-decoration: none; font-size: 20px;">Home</a></li>
+                        <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/about/" style="color: #002036; text-decoration: none; font-size: 20px;">About</a></li>
+                        <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/schools_list/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Profiles</a></li>
+                        <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/full_map/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Map</a></li>
+                        <!-- <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/IndexCalculator/"  style="color: #002036; text-decoration: none; font-size: 20px;">SNI Calculator</a></li> -->
+                        <!-- <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/OpenData/"  style="color: #002036; text-decoration: none; font-size: 20px;" >Data</a></li> -->
+                    </ul>
+                </section>
+            </section>
+
+
+    <div id="map" style="position: absolute;"></div>
+    <div class="panel panel-default" style="position:absolute;left:40px;top: 150px;z-index:3;">
+        <div class="panel-heading">
+            <h4 style="text-align: center;">Map Filters</h4>
+        </div>
+        <div class="panel-body">
+            <form action="" method="post">
+                {% csrf_token %}
+                <h3 style="text-align: left; margin-left: 3vh; padding:1vh; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ form.visible_fields.0.label }}: {{ form.visible_fields.0 }}</h3>
+                <input type="submit" value="Submit" style = 'font-family: Manjari; margin-left: 4vh;'>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    
+        var map = L.map('map').setView([10.8797, 121.7740], 6);
+
+        // var CartoDB_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        //     subdomains: 'abcd',
+        //     maxZoom: 18
+        // }).addTo(map); 
+
+        var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+        var data = {
+            "type": "FeatureCollection",
+            "features": [
+            {% for obj in filter %}
+            {
+                "type": "Feature",
+                "properties": {
+                    "School_Name": "{{ obj.school_nam }}",
+                    "School_ID": "{{ obj.school_id }}",
+                    "Region": "{{ obj.region }}",
+                    "District": "{{ obj.district }}"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [{{ obj.longitude }}, {{ obj.latitude }}]
+                }
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+            ]
+        };
+
+        var geojsonMarkerOptions = {
+            radius: 8,
+            fillColor: "#ff7800",
+            color: "#000",
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 0.8
+        };
+
+        var dataLayer = L.geoJson(data, {
+            onEachFeature: function(feature, layer) {
+                layer.bindPopup("<dl><dt><b>School Properties</b></dt>" +
+            "<dt>" + "School Name: " +
+            '<a href="' + feature.properties.School_ID + '/" style="font-size:15px;">' +
+                feature.properties.School_Name + 
+            '</a>' + "</dt>" +
+            "<dt>" + "Schoool ID: " + feature.properties.School_ID + "</dt>" + 
+            "<dt>" + "Region: " + feature.properties.Region + "</dt>" +
+            "<dt>" + "District: " + feature.properties.District + "</dt>" +
+            "</dl>");
+            },
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, geojsonMarkerOptions);
+            },
+        });
+
+        map.addLayer(dataLayer);
+    
+    </script>
+
+</body>
+
+</html>
+
