@@ -11,4 +11,5 @@ def query_transform(request, **kwargs):
         else:
             updated.pop(k, 0)
 
-    return updated.urlencode()
+    # return updated.urlencode()
+    return updated.encode('utf-8')
