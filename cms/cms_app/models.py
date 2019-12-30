@@ -180,17 +180,16 @@ YEAR_CHOICES = (
 
 # Filters
 class SchoolResourcesFilter(django_filters.FilterSet):
-    # school_year = django_filters.CharFilter()
+    school_year = django_filters.ChoiceFilter(choices=YEAR_CHOICES)
     school_name = django_filters.CharFilter(field_name = 'school_name', lookup_expr = 'icontains')
     region = django_filters.CharFilter(field_name = 'region', lookup_expr = 'icontains')
     district = django_filters.CharFilter(field_name = 'district', lookup_expr = 'icontains')
     division = django_filters.CharFilter(field_name = 'division', lookup_expr = 'icontains')
     province = django_filters.CharFilter(field_name = 'province', lookup_expr = 'icontains')
-    school_year = django_filters.ChoiceFilter(choices=YEAR_CHOICES)
 
     class Meta:
         model = Alldata
-        fields = ['school_year', 'school_name', 'region', 'district', 'division', 'province', 'school_year']# This is an auto-generated Django model module created by ogrinspect.
+        fields = ['school_year', 'school_name', 'region', 'district', 'division', 'province']# This is an auto-generated Django model module created by ogrinspect.
 
 
 
