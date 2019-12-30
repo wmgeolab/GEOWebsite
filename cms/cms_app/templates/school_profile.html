@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    {% load static %}
-    <meta charset="utf-8">
-    <title>CheckMySchool Data Portal</title>
-    <!-- <link rel="stylesheet" type="text/css" href="{% static "css/reset.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "css/style_here.css" %}"> -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto|Bitter|Lobster|Manjari|Schoolbell" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-    <script src="https://code.highcharts.com/highcharts.src.js"></script>
-    <!-- <link rel="stylesheet" href="styles.css"> -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
-</head>
+    <head>
+        {% load static %}
+         <meta charset="utf-8">
+         <title>CheckMySchool Data Portal</title>
+         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+         <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+         <link href="https://fonts.googleapis.com/css?family=Roboto|Bitter|Lobster|Manjari|Schoolbell" rel="stylesheet">
+         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+         <script src="https://code.highcharts.com/highcharts.src.js"></script>
+         <meta name="viewport" content="width=device-width,initial-scale=1.0">
+     </head>
 
 
 
@@ -44,84 +41,30 @@
             <!-- <hr style="width:100%; margin: 0 auto; border: 5px solid #002036;"> -->
             <br><br><br>
 
-            <h2 style="text-align: center; font-family: Manjari;"><u>{{ school_id.0.school_name }}</u></h2>
+            <h2 style="text-align: center; font-family: Manjari;">{{ school_id.0.school_name }}</h2>
             <br><br><br>
-
-                <h3 style="text-align: center; margin-left: 1vh; font-size: 20px; font-weight: bold; font-family: Manjari;">Fast Facts</h3>
-                <br>
-                <hr style="width:50%; margin: 0 auto;">
-                <br>
-                <p style="text-align: center; padding:1vh; font-family: Manjari;">Region: {{ school_id.0.region }}</p>
-                <p style="text-align: center; padding:1vh; font-family: Manjari;">District: {{ school_id.0.district }}</p>
-                <p style="text-align: center; padding:1vh; font-family: Manjari;">Division: {{ school_id.0.division }}</p>
-                <p style="text-align: center; padding:1vh; font-family: Manjari;">Total Teachers: {{ school_id.0.total_teachers }}</p>
-                <p style="text-align: center; padding:1vh; font-family: Manjari;">Total Enrollment: {{ school_id.0.total_enrollment }}</p>
-                <p style="text-align: center; padding:1vh; font-family: Manjari;">Students with Disabilities: {{ school_id.0.pwd_total }}</p>
-                <br><br><br>
-                <h3 style="text-align: center; margin-left: 1vh; font-size: 20px; font-weight: bold; font-family: Manjari;">School Neediness Index Data</h3>
-                <br>
-                <hr style="width:50%; margin: 0 auto;">
-                <br>
-                <p style="text-align: center; padding:1vh; font-size: 15px; font-family: Manjari;">Percentage of Students Recieving Conditional Cash Transfers: {{ school_id.0.cct_percentage }}</p>
-                <p style="text-align: center; padding:1vh; font-size: 15px; font-family: Manjari;">Water Access: {{ school_id.0.original_water_boolean }}</p>
-                <p style="text-align: center; padding:1vh; font-size: 15px; font-family: Manjari;">Internet Access: {{ school_id.0.original_internet_boolean }}</p>
-                <p style="text-align: center; padding:1vh; font-size: 15px; font-family: Manjari;">Electricty Access: {{ school_id.0.original_electricity_boolean }}</p>
-                <p style="text-align: center; padding:1vh; font-size: 15px; font-family: Manjari;">Student-Teacher Ratio {{ school_id.0.student_teacher_ratio }}</p>
-                <p style="text-align: center; padding:1vh; font-size: 15px; font-family: Manjari;">Student-Classroom Ratio: {{ school_id.0.student_classroom_ratio }}</p>
-                
-                <!-- <div id="sniColumn" style="height:400px; width: 50%; margin: 0 auto;"></div>
-
-                <script>
-
-                        // Highcharts.chart('sniColumn', {
-                        //     chart: {
-                        //         type: 'column'
-                        //     },
-                        //     title: {
-                        //         text: 'School Neediness Categories'
-                        //     },
-                        //     xAxis: {
-                        //         categories: ['Accessibility', 'Amenities', 'Classroom Conditions'],
-                        //         title: {
-                        //             text: 'Category'
-                        //         }
-                        //     },
-                        //     yAxis: {
-                        //         min: 0,
-                        //         title: {
-                        //             text: 'Score',
-                        //             align: 'middle'
-                        //         },
-                        //         labels: {
-                        //             overflow: 'justify'
-                        //         }
-                        //     },
-                        //     plotOptions: {
-                        //         bar: {
-                        //             dataLabels: {
-                        //                 enabled: true
-                        //             }
-                        //         }
-                        //     },
-                        //     credits: {
-                        //         enabled: false
-                        //     },
-                        //     series: [{
-                        //         name: 'Category',
-                        //         data: [{{ school_id.0.accessibility }}, {{ school_id.0.amenities }}, {{ school_id.0.conditions }}]
-                        //     }]
-                        // });
-                
-                    </script>        -->
-
-                <br>
-                <h3 style="text-align: center; font-size: 20px; font-weight: bold; font-family: Manjari;">Student Gender Distribution</h3>
-                <br><br><br>
-                <hr style="width:50%; margin: 0 auto;">
-                <br>
-
-                <div id="container" style="width:50%; height:280px; margin: 0 auto;"></div>
-                <script>
+            <h3 style="text-align: center; margin-left: 1vh; font-size: 20px; font-weight: bold; font-family: Manjari;">Fast Facts</h3>
+            <hr style="width:50%; margin: 0 auto; border: 1px solid #002036;">
+            <p style="text-align: center; padding:1vh; font-family: Manjari; font-size: 17px">Region: {{ school_id.0.region }}</p>
+            <p style="text-align: center; padding:1vh; font-family: Manjari; font-size: 17px">District: {{ school_id.0.district }}</p>
+            <p style="text-align: center; padding:1vh; font-family: Manjari; font-size: 17px">Division: {{ school_id.0.division }}</p>
+            <p style="text-align: center; padding:1vh; font-family: Manjari; font-size: 17px">Total Teachers: {{ school_id.0.total_teachers }}</p>
+            <p style="text-align: center; padding:1vh; font-family: Manjari; font-size: 17px">Total Enrollment: {{ school_id.0.total_enrollment }}</p>
+            <p style="text-align: center; padding:1vh; font-family: Manjari; font-size: 17px">Students with Disabilities: {{ school_id.0.pwd_total }}</p>
+            <br><br><br>
+            <h3 style="text-align: center; margin-left: 1vh; font-size: 20px; font-weight: bold; font-family: Manjari;">School Neediness Index Data</h3>
+            <hr style="width:50%; margin: 0 auto; border: 1px solid #002036;">
+            <p style="text-align: center; padding:1vh; font-size: 15px; font-family: Manjari; font-size: 17px">Percentage of Students Recieving Conditional Cash Transfers: {{ school_id.0.cct_percentage }}</p>
+            <p style="text-align: center; padding:1vh; font-size: 15px; font-family: Manjari; font-size: 17px">Water Access: {{ school_id.0.original_water_boolean }}</p>
+            <p style="text-align: center; padding:1vh; font-size: 15px; font-family: Manjari; font-size: 17px">Internet Access: {{ school_id.0.original_internet_boolean }}</p>
+            <p style="text-align: center; padding:1vh; font-size: 15px; font-family: Manjari; font-size: 17px">Electricty Access: {{ school_id.0.original_electricity_boolean }}</p>
+            <p style="text-align: center; padding:1vh; font-size: 15px; font-family: Manjari; font-size: 17px">Student-Teacher Ratio {{ school_id.0.student_teacher_ratio }}</p>
+            <p style="text-align: center; padding:1vh; font-size: 15px; font-family: Manjari; font-size: 17px">Student-Classroom Ratio: {{ school_id.0.student_classroom_ratio }}</p>
+            <br><br><br>
+            <h3 style="text-align: center; font-size: 20px; font-weight: bold; font-family: Manjari;">Student Gender Distribution</h3>
+            <hr style="width:50%; margin: 0 auto; border: 1px solid #002036;">
+            <div id="container" style="width:50%; height:280px; margin: 0 auto;"></div>
+            <script>
                     Highcharts.chart('container', {
                         chart: {
                             plotBackgroundColor: null,
@@ -180,17 +123,16 @@
 
 
 
-    <footer style="background-color: #002036; height:250px;">
-        <div>
-            <a href="https://github.com/heatherbaier/cms_django"><i class="fa fa-github fa-3x" aria-hidden="true"></i></a>
-            <a href="https://www.youtube.com/user/onlinecms"><i class="fa fa-youtube fa-3x" aria-hidden="true"></i></a>
-            <a href="https://twitter.com/onlinecms"><i class="fa fa-twitter fa-3x" aria-hidden="true"></i></a>
-            <a href="https://www.facebook.com/CheckMySchool/"><i class="fa fa-facebook fa-3x" aria-hidden="true"></i></a>
-            <a href="info@checkmyschool.org"><i class="fa fa-envelope fa-3x" aria-hidden="true"></i></a>
+    <footer style="background-color: #002036; height:250px; height: 250px; padding: 10px; display: flex; flex-direction: column; justify-content: space-around;">
+        <div style=" margin-left: auto; margin-right: auto;">
+            <a href="https://github.com/heatherbaier/cms_django" style="color: white; padding: 20px 30px;"><i class="fa fa-github fa-3x" aria-hidden="true"></i></a>
+            <a href="https://www.youtube.com/user/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-youtube fa-3x" aria-hidden="true"></i></a>
+            <a href="https://twitter.com/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-twitter fa-3x" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/CheckMySchool/" style="color: white; padding: 20px 30px;"><i class="fa fa-facebook fa-3x" aria-hidden="true"></i></a>
+            <a href="info@checkmyschool.org" style="color: white; padding: 20px 30px;"><i class="fa fa-envelope fa-3x" aria-hidden="true"></i></a>
         </div>
-        <h4 style="color:white; font-family: Manjari;">
-            ANSA-EAP Satellite Office, 3rd Floor Mansi Bldg, 337 Katipunan Avenue Loyola <br>
-            Heights, Quezon City, Metro Manila Philippines 1108
+        <h4 style="color:white; font-family: Manjari; margin-left: auto; margin-right: auto; text-align: center;">
+            ANSA-EAP Satellite Office, 3rd Floor Mansi Bldg, 337 Katipunan Avenue Loyola <br>Heights, Quezon City, Metro Manila Philippines 1108
         </h4>
     </footer>
 
