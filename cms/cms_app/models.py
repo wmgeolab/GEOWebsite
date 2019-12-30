@@ -3,7 +3,7 @@ import django_filters
 
 
 class Alldata(models.Model):
-    school_year = models.TextField(blank=True, null=True)  # This field type is a guess.
+    school_year = models.IntegerField(blank=True, null=True)  # This field type is a guess.
     school_id = models.TextField(blank=True, null=True)  # This field type is a guess.
     cluster = models.TextField(blank=True, null=True)
     remoteness_index = models.TextField(blank=True, null=True)  # This field type is a guess.
@@ -171,21 +171,33 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
-
+YEAR_CHOICES = (
+    (2015, '2015 - 2016'),
+    (2016, '2016 - 2017'),
+    (2017, '2017 - 2018'),
+)
 
 
 # Filters
 class SchoolResourcesFilter(django_filters.FilterSet):
-    school_year = django_filters.NumberFilter()
+    # school_year = django_filters.CharFilter()
     school_name = django_filters.CharFilter(field_name = 'school_name', lookup_expr = 'icontains')
     region = django_filters.CharFilter(field_name = 'region', lookup_expr = 'icontains')
     district = django_filters.CharFilter(field_name = 'district', lookup_expr = 'icontains')
     division = django_filters.CharFilter(field_name = 'division', lookup_expr = 'icontains')
     province = django_filters.CharFilter(field_name = 'province', lookup_expr = 'icontains')
+    school_year = django_filters.ChoiceFilter(choices=YEAR_CHOICES)
 
     class Meta:
         model = Alldata
-        fields = ['school_year', 'school_name', 'region', 'district', 'division', 'province']# This is an auto-generated Django model module created by ogrinspect.
+        fields = ['school_year', 'school_name', 'region', 'district', 'division', 'province', 'school_year']# This is an auto-generated Django model module created by ogrinspect.
 
 
 
+
+
+# class F(FilterSet):
+#     status = ChoiceFilter(choices=STATUS_CHOICES)
+#     class Meta:
+#         model = User
+#         fields = ['status']
