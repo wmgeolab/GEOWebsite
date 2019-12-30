@@ -24,7 +24,7 @@
 </head>
 
 
-<body style="background-image: url({% static 'myapp/index1.png' %}); background-size:cover; background-repeat: no-repeat;">
+<body style="background-image: url({% static 'myapp/fp_graphic.png' %}); background-size:100%; background-repeat: repeat;">
 
   <section style="color: #ffffff; margin: 0 auto; width: 100%; height: 12vh;">
     <!-- <a href="https://www.checkmyschool.org"><img src="{% static "myapp/CMS Logo hi res.jpg" %}" style="float: left;" width="315vh", height="100vh"></a> -->
@@ -38,14 +38,17 @@
     </ul>
   </section>
 
-  <section style="width: 100%; text-align: center; margin-top: 10%; color: #ffffff;">
-    <h1 style="font-family: Schoolbell; font-size: 70px; padding-bottom: 40px">Welcome to the CheckMySchool Philippines <br> Open Data Portal</h1>
-    <h1 style="font-family: Manjari;">Search for a school below to get started...</h1>
-    <form action="" method="get" style="color:black; font-family: Manjari; margin: 25px;">
+  <section style="width: 100%; text-align: center; margin-top: 0%; color: #ffffff;">
+    <h1 style="font-family: Schoolbell; font-size: 70px; padding-bottom: 2px; color: #FCD116;">Welcome to the CheckMySchool Philippines <br> Open Data Platform</h1>
+    <div style="width: 30%; margin: 0 auto; height: 100px; color:#0038A8">
+      <h2>Get started by searching for your school!</h2>
+    </div>
+    
+    <!-- <h1 style="font-family: Manjari;">Search for a school below to get started...</h1> -->
+    <!-- <form action="" method="get" style="color:black; font-family: Manjari; margin: 25px;">
         <h3 style="padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.1 }}:</h3>
-        <!-- <input type="submit" style="background-color: #ffffff; color: #002036; font-family: Manjari;"/> -->
         <h2><a href="/schools_list/?school_nam=rizal&region=&district=&division=&province=">Go</a></h2>
-    </form>
+    </form> -->
   </section>
 
 </body>
