@@ -37,12 +37,12 @@
             <div style="width: 30%; height: 670px; background-color: #002036;">
                 <h1 style="font-family: Manjari; text-align: center; font-size: 35px; color: #ffffff;">School Filter Options</h1>
                 <form action="" method="get" style="color:black; font-family: Manjari; margin: 25px;">
-                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">School Year:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.0 }}</h3>
-                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">School Name Contains:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.1 }}</h3>
-                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.2.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.2 }}</h3>
-                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.3.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.3 }}</h3>
-                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.4.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.4 }}</h3>
-                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.5.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.5 }}</h3>
+                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">School Year:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.5 }}</h3>
+                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">School Name Contains:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.0 }}</h3>
+                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.2.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.1 }}</h3>
+                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.3.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.2 }}</h3>
+                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.4.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.3 }}</h3>
+                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.5.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.4 }}</h3>
                     <input type="submit" style="background-color: #ffffff; color: #002036; font-family: Manjari;"/>
                 </form>
             </div>
@@ -78,7 +78,10 @@
                         Page {{ response.number }} of {{ response.paginator.num_pages }}
                     </span>
                 
-
+                    {% if response.has_next %}
+                        <a href="?{% query_transform request page=response.next_page_number %}" style="font-size: 25px; font-family: Manjari; padding-right: 20px;">next</a>
+                        <a href="?{% query_transform request page=response.paginator.num_pages %}" style="font-size: 25px; font-family: Manjari;">last &raquo;</a>
+                    {% endif %}
                 </span>
             </div>
         </div>
