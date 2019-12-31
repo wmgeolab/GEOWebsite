@@ -145,3 +145,28 @@ a {
   list-style: none; 
   padding-bottom: 50px;
 }
+
+
+#profile h3 {
+  margin-left: 4vh;
+  text-align: left; 
+  /* margin-left: 1vh;  */
+  font-size: 20px; 
+  font-weight: bold; 
+  font-family: Manjari;
+}
+
+#profile p {
+  margin-left: 8vh;
+  text-align: left; 
+  padding: 1vh; 
+  font-family: Manjari; 
+  font-size: 17px;
+}
+
+#profile hr {
+  width: 40vw; 
+  margin-left: 4vh;
+  /* margin: 0 auto;  */
+  border: 1px solid #002036;
+}
