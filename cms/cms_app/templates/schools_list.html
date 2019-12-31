@@ -16,27 +16,27 @@
 
 <body style="background-clip: #ffffff;">
 
-    <section style="background-color: #ffffff;  margin: 0 auto; width: 100%; background: #ffffff; height: 12vh;">
-        <section style="background-color: #ffffff;  margin: 0 auto; width: 100%; background: #ffffff; height: 12vh;">
-            <a href="https://www.checkmyschool.org"><img src="{% static "myapp/cms_logo_use.jpg" %}" style="float: left;" width="315vh", height="100vh"></a>
+    <section style="background-color: #ffffff;  margin: 0 auto; width: 100vw; background: #ffffff; height: 12vh;">
+        <section style="background-color: #ffffff;  margin: 0 auto; width: 100vw; background: #ffffff; height: 12vh;">
+            <a href="https://www.checkmyschool.org"><img src="{% static "myapp/cms_logo_use.jpg" %}" style="float: left;" width="315vw", height="100vh"></a>
             <ul style="height: 100%; display: flex; justify-content: flex-end; align-items: center; font-family: Manjari; height: 10vh;">
-                <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/" style="color: #002036; text-decoration: none; font-size: 20px;">Home</a></li>
-                <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/about/" style="color: #002036; text-decoration: none; font-size: 20px;">About</a></li>
-                <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/schools_list/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Profiles</a></li>
-                <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/full_map/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Map</a></li>
+                <li style="display: inline-block; width: 7vw; padding: 10px; text-align: center;"><a href="/" style="color: #002036; text-decoration: none; font-size: 20px;">Home</a></li>
+                <li style="display: inline-block; width: 7vw; padding: 10px; text-align: center;"><a href="/about/" style="color: #002036; text-decoration: none; font-size: 20px;">About</a></li>
+                <li style="display: inline-block; width: 7vw; padding: 10px; text-align: center;"><a href="/schools_list/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Profiles</a></li>
+                <li style="display: inline-block; width: 7vw; padding: 10px; text-align: center;"><a href="/full_map/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Map</a></li>
                 <!-- <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/IndexCalculator/"  style="color: #002036; text-decoration: none; font-size: 20px;">SNI Calculator</a></li> -->
                 <!-- <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/OpenData/"  style="color: #002036; text-decoration: none; font-size: 20px;" >Data</a></li> -->
             </ul>
         </section>
     </section>
 
-    <hr style="border: 1px solid #ffffff; width: 98%;">
+    <hr style="border: 1px solid #ffffff; width: 98vw;">
 
     <main style="height: 420vh; background-color: #ffffff;">
-        <div class="row" style="display: flex; justify-content: space-around; height:200vh; width: 100%;">
-            <div style="width: 30%; height: 70vh; background-color: #002036;">
+        <div class="row" style="display: flex; justify-content: space-around; height:200vh; width: 100vw;">
+            <div style="width: 30vw; height: 70vh; background-color: #002036;">
                 <h1 style="font-family: Manjari; text-align: center; font-size: 35px; color: #ffffff;">School Filter Options</h1>
-                <form action="" method="get" style="color:black; font-family: Manjari; margin: 25px;">
+                <form action="" method="get" style="color:black; font-family: Manjari; margin: 3vh;">
                     <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">School Year:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.0 }}</h3>
                     <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">School Name Contains:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.1 }}</h3>
                     <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.2.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.2 }}</h3>
@@ -46,7 +46,7 @@
                     <input type="submit" style="background-color: #ffffff; color: #002036; font-family: Manjari;"/>
                 </form>
             </div>
-            <div style="width: 60%; height: 25vh;">
+            <div style="width: 60vw; height: 25vh;">
                 <ul style="list-style: none; padding-bottom: 50px;">
                     {% for obj in response %}
                     <li class="slist"  style="font-family: Manjari; color: #ffffff; font-size: 25px; padding-bottom: 20px;  padding-top: 20px;"><a href="/schools_list/{{ obj.school_name }}/{{ obj.region }}/{{ obj.district }}" style="color: #00365a;">{{ obj.school_name }}</a></li>
@@ -66,10 +66,10 @@
                                 <td style="padding-right: 20px; padding-left: 20px;font-family: Manjari; font-size: 18px;"> {{ obj.province }}</td>
                             </tr>
                         </table style="padding-bottom: 20px;">
-                        <hr style="border: 1px solid #D3D3D3; width: 100%;">
+                        <hr style="border: 1px solid #D3D3D3; width: 100vw;">
                     {% endfor %}
                 </ul>
-                <span style="margin-left: 45px;">
+                <span style="margin-left: 5vh;">
                     {% if response.has_previous %}
                         <a href="?{% query_transform request page=1 %}" style="font-size: 25px; font-family: Manjari; padding-right: 20px;">&laquo; first</a>
                         <a href="?{% query_transform request page=response.previous_page_number %}" style="font-size: 25px; font-family: Manjari; padding-right: 20px;">previous</a>
