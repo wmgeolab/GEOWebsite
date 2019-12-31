@@ -100,4 +100,26 @@ a {
   font-family: Manjari; 
   color: #ffffff; 
   font-size: 15px;
+  text-align: center;
+}
+
+#block {
+  padding-bottom: 2vh; 
+  height: 35vh; 
+  width: 40vw;
+  margin: 0 auto;
+}
+
+#outerblock {
+  width: 100%; 
+  height: 80vh;
+  margin: 0 auto;
+}
+
+#team {
+  background-color: #00365a; 
+  height: 260vh;
+   width: 100%; 
+   margin: auto; 
+   text-align: center;
 }
