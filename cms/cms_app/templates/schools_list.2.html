@@ -6,8 +6,6 @@
     {% load my_tags %}
     <meta charset="utf-8">
     <title>CheckMySchool Data Portal</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'myapp/schools_list.css' %}">
-
     <link href="https://fonts.googleapis.com/css?family=Roboto|Bitter|Lobster|Manjari|Schoolbell" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -32,42 +30,40 @@
         </section>
     </section>
 
-    <hr style="border: 1px solid #ffffff; width: 98%;">
+    <hr style="border: 1px solid #D3D3D3; width: 98%;">
 
     <main style="height: 3500px; background-color: #ffffff;">
         <div class="row" style="display: flex; justify-content: space-around; height:2000px; width: 100%;">
             <div style="width: 30%; height: 670px; background-color: #002036;">
                 <h1 style="font-family: Manjari; text-align: center; font-size: 35px; color: #ffffff;">School Filter Options</h1>
                 <form action="" method="get" style="color:black; font-family: Manjari; margin: 25px;">
-                    <h3 style="font-size: 15px; color: #ffffff;">School Year:</h3>                                   <h3 style="font-size: 15px;">{{ year_filter.form.visible_fields.0 }}</h3>
-                    <h3 style="font-size: 15px; color: #ffffff;">School Name Contains:</h3>                          <h3 style="font-size: 15px;">{{ year_filter.form.visible_fields.1 }}</h3>
-                    <h3 style="font-size: 15px; color: #ffffff;">{{ year_filter.form.visible_fields.2.label }}:</h3> <h3 style="font-size: 15px;">{{ year_filter.form.visible_fields.2 }}</h3>
-                    <h3 style="font-size: 15px; color: #ffffff;">{{ year_filter.form.visible_fields.3.label }}:</h3> <h3 style="font-size: 15px;">{{ year_filter.form.visible_fields.3 }}</h3>
-                    <h3 style="font-size: 15px; color: #ffffff;">{{ year_filter.form.visible_fields.4.label }}:</h3> <h3 style="font-size: 15px;">{{ year_filter.form.visible_fields.4 }}</h3>
-                    <h3 style="font-size: 15px; color: #ffffff;">{{ year_filter.form.visible_fields.5.label }}:</h3> <h3 style="font-size: 15px;">{{ year_filter.form.visible_fields.5 }}</h3>
-                    <br>
+                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">School Year:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.0 }}</h3>
+                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">School Name Contains:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.1 }}</h3>
+                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.2.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.2 }}</h3>
+                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.3.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.3 }}</h3>
+                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.4.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.4 }}</h3>
+                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.5.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.5 }}</h3>
                     <input type="submit" style="background-color: #ffffff; color: #002036; font-family: Manjari;"/>
                 </form>
             </div>
-            
             <div style="width: 60%; height: 250px;">
                 <ul style="list-style: none; padding-bottom: 50px;">
                     {% for obj in response %}
-                    <li class="slist"><a href="/schools_list/{{ obj.school_name }}/{{ obj.region }}/{{ obj.district }}" style="color: #00365a;">{{ obj.school_name }}</a></li>
+                    <li class="slist"  style="font-family: Manjari; color: #ffffff; font-size: 25px; padding-bottom: 20px;  padding-top: 20px;"><a href="/schools_list/{{ obj.school_name }}/{{ obj.region }}/{{ obj.district }}" style="color: #00365a;">{{ obj.school_name }}</a></li>
                         <table>
                             <tr>
-                                <th style="padding-right: 20px; padding-left: 20px;">School ID:</th>
-                                <th style="padding-right: 20px; padding-left: 20px;">School Region: </th> 
-                                <th style="padding-right: 20px; padding-left: 20px;">School District: </th> 
-                                <th style="padding-right: 20px; padding-left: 20px;">School Division: </th> 
-                                <th style="padding-right: 20px; padding-left: 20px;">School Province:</th>
+                                <th style="padding-right: 20px; padding-left: 20px; border-right:  1px solid #ffffff; font-family: Manjari; font-size: 18px;">School ID:</th>
+                                <th style="padding-right: 20px;  padding-left: 20px; border-right:  1px solid #ffffff;font-family: Manjari; font-size: 18px;">School Region: </th> 
+                                <th style="padding-right: 20px;  padding-left: 20px; border-right:  1px solid #ffffff;font-family: Manjari; font-size: 18px;">School District: </th> 
+                                <th style="padding-right: 20px;  padding-left: 20px; border-right:  1px solid #ffffff;font-family: Manjari; font-size: 18px;">School Division: </th> 
+                                <th style="padding-right: 20px; padding-left: 20px;font-family: Manjari; font-size: 18px;">School Province:</th>
                             </tr>
                             <tr>
-                                <td style="padding-right: 20px; padding-left: 20px;"> {{ obj.school_id }}</td>
-                                <td style="padding-right: 20px; padding-left: 20px;"> {{ obj.region }}</td> 
-                                <td style="padding-right: 20px; padding-left: 20px;"> {{ obj.district }}</td> 
-                                <td style="padding-right: 20px; padding-left: 20px;"> {{ obj.division }}</td> 
-                                <td style="padding-right: 20px; padding-left: 20px;"> {{ obj.province }}</td>
+                                <td style="padding-right: 20px; padding-left: 20px; border-right:  1px solid #ffffff;font-family: Manjari; font-size: 18px;"> {{ obj.school_id }}</td>
+                                <td style="padding-right: 20px; padding-left: 20px; border-right:  1px solid #ffffff;font-family: Manjari; font-size: 18px;"> {{ obj.region }}</td> 
+                                <td style="padding-right: 20px; padding-left: 20px; border-right:  1px solid #ffffff;font-family: Manjari; font-size: 18px;"> {{ obj.district }}</td> 
+                                <td style="padding-right: 20px; padding-left: 20px; border-right:  1px solid #ffffff;font-family: Manjari; font-size: 18px;"> {{ obj.division }}</td> 
+                                <td style="padding-right: 20px; padding-left: 20px;font-family: Manjari; font-size: 18px;"> {{ obj.province }}</td>
                             </tr>
                         </table style="padding-bottom: 20px;">
                         <hr style="border: 1px solid #D3D3D3; width: 100%;">
