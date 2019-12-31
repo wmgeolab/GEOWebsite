@@ -9,70 +9,70 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'myapp/style_here.css' %}">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 </head>
             
 <body style="background-color: #ffffff;">
 
-    <section style="color: #ffffff; margin: 0 auto; width: 100%; height: 12vh;">
+    <section style="background-color: #ffffff;  margin: 0 auto; width: 100%; background: #ffffff; height: 12vh;">
         <a href="https://www.checkmyschool.org"><img src="{% static "myapp/cms_logo_use.jpg" %}" style="float: left;" width="315vh", height="100vh"></a>
-        <ul>
-            <li><a href="/about/" style="color: #002036;">About</a></li>
-            <li><a href="/schools_list/" style="color: #002036;">School Profiles</a></li>
-            <li><a href="/full_map/" style="color: #002036;">School Map</a></li>
-            <!-- <li><a href="/IndexCalculator/" style="color: #002036;">SNI Calculator</a></li> -->
-            <!-- <li><a href="/OpenData/" style="color: #002036;" >Data</a></li> -->
+        <ul style="height: 100%; display: flex; justify-content: flex-end; align-items: center; font-family: Manjari; height: 10vh;">
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/" style="color: #002036; text-decoration: none; font-size: 20px;">Home</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/about/" style="color: #002036; text-decoration: none; font-size: 20px;">About</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/schools_list/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Profiles</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/full_map/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Map</a></li>
+            <!-- <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/IndexCalculator/"  style="color: #002036; text-decoration: none; font-size: 20px;">SNI Calculator</a></li> -->
+            <!-- <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/OpenData/"  style="color: #002036; text-decoration: none; font-size: 20px;" >Data</a></li> -->
         </ul>
     </section>
 
-    <section id="story">
-        <h1>The story behind the data</h1>
+    <section style="height: 700px; background-color: #002036; color: #ffffff;">
+        <h1 style="text-align: center; padding-top: 250px; font-family: Schoolbell; font-size: 75px; color: #ffffff;">The story behind the data</h1>
     </section>
 
-    <section id="about">
-        <h1><u>About us</u></h1>
-        <p>
+    <section style="background-color: #ffffff; height: 580px; width: 100%; margin: auto; background-color: white; text-align: center;">
+        <h1 style="color:#002036; font-family: Manjari; color: #002036; padding-top: 20px; font-size: 30px"><u>About us</u></h1>
+        <p style="font-size: 20px; width:100vh; margin-left: auto; margin-right: auto; text-align: center; font-family: Manjari; padding-top: 50px; font-size: 20px; color: #002036">
             CheckMySchool is a participatory monitoring initiative for the education sector in the Philippines. It aims to continuously improve the quality of education services by bringing the participation of citizens and communities into the governance of public schools in the country. It started in 2011 as an experimental partnership project with the Department of Education along the advocacy for access to information and social accountability. <br><br>
             The CheckMySchool Data Portal is a resource for the collection of data on the Philipppine Educaton System. Data collection began in May 2018 with the begining of the School Neediness Index. Many organizations have particapted in the funding and research that has led to the development of the portal and the School Neediness Index including the Affiliated Network for Social Accountability - East Asia and the Pacific (ANSA-EAP), The Bill and Melinda Gates Foundation Goalkeepers 2019, CIVICUS and the William and Mary Global Research Institute and geoLab at the College of William and Mary. 
         </p>      
     </section>
 
-    <section id="team" style="background-color: #00365a; height: 2300px; width: 100%; margin: auto; text-align: center;">
+    <section style="background-color: #00365a; height: 2300px; width: 100%; margin: auto; text-align: center;">
         <h1 style="color:#002036; font-family: Manjari; color: #ffffff; padding: 80px; font-size: 30px"><u>Meet the team</u></h1>
         <div style="width:100%; height: 700px">
             <div style="padding-bottom: 20px; height:350px; width:40%; float: left; margin-left: 50px">
-                <img src="{% static "myapp/don.png" %}">
-                <h2>Don Parafina</h2>
-                <p>Project Manager, CheckMySchool (CMS) <br> executive.director@ansa-eap.net</p>
+                <img src="{% static "myapp/don.png" %}" width="240px", height="240px">
+                <h2 style="font-family: Manjari; color: #ffffff;">Don Parafina</h2>
+                <p style="font-family: Manjari; color: #ffffff; font-size: 15px">Project Manager, CheckMySchool (CMS) <br> executive.director@ansa-eap.net</p>
                 <p style="font-family: Manjari; color: #ffffff; text-align: center; font-size: 15px">Redempto S. Parafina, or Dondon, is the Executive Director of the Affiliated Network for Social Accountability in East Asia and the Pacific (ANSA-EAP) Foundation, Inc. As an international development practitioner, he has recognized track record in civil society networking, capacity building and advancing innovations in citizen participation in governance. With over fourteen years of experience, he is consulted on the technical application of social accountability in various fields and sectors, such as education, health, public procurement, ICT, youth/children, among others. His work has spanned the Philippines and various East Asian countries. He is also a Senior Associate at the Ateneo de Manila University’s School of Government, where he has spearheaded various projects. He is a graduate student of philosophy, a boy scout and a dragonboat paddler.</p>
             </div>
             <div style="padding-bottom: 20px; height:350px; width:40%; float: right; margin-right: 50px">
-                <img src="{% static "myapp/will.png" %}">
-                <h2>Wilson Villones</h2>
-                <p>Project Coordinator, CheckMySchool (CMS) <br> wvillones@ansa-eap.net</p>
+                <img src="{% static "myapp/will.png" %}" width="240px", height="240px">
+                <h2 style="font-family: Manjari; color: #ffffff;">Wilson Villones</h2>
+                <p style="font-family: Manjari; color: #ffffff; font-size: 15px">Project Coordinator, CheckMySchool (CMS) <br> wvillones@ansa-eap.net</p>
                 <p style="font-family: Manjari; color: #ffffff; text-align: center; font-size: 15px">Wilson Villones is a researcher of the Affiliated Network for Social Accountability in East Asia and the Pacific. At present, he is the Project Coordinator of CheckMySchool. Mr. Villones has been working on a variety of governance projects, designing programs on monitoring for citizen groups, government institutions, international development partners and various other stakeholders. More recently, his works focused on citizen engagement, social accountability, transparency, M&E, and open data. Mr. Villones is also consulted on several government and CSO projects.</p>
             </div>
         </div>
         <div style="width:100%; height: 650px">
             <div style="padding-bottom: 20px; height:350px; width:40%; float: left; margin-left: 50px">
-                <img src="{% static "myapp/darlene.png" %}">
-                <h2>Darlene Motil</h2>
-                <p>Communications Consultant, CheckMySchool (CMS) <br> dmotil@ansa-eap.net
+                <img src="{% static "myapp/darlene.png" %}" width="240px", height="240px">
+                <h2 style="font-family: Manjari; color: #ffffff;">Darlene Motil</h2>
+                <p style="font-family: Manjari; color: #ffffff; font-size: 15px">Communications Consultant, CheckMySchool (CMS) <br> dmotil@ansa-eap.net
                 <p style="font-family: Manjari; color: #ffffff; text-align: center; font-size: 15px">Darlene Motil works as Communications Specialist at CMS. Since earning her degree in Communication in 2013, she had been working for non-government organizations. She writes and publishes contents on websites and the social media; she also does graphic designs. As of writing, Darlene is trying to capture, in the form of videos and photos, the impact of CheckMySchool in the grassroots. Darlene wants to put her skills to good use by working for organizations with forward-looking initiatives and genuine intention to help its beneficiaries.</p>
             </div>
             <div style="padding-bottom: 20px; height:350px; width:40%; float: right; margin-right: 50px">
-                <img src="{% static "myapp/heather.png" %}">
-                <h2>Heather Baier</h2>
-                <p>Map Specialist, CheckMySchool (CMS) <br> hmbaier@email.wm.edu
+                <img src="{% static "myapp/heather.png" %}" width="240px", height="240px">
+                <h2 style="font-family: Manjari; color: #ffffff;">Heather Baier</h2>
+                <p style="font-family: Manjari; color: #ffffff; font-size: 15px">Map Specialist, CheckMySchool (CMS) <br> hmbaier@email.wm.edu
                 <p style="font-family: Manjari; color: #ffffff; text-align: center; font-size: 15px">Heather Baier is a senior at the College of William and Mary majoring in Data Science with a minor in Computer Science. Her interests include developing geospatial applications and using data to better inform aid allocation. She started working with CheckMySchool in May 2018 and expects to graduate in May 2020. Heather developed the open data platform and designed the original School Neediness Index.</p>
             </div>
         </div>
         <div style="height: 800px; margin-left: 35%">
             <div style="padding-bottom: 20px; height:350px; width:40%;">
-                <img src="{% static "myapp/matt.png" %}">
-                <h2>Matthew Crittenden</h2>
-                <p>Data Specialist, CheckMySchool (CMS) <br> micrittenden@email.wm.edu
+                <img src="{% static "myapp/matt.png" %}" width="240px", height="240px">
+                <h2 style="font-family: Manjari; color: #ffffff;">Matthew Crittenden</h2>
+                <p style="font-family: Manjari; color: #ffffff; font-size: 15px">Data Specialist, CheckMySchool (CMS) <br> micrittenden@email.wm.edu
                 <p style="font-family: Manjari; color: #ffffff; text-align: center; font-size: 15px">Matthew Crittenden is a James Monroe Scholar at the College of William & Mary double-majoring in International Relations and Data Science. His main research interests include econometric modelling of institutional accountability and aid efficacy, community-based participatory development, and harnessing data to inform policy decisions. He started working with CheckMySchool in May 2019 and expects to graduate in May 2021. Matt devleoped the CheckMySchool app analytics dashboard.</p>
             </div>
         </div>
@@ -87,12 +87,12 @@
                 <img src="{% static "myapp/ansa_logo.png" %}" width="340px", height="120px">
             </div>
             <div style="padding-bottom: 40px; height:200px; width:40%; float: right; margin-right: 100px">
-                <img src="{% static "myapp/CMS Logo hi res.jpg" %}" width="450px", height="140px" style=" margin-left: 90px">
+                <img src="{% static "myapp/cms_logo_use.jpg" %}" width="450px", height="140px" style=" margin-left: 90px">
             </div>
         </div>
         <div style="width:100%; height: 320px">
             <div style="padding-bottom: 0px; height:340px; width:30%; float: left; margin-left: 300px; padding-top: 60px">
-                <img src="{% static "myapp/Goalkeepers Logo.jpg" %}" width="360px", height="140px">
+                <img src="{% static "myapp/Goalkeepers_Logo.jpg" %}" width="360px", height="140px">
             </div>
             <div style="padding-bottom: 20px; height:340px; width:40%; float: right; margin-right: 100px">
                 <img src="{% static "myapp/gri_logo.png" %}" width="470px", height="250px">
@@ -118,14 +118,15 @@
 
     <footer style="background-color: #002036; height:250px; height: 250px; padding: 10px; display: flex; flex-direction: column; justify-content: space-around;">
         <div style=" margin-left: auto; margin-right: auto;">
-            <a href="https://github.com/heatherbaier/cms_django" style="color: white; padding: 20px 30px;"><i class="fa fa-github fa-3x" aria-hidden="true"></i></a>
+            <a href="https://github.com/heatherbaier/cmsDjango" style="color: white; padding: 20px 30px;"><i class="fa fa-github fa-3x" aria-hidden="true"></i></a>
             <a href="https://www.youtube.com/user/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-youtube fa-3x" aria-hidden="true"></i></a>
             <a href="https://twitter.com/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-twitter fa-3x" aria-hidden="true"></i></a>
             <a href="https://www.facebook.com/CheckMySchool/" style="color: white; padding: 20px 30px;"><i class="fa fa-facebook fa-3x" aria-hidden="true"></i></a>
-            <a href="info@checkmyschool.org" style="color: white; padding: 20px 30px;"><i class="fa fa-envelope fa-3x" aria-hidden="true"></i></a>
+            <!-- <a href="info@checkmyschool.org" style="color: white; padding: 20px 30px;"><i class="fa fa-envelope fa-3x" aria-hidden="true"></i></a> -->
         </div>
-        <h4 style="color:white; font-family: Manjari; margin-left: auto; margin-right: auto; text-align: center;">
-            ANSA-EAP Satellite Office, 3rd Floor Mansi Bldg, 337 Katipunan Avenue Loyola <br>Heights, Quezon City, Metro Manila Philippines 1108
+        <h4 style="color:white; font-family: Manjari, sans-serif; margin-left: auto; margin-right: auto; text-align: center;">
+            ANSA-EAP Satellite Office, 3rd Floor Mansi Bldg, 337 Katipunan Avenue Loyola <br>
+            Heights, Quezon City, Metro Manila Philippines 1108
         </h4>
     </footer>
   
