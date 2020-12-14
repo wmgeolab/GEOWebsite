@@ -8,8 +8,7 @@
     <title>CheckMySchool Data Portal</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto|Bitter|Lobster|Manjari|Schoolbell" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://code.highcharts.com/highcharts.src.js"></script>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 </head>
@@ -36,13 +35,13 @@
         <div class="row" style="display: flex; justify-content: space-around; height:200vh; width: 100vw;">
             <div style="width: 30vw; height: 70vh; background-color: #002036;">
                 <h1 style="font-family: Manjari; text-align: center; font-size: 35px; color: #ffffff;">School Filter Options</h1>
-                <form action="" method="get" style="color:black; font-family: Manjari; margin: 3vh;">
-                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">School Year:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.0 }}</h3>
-                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">School Name Contains:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.1 }}</h3>
+                <form action="" method="get" style="color:white; font-family: Manjari; margin: 3vh; font-weight: normal">
+                    <!-- <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.0.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.0 }}</h3>
+                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.1.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.1 }}</h3>
                     <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.2.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.2 }}</h3>
                     <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.3.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.3 }}</h3>
-                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.4.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.4 }}</h3>
-                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.5.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.5 }}</h3>
+                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.4.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.4 }}</h3> -->
+                    {{ year_filter.form.as_p }}
                     <input type="submit" style="background-color: #ffffff; color: #002036; font-family: Manjari;"/>
                 </form>
             </div>
@@ -99,5 +98,5 @@
             ANSA-EAP Satellite Office, 3rd Floor Mansi Bldg, 337 Katipunan Avenue Loyola <br>Heights, Quezon City, Metro Manila Philippines 1108
         </h4>
     </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
