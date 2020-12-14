@@ -3,62 +3,31 @@ import django_filters
 
 
 class Alldata(models.Model):
-    school_year = models.IntegerField(blank=True, null=True)  # This field type is a guess.
-    school_id = models.TextField(blank=True, null=True)  # This field type is a guess.
-    cluster = models.TextField(blank=True, null=True)
-    remoteness_index = models.TextField(blank=True, null=True)  # This field type is a guess.
-    total_recieving_cct = models.TextField(blank=True, null=True)  # This field type is a guess.
-    cct_percentage = models.TextField(blank=True, null=True)  # This field type is a guess.
+    country = models.TextField()
+    school_id = models.IntegerField()
+    remoteness_index = models.FloatField()
+    total_recieving_cct = models.IntegerField()
+    cct_percentage = models.FloatField()
     comments = models.TextField(blank=True, null=True)
-    original_water_boolean = models.TextField(blank=True, null=True)  # This field type is a guess.
-    nowater = models.TextField(blank=True, null=True)  # This field type is a guess.
-    original_internet_boolean = models.TextField(blank=True, null=True)  # This field type is a guess.
-    no_internet = models.TextField(blank=True, null=True)  # This field type is a guess.
-    noelec = models.TextField(blank=True, null=True)  # This field type is a guess.
-    original_electricity_boolean = models.TextField(blank=True, null=True)  # This field type is a guess.
-    instructional_rooms = models.TextField(blank=True, null=True)  # This field type is a guess.
-    student_classroom_ratio = models.TextField(blank=True, null=True)  # This field type is a guess.
-    total_teachers = models.TextField(blank=True, null=True)  # This field type is a guess.
-    student_teacher_ratio = models.TextField(blank=True, null=True)  # This field type is a guess.
-    accessibility = models.TextField(blank=True, null=True)  # This field type is a guess.
-    amenities = models.TextField(blank=True, null=True)  # This field type is a guess.
-    conditions = models.TextField(blank=True, null=True)  # This field type is a guess.
-    shi_score = models.TextField(blank=True, null=True)  # This field type is a guess.
-    latitude = models.TextField(blank=True, null=True)  # This field type is a guess.
-    longitude = models.TextField(blank=True, null=True)  # This field type is a guess.
-    school_name = models.TextField(blank=True, null=True)
-    region = models.TextField(blank=True, null=True)
-    division = models.TextField(blank=True, null=True)
-    province = models.TextField(blank=True, null=True)
-    municipality = models.TextField(blank=True, null=True)
-    district = models.TextField(blank=True, null=True)
-    total_female = models.TextField(blank=True, null=True)  # This field type is a guess.
-    total_male = models.TextField(blank=True, null=True)  # This field type is a guess.
-    total_enrollment = models.TextField(blank=True, null=True)  # This field type is a guess.
-    ds_total = models.TextField(blank=True, null=True)  # This field type is a guess.
-    cp_total = models.TextField(blank=True, null=True)  # This field type is a guess.
-    dcm_total = models.TextField(blank=True, null=True)  # This field type is a guess.
-    drcpau_total = models.TextField(blank=True, null=True)  # This field type is a guess.
-    dh_total = models.TextField(blank=True, null=True)  # This field type is a guess.
-    autism_total = models.TextField(blank=True, null=True)  # This field type is a guess.
-    wcg_total = models.TextField(blank=True, null=True)  # This field type is a guess.
-    eb_total = models.TextField(blank=True, null=True)  # This field type is a guess.
-    hi_total = models.TextField(blank=True, null=True)  # This field type is a guess.
-    id_total = models.TextField(blank=True, null=True)  # This field type is a guess.
-    li_total = models.TextField(blank=True, null=True)  # This field type is a guess.
-    md_total = models.TextField(blank=True, null=True)  # This field type is a guess.
-    pd_total = models.TextField(blank=True, null=True)  # This field type is a guess.
-    shp_total = models.TextField(blank=True, null=True)  # This field type is a guess.
-    speech_total = models.TextField(blank=True, null=True)  # This field type is a guess.
-    vi_total = models.TextField(blank=True, null=True)  # This field type is a guess.
-    ii_total = models.TextField(blank=True, null=True)  # This field type is a guess.
-    p_total = models.TextField(blank=True, null=True)  # This field type is a guess.
-    pwd_total = models.TextField(blank=True, null=True)  # This field type is a guess.
-    id = models.TextField(primary_key=True, blank=True, null=False)
+    original_water_boolean = models.IntegerField()
+    original_internet_boolean = models.IntegerField()
+    original_electricity_boolean = models.IntegerField()
+    classroom_count = models.IntegerField()
+    student_classroom_ratio = models.FloatField()
+    total_teachers = models.IntegerField()
+    student_teacher_ratio = models.FloatField()
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    school_name = models.TextField()
+    region = models.TextField()
+    division = models.TextField()
+    province = models.TextField()
+    municipality = models.TextField()
+    district = models.TextField()
+    total_female = models.IntegerField()
+    total_male = models.IntegerField()
+    total_enrollment = models.IntegerField()
 
-    class Meta:
-        managed = False
-        db_table = 'AllData'
 
 
 class AuthGroup(models.Model):
