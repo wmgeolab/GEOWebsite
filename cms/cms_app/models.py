@@ -29,34 +29,21 @@ class Alldata(models.Model):
     total_enrollment = models.IntegerField()
 
 
-
-
-YEAR_CHOICES = (
-    (2015, '2015 - 2016'),
-    (2016, '2016 - 2017'),
-    (2017, '2017 - 2018'),
-)
-
-
 # Filters
 class SchoolResourcesFilter(django_filters.FilterSet):
-    school_year = django_filters.ChoiceFilter(choices=YEAR_CHOICES)
-    school_name = django_filters.CharFilter(field_name = 'school_name', lookup_expr = 'icontains')
-    region = django_filters.CharFilter(field_name = 'region', lookup_expr = 'icontains')
-    district = django_filters.CharFilter(field_name = 'district', lookup_expr = 'icontains')
-    division = django_filters.CharFilter(field_name = 'division', lookup_expr = 'icontains')
-    province = django_filters.CharFilter(field_name = 'province', lookup_expr = 'icontains')
+    school_name = django_filters.CharFilter(
+        field_name='school_name', lookup_expr='icontains')
+    region = django_filters.CharFilter(
+        field_name='region', lookup_expr='icontains')
+    district = django_filters.CharFilter(
+        field_name='district', lookup_expr='icontains')
+    division = django_filters.CharFilter(
+        field_name='division', lookup_expr='icontains')
+    province = django_filters.CharFilter(
+        field_name='province', lookup_expr='icontains')
 
     class Meta:
         model = Alldata
-        fields = ['school_year', 'school_name', 'region', 'district', 'division', 'province']# This is an auto-generated Django model module created by ogrinspect.
-
-
-
-
-
-# class F(FilterSet):
-#     status = ChoiceFilter(choices=STATUS_CHOICES)
-#     class Meta:
-#         model = User
-#         fields = ['status']
+        # This is an auto-generated Django model module created by ogrinspect.
+        fields = ['school_name',
+                  'region', 'district', 'division', 'province']
