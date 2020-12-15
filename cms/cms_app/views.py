@@ -8,7 +8,7 @@ from django.db.models import Q
 from django.core.serializers import serialize
 from django.core.cache import cache
 from django.db.models import Avg, Sum
-from .models import Alldata, SchoolResourcesFilter
+from .models import School, SchoolResourcesFilter
 from cms.forms import RegionForm
 
 
@@ -20,7 +20,7 @@ class AboutPageView(TemplateView):
     template_name = "about.html"
 
 def school_list(request):
-    year_list = Alldata.objects.values().order_by('school_name')
+    year_list = School.objects.values().order_by('school_name')
     filtered_qs = SchoolResourcesFilter(request.GET, queryset = year_list)
 
     paginator = Paginator(filtered_qs.qs, 20)
@@ -42,7 +42,7 @@ def school_list(request):
 
 
 def SchoolProfileView(request, school_name, region, district):
-    school = Alldata.objects.filter(Q(school_name=school_name) & Q(region=region) & Q(district=district))
+    school = School.objects.filter(Q(school_name=school_name) & Q(region=region) & Q(district=district))
     print(school)
     return render(request, 'school_profile.html', {'school_id': school})
 
@@ -56,13 +56,13 @@ def FullMapData(request):
         # check whether it's valid:
         if form.is_valid():
             region_choice = form.cleaned_data['region_choice']
-            q = Alldata.objects.filter(region=region_choice)
+            q = School.objects.filter(region=region_choice)
 
             print("FORM:", form)
             print(region_choice)
     else:
         form = RegionForm()
         print("FORM:", form)
-        q = Alldata.objects.filter(region='ARMM')
+        q = School.objects.filter(region='ARMM')
 
     return render(request, 'full_map.html', {'filter': q, 'form': form})

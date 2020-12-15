@@ -2,7 +2,7 @@ from django.db import models
 import django_filters
 
 
-class Alldata(models.Model):
+class School(models.Model):
     country = models.TextField()
     school_id = models.IntegerField()
     remoteness_index = models.FloatField()
@@ -33,7 +33,7 @@ class Alldata(models.Model):
 class SchoolResourcesFilter(django_filters.FilterSet):
 
     class Meta:
-        model = Alldata
+        model = School
 
         fields = {
             'school_name': ['icontains'],
