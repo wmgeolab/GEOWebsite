@@ -22,6 +22,7 @@ from cms_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', views.HomePageView.as_view()),
+    url('index.html', views.HomePageView.as_view()),
     url(r'^about/$', views.AboutPageView.as_view()),
     path('schools_list/', views.school_list),
     path('schools_list/<str:school_name>/<str:region>/<str:district>/', views.SchoolProfileView),

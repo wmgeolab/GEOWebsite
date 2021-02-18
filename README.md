@@ -1,2 +1,2 @@
-# data-portal_django
-CheckMySchool open data platform
+# GEOWebsite
+Website for the Global Education Observatory platform
