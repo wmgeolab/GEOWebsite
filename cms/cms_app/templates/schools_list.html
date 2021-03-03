@@ -6,97 +6,57 @@
     {% load my_tags %}
     <meta charset="utf-8">
     <title>CheckMySchool Data Portal</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto|Bitter|Lobster|Manjari|Schoolbell" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <script src="https://code.highcharts.com/highcharts.src.js"></script>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 </head>
 
-<body style="background-clip: #ffffff;">
-
-    <section style="background-color: #ffffff;  margin: 0 auto; width: 100vw; background: #ffffff; height: 12vh;">
-        <section style="background-color: #ffffff;  margin: 0 auto; width: 100vw; background: #ffffff; height: 12vh;">
-            <a href="https://www.checkmyschool.org"><img src="{% static "myapp/cms_logo_use.jpg" %}" style="float: left;" width="315vw", height="100vh"></a>
-            <ul style="height: 100%; display: flex; justify-content: flex-end; align-items: center; font-family: Manjari; height: 10vh;">
-                <li style="display: inline-block; width: 7vw; padding: 10px; text-align: center;"><a href="/" style="color: #002036; text-decoration: none; font-size: 20px;">Home</a></li>
-                <li style="display: inline-block; width: 7vw; padding: 10px; text-align: center;"><a href="/about/" style="color: #002036; text-decoration: none; font-size: 20px;">About</a></li>
-                <li style="display: inline-block; width: 7vw; padding: 10px; text-align: center;"><a href="/schools_list/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Profiles</a></li>
-                <li style="display: inline-block; width: 7vw; padding: 10px; text-align: center;"><a href="/full_map/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Map</a></li>
-                <!-- <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/IndexCalculator/"  style="color: #002036; text-decoration: none; font-size: 20px;">SNI Calculator</a></li> -->
-                <!-- <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/OpenData/"  style="color: #002036; text-decoration: none; font-size: 20px;" >Data</a></li> -->
+<body>
+    <div class="row">
+        <div>
+            <h1>School Filter Options</h1>
+            <form action="" method="get">
+                {{ year_filter.form.as_p }}
+                <input type="submit" />
+            </form>
+        </div>
+        <div>
+            <ul>
+                {% for obj in response %}
+                <li class="slist">
+                    <a href="/schools_list/{{ obj.school_name }}/{{ obj.region }}/{{ obj.district }}">
+                        {{ obj.school_name }}</a>
+                </li>
+                <table>
+                    <tr>
+                        <th>School ID:</th>
+                        <th>School Region: </th>
+                        <th>School District: </th>
+                        <th>School Division: </th>
+                        <th>School Province:</th>
+                    </tr>
+                    <tr>
+                        <td>{{ obj.school_id }}</td>
+                        <td>{{ obj.region }}</td>
+                        <td>{{ obj.district }}</td>
+                        <td>{{ obj.division }}</td>
+                        <td>{{ obj.province }}</td>
+                    </tr>
+                </table>
+                {% endfor %}
             </ul>
-        </section>
-    </section>
-
-    <hr style="border: 1px solid #ffffff; width: 98vw;">
-
-    <main style="height: 420vh; background-color: #ffffff;">
-        <div class="row" style="display: flex; justify-content: space-around; height:200vh; width: 100vw;">
-            <div style="width: 30vw; height: 70vh; background-color: #002036;">
-                <h1 style="font-family: Manjari; text-align: center; font-size: 35px; color: #ffffff;">School Filter Options</h1>
-                <form action="" method="get" style="color:white; font-family: Manjari; margin: 3vh; font-weight: normal">
-                    <!-- <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.0.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.0 }}</h3>
-                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.1.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.1 }}</h3>
-                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.2.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.2 }}</h3>
-                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.3.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.3 }}</h3>
-                    <h3 style="text-align: left; margin-left: 1vh; padding:0px; font-size: 15px; font-weight: normal; font-family: Manjari; color: #ffffff;">{{ year_filter.form.visible_fields.4.label }}:</h3> <h3 style="text-align: left; margin-left: 3vh; padding:1px; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ year_filter.form.visible_fields.4 }}</h3> -->
-                    {{ year_filter.form.as_p }}
-                    <input type="submit" style="background-color: #ffffff; color: #002036; font-family: Manjari;"/>
-                </form>
-            </div>
-            <div style="width: 60vw; height: 25vh;">
-                <ul style="list-style: none; padding-bottom: 50px;">
-                    {% for obj in response %}
-                    <li class="slist"  style="font-family: Manjari; color: #ffffff; font-size: 25px; padding-bottom: 20px;  padding-top: 20px;"><a href="/schools_list/{{ obj.school_name }}/{{ obj.region }}/{{ obj.district }}" style="color: #00365a;">{{ obj.school_name }}</a></li>
-                        <table>
-                            <tr>
-                                <th style="padding-right: 20px; padding-left: 20px; border-right:  1px solid #ffffff; font-family: Manjari; font-size: 18px;">School ID:</th>
-                                <th style="padding-right: 20px;  padding-left: 20px; border-right:  1px solid #ffffff;font-family: Manjari; font-size: 18px;">School Region: </th> 
-                                <th style="padding-right: 20px;  padding-left: 20px; border-right:  1px solid #ffffff;font-family: Manjari; font-size: 18px;">School District: </th> 
-                                <th style="padding-right: 20px;  padding-left: 20px; border-right:  1px solid #ffffff;font-family: Manjari; font-size: 18px;">School Division: </th> 
-                                <th style="padding-right: 20px; padding-left: 20px;font-family: Manjari; font-size: 18px;">School Province:</th>
-                            </tr>
-                            <tr>
-                                <td style="padding-right: 20px; padding-left: 20px; border-right:  1px solid #ffffff;font-family: Manjari; font-size: 18px;"> {{ obj.school_id }}</td>
-                                <td style="padding-right: 20px; padding-left: 20px; border-right:  1px solid #ffffff;font-family: Manjari; font-size: 18px;"> {{ obj.region }}</td> 
-                                <td style="padding-right: 20px; padding-left: 20px; border-right:  1px solid #ffffff;font-family: Manjari; font-size: 18px;"> {{ obj.district }}</td> 
-                                <td style="padding-right: 20px; padding-left: 20px; border-right:  1px solid #ffffff;font-family: Manjari; font-size: 18px;"> {{ obj.division }}</td> 
-                                <td style="padding-right: 20px; padding-left: 20px;font-family: Manjari; font-size: 18px;"> {{ obj.province }}</td>
-                            </tr>
-                        </table style="padding-bottom: 20px;">
-                        <hr style="border: 1px solid #D3D3D3; width: 100vw;">
-                    {% endfor %}
-                </ul>
-                <span style="margin-left: 5vh;">
-                    {% if response.has_previous %}
-                        <a href="?{% query_transform request page=1 %}" style="font-size: 25px; font-family: Manjari; padding-right: 20px;">&laquo; first</a>
-                        <a href="?{% query_transform request page=response.previous_page_number %}" style="font-size: 25px; font-family: Manjari; padding-right: 20px;">previous</a>
-                    {% endif %}
-                    <span class="current"  style="font-size: 25px; font-family: Manjari; padding-right: 20px;">
-                        Page {{ response.number }} of {{ response.paginator.num_pages }}
-                    </span>
-                
-                    {% if response.has_next %}
-                        <a href="?{% query_transform request page=response.next_page_number %}" style="font-size: 25px; font-family: Manjari; padding-right: 20px;">next</a>
-                        <a href="?{% query_transform request page=response.paginator.num_pages %}" style="font-size: 25px; font-family: Manjari;">last &raquo;</a>
-                    {% endif %}
+            <span>
+                {% if response.has_previous %}
+                <a href="?{% query_transform request page=1 %}">&laquo; first</a>
+                <a href="?{% query_transform request page=response.previous_page_number %}">previous</a>
+                {% endif %}
+                <span class="current">
+                    Page {{ response.number }} of {{ response.paginator.num_pages }}
                 </span>
-            </div>
-        </div>
-    </main>
 
-    <footer style="background-color: #002036; height:25vh; padding: 10px; display: flex; flex-direction: column; justify-content: space-around;">
-        <div style=" margin-left: auto; margin-right: auto;">
-            <a href="https://github.com/heatherbaier/cmsDjango" style="color: white; padding: 20px 30px;"><i class="fa fa-github fa-3x" aria-hidden="true"></i></a>
-            <a href="https://www.youtube.com/user/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-youtube fa-3x" aria-hidden="true"></i></a>
-            <a href="https://twitter.com/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-twitter fa-3x" aria-hidden="true"></i></a>
-            <a href="https://www.facebook.com/CheckMySchool/" style="color: white; padding: 20px 30px;"><i class="fa fa-facebook fa-3x" aria-hidden="true"></i></a>
-            <a href="info@checkmyschool.org" style="color: white; padding: 20px 30px;"><i class="fa fa-envelope fa-3x" aria-hidden="true"></i></a>
+                {% if response.has_next %}
+                <a href="?{% query_transform request page=response.next_page_number %}">next</a>
+                <a href="?{% query_transform request page=response.paginator.num_pages %}">last &raquo;</a>
+                {% endif %}
+            </span>
         </div>
-        <h4 style="color:white; font-family: Manjari; margin-left: auto; margin-right: auto; text-align: center;">
-            ANSA-EAP Satellite Office, 3rd Floor Mansi Bldg, 337 Katipunan Avenue Loyola <br>Heights, Quezon City, Metro Manila Philippines 1108
-        </h4>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    </div>
 </body>
