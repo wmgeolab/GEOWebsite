@@ -1,315 +1,189 @@
-<!DOCTYPE HTML>
-<!--
-	Editorial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
+{% extends "generic.html" %}
+{% load static %}
 
-<head>
-	{% load static %}
-	<title>Global Education Observatory</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="{% static 'myapp/assets/css/main.css' %}" />
-</head>
+{% block title %}Global Education Observatory{% endblock %}
 
-<body class="is-preload">
+{% block main %}
+<div class="inner">
 
-	<!-- Wrapper -->
-	<div id="wrapper">
+	<!-- Header -->
+	<header id="header">
+		<span class="logo"><a href="index.html"><strong>Global Education Observatory</strong></a> by the <a
+				href="http://geolab.wm.edu"><strong>William & Mary geoLab</strong></a></span>
+		<!-- <ul class="icons"> -->
+		<!-- <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li> -->
+		<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> -->
+		<!-- <li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li> -->
+		<!-- <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li> -->
+		<!-- <li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li> -->
+		<!-- </ul> -->
+	</header>
 
-		<!-- Main -->
-		<div id="main">
-			<div class="inner">
-
-				<!-- Header -->
-				<header id="header">
-					<span class="logo"><a href="index.html"><strong>Global Education Observatory</strong></a> by the <a
-							href="http://geolab.wm.edu"><strong>William & Mary geoLab</strong></a></span>
-					<!-- <ul class="icons"> -->
-					<!-- <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li> -->
-					<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> -->
-					<!-- <li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li> -->
-					<!-- <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li> -->
-					<!-- <li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li> -->
-					<!-- </ul> -->
-				</header>
-
-				<!-- Banner -->
-				<section id="banner">
-					<div class="content">
-						<header>
-							<h1>Global Education Observatory</h1>
-							<p>TODO: sample text</p>
-						</header>
-						<p>GEO is a participatory monitoring initiative for the education sector in the Philippines. It
-							aims to continuously improve the quality of education services by bringing the participation
-							of citizens and communities into the governance of public schools in the country. It started
-							in 2011 as an experimental partnership project with the Department of Education along the
-							advocacy for access to information and social accountability.</p>
-						<ul class="actions">
-							<li><a href="#" class="button big">Learn More</a></li>
-						</ul>
-					</div>
-					<span class="image object">
-						<img src="{% static 'myapp/images/pic10.jpg' %}" alt="" />
-					</span>
-				</section>
-
-				<!-- Section -->
-				<section>
-					<header class="major">
-						<h2>Meet the team</h2>
-					</header>
-					<div class="features">
-						<article>
-							<img src="{% static 'myapp/images/don.png' %}" class="icon" />
-							<div class="content">
-								<h3>Don Parafina</h3>
-								<p>Project Manager, CheckMySchool (CMS)<br>executive.director@ansa-eap.net</p>
-								<p>Redempto S. Parafina, or Dondon, is the Executive Director of the Affiliated Network
-									for Social Accountability in East Asia and the Pacific (ANSA-EAP) Foundation, Inc.
-									As an international development practitioner, he has recognized track record in
-									civil society networking, capacity building and advancing innovations in citizen
-									participation in governance. With over fourteen years of experience, he is consulted
-									on the technical application of social accountability in various fields and sectors,
-									such as education, health, public procurement, ICT, youth/children, among others.
-									His work has spanned the Philippines and various East Asian countries. He is also a
-									Senior Associate at the Ateneo de Manila University’s School of Government, where he
-									has spearheaded various projects. He is a graduate student of philosophy, a boy
-									scout and a dragonboat paddler.</p>
-							</div>
-						</article>
-						<article>
-							<img src="{% static 'myapp/images/will.png' %}" class="icon" />
-							<div class="content">
-								<h3>Wilson Villones</h3>
-								<p>Project Coordinator, CheckMySchool (CMS)<br>wvillones@ansa-eap.net</p>
-								<p>Wilson Villones is a researcher of the Affiliated Network for Social Accountability
-									in East Asia and the Pacific. At present, he is the Project Coordinator of
-									CheckMySchool. Mr. Villones has been working on a variety of governance projects,
-									designing programs on monitoring for citizen groups, government institutions,
-									international development partners and various other stakeholders. More recently,
-									his works focused on citizen engagement, social accountability, transparency, M&E,
-									and open data. Mr. Villones is also consulted on several government and CSO
-									projects.</p>
-							</div>
-						</article>
-						<article>
-							<img src="{% static 'myapp/images/darlene.png' %}" class="icon" />
-							<div class="content">
-								<h3>Darlene Motil</h3>
-								<p>Communications Consultant, CheckMySchool (CMS)<br>dmotil@ansa-eap.net</p>
-								<p>Darlene Motil works as Communications Specialist at CMS. Since earning her degree in
-									Communication in 2013, she had been working for non-government organizations. She
-									writes and publishes contents on websites and the social media; she also does
-									graphic designs. As of writing, Darlene is trying to capture, in the form of videos
-									and photos, the impact of CheckMySchool in the grassroots. Darlene wants to put her
-									skills to good use by working for organizations with forward-looking initiatives and
-									genuine intention to help its beneficiaries.</p>
-							</div>
-						</article>
-						<article>
-							<img src="{% static 'myapp/images/heather.png' %}" class="icon" />
-							<div class="content">
-								<h3>Heather Baier</h3>
-								<p>Map Specialist, CheckMySchool (CMS)<br>hmbaier@email.wm.edu</p>
-								<p>Heather Baier is a senior at the College of William and Mary majoring in Data Science
-									with a minor in Computer Science. Her interests include developing geospatial
-									applications and using data to better inform aid allocation. She started working
-									with CheckMySchool in May 2018 and expects to graduate in May 2020. Heather
-									developed the open data platform and designed the original School Neediness Index.
-								</p>
-							</div>
-						</article>
-						<article>
-							<img src="{% static 'myapp/images/matt.png' %}" class="icon" />
-							<div class="content">
-								<h3>Matthew Crittenden</h3>
-								<p>Data Specialist, CheckMySchool (CMS)<br>micrittenden@email.wm.edu</p>
-								<p>Matthew Crittenden is a James Monroe Scholar at the College of William & Mary
-									double-majoring in International Relations and Data Science. His main research
-									interests include econometric modelling of institutional accountability and aid
-									efficacy, community-based participatory development, and harnessing data to inform
-									policy decisions. He started working with CheckMySchool in May 2019 and expects to
-									graduate in May 2021. Matt devleoped the CheckMySchool app analytics dashboard.</p>
-							</div>
-						</article>
-					</div>
-				</section>
-
-				<!-- Section -->
-				<section>
-					<header class="major">
-						<h2>Ipsum sed dolor</h2>
-					</header>
-					<div class="posts">
-						<article>
-							<a href="#" class="image"><img src="{% static 'myapp/images/pic01.jpg' %}" alt="" /></a>
-							<h3>Interdum aenean</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam
-								facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-						<article>
-							<a href="#" class="image"><img src="{% static 'myapp/images/pic02.jpg' %}" alt="" /></a>
-							<h3>Nulla amet dolore</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam
-								facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-						<article>
-							<a href="#" class="image"><img src="{% static 'myapp/images/pic03.jpg' %}" alt="" /></a>
-							<h3>Tempus ullamcorper</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam
-								facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-						<article>
-							<a href="#" class="image"><img src="{% static 'myapp/images/pic04.jpg' %}" alt="" /></a>
-							<h3>Sed etiam facilis</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam
-								facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-						<article>
-							<a href="#" class="image"><img src="{% static 'myapp/images/pic05.jpg' %}" alt="" /></a>
-							<h3>Feugiat lorem aenean</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam
-								facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-						<article>
-							<a href="#" class="image"><img src="{% static 'myapp/images/pic06.jpg' %}" alt="" /></a>
-							<h3>Amet varius aliquam</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam
-								facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-					</div>
-				</section>
-
-			</div>
+	<!-- Banner -->
+	<section id="banner">
+		<div class="content">
+			<header>
+				<h1>Global Education Observatory</h1>
+				<p>TODO: sample text</p>
+			</header>
+			<p>GEO is a participatory monitoring initiative for the education sector in the Philippines. It
+				aims to continuously improve the quality of education services by bringing the participation
+				of citizens and communities into the governance of public schools in the country. It started
+				in 2011 as an experimental partnership project with the Department of Education along the
+				advocacy for access to information and social accountability.</p>
+			<ul class="actions">
+				<li><a href="#" class="button big">Learn More</a></li>
+			</ul>
 		</div>
+		<span class="image object">
+			<img src="{% static 'myapp/images/pic10.jpg' %}" alt="" />
+		</span>
+	</section>
 
-		<!-- Sidebar -->
-		<div id="sidebar">
-			<div class="inner">
-
-				<!-- Search -->
-				<!-- <section id="search" class="alt">
-					<form method="post" action="#">
-						<input type="text" name="query" id="query" placeholder="Search" />
-					</form>
-				</section> -->
-
-				<!-- Menu -->
-				<nav id="menu">
-					<header class="major">
-						<h2>Menu</h2>
-					</header>
-					<ul>
-						<li><a href="index.html">Homepage</a></li>
-						<li><a href="schools_list">Search</a></li>
-						<li><a href="full_map">Map</a></li>
-						<!-- <li>
-							<span class="opener">Submenu</span>
-							<ul>
-								<li><a href="#">Lorem Dolor</a></li>
-								<li><a href="#">Ipsum Adipiscing</a></li>
-								<li><a href="#">Tempus Magna</a></li>
-								<li><a href="#">Feugiat Veroeros</a></li>
-							</ul>
-						</li>
-						<li><a href="#">Etiam Dolore</a></li>
-						<li><a href="#">Adipiscing</a></li>
-						<li>
-							<span class="opener">Another Submenu</span>
-							<ul>
-								<li><a href="#">Lorem Dolor</a></li>
-								<li><a href="#">Ipsum Adipiscing</a></li>
-								<li><a href="#">Tempus Magna</a></li>
-								<li><a href="#">Feugiat Veroeros</a></li>
-							</ul>
-						</li>
-						<li><a href="#">Maximus Erat</a></li>
-						<li><a href="#">Sapien Mauris</a></li>
-						<li><a href="#">Amet Lacinia</a></li> -->
-					</ul>
-				</nav>
-
-				<!-- Section -->
-				<section>
-					<header class="major">
-						<h2>Ante interdum</h2>
-					</header>
-					<div class="mini-posts">
-						<article>
-							<a href="#" class="image"><img src="{% static 'myapp/images/pic07.jpg' %}" alt="" /></a>
-							<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-						</article>
-						<article>
-							<a href="#" class="image"><img src="{% static 'myapp/images/pic08.jpg' %}" alt="" /></a>
-							<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-						</article>
-						<article>
-							<a href="#" class="image"><img src="{% static 'myapp/images/pic09.jpg' %}" alt="" /></a>
-							<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-						</article>
-					</div>
-					<ul class="actions">
-						<li><a href="#" class="button">More</a></li>
-					</ul>
-				</section>
-
-				<!-- Section -->
-				<section>
-					<header class="major">
-						<h2>Get in touch</h2>
-					</header>
-					<p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem
-						ullamcorper dolore. Proin sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat
-						tempus aliquam.</p>
-					<ul class="contact">
-						<li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
-						<li class="icon solid fa-phone">(000) 000-0000</li>
-						<li class="icon solid fa-home">1234 Somewhere Road #8254<br />
-							Nashville, TN 00000-0000</li>
-					</ul>
-				</section>
-
-				<!-- Footer -->
-				<footer id="footer">
-					<p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a
-							href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5
-							UP</a>.</p>
-				</footer>
-
-			</div>
+	<!-- Section -->
+	<section>
+		<header class="major">
+			<h2>Meet the team</h2>
+		</header>
+		<div class="features">
+			<article>
+				<img src="{% static 'myapp/images/don.png' %}" class="icon" />
+				<div class="content">
+					<h3>Don Parafina</h3>
+					<p>Project Manager, CheckMySchool (CMS)<br>executive.director@ansa-eap.net</p>
+					<p>Redempto S. Parafina, or Dondon, is the Executive Director of the Affiliated Network
+						for Social Accountability in East Asia and the Pacific (ANSA-EAP) Foundation, Inc.
+						As an international development practitioner, he has recognized track record in
+						civil society networking, capacity building and advancing innovations in citizen
+						participation in governance. With over fourteen years of experience, he is consulted
+						on the technical application of social accountability in various fields and sectors,
+						such as education, health, public procurement, ICT, youth/children, among others.
+						His work has spanned the Philippines and various East Asian countries. He is also a
+						Senior Associate at the Ateneo de Manila University’s School of Government, where he
+						has spearheaded various projects. He is a graduate student of philosophy, a boy
+						scout and a dragonboat paddler.</p>
+				</div>
+			</article>
+			<article>
+				<img src="{% static 'myapp/images/will.png' %}" class="icon" />
+				<div class="content">
+					<h3>Wilson Villones</h3>
+					<p>Project Coordinator, CheckMySchool (CMS)<br>wvillones@ansa-eap.net</p>
+					<p>Wilson Villones is a researcher of the Affiliated Network for Social Accountability
+						in East Asia and the Pacific. At present, he is the Project Coordinator of
+						CheckMySchool. Mr. Villones has been working on a variety of governance projects,
+						designing programs on monitoring for citizen groups, government institutions,
+						international development partners and various other stakeholders. More recently,
+						his works focused on citizen engagement, social accountability, transparency, M&E,
+						and open data. Mr. Villones is also consulted on several government and CSO
+						projects.</p>
+				</div>
+			</article>
+			<article>
+				<img src="{% static 'myapp/images/darlene.png' %}" class="icon" />
+				<div class="content">
+					<h3>Darlene Motil</h3>
+					<p>Communications Consultant, CheckMySchool (CMS)<br>dmotil@ansa-eap.net</p>
+					<p>Darlene Motil works as Communications Specialist at CMS. Since earning her degree in
+						Communication in 2013, she had been working for non-government organizations. She
+						writes and publishes contents on websites and the social media; she also does
+						graphic designs. As of writing, Darlene is trying to capture, in the form of videos
+						and photos, the impact of CheckMySchool in the grassroots. Darlene wants to put her
+						skills to good use by working for organizations with forward-looking initiatives and
+						genuine intention to help its beneficiaries.</p>
+				</div>
+			</article>
+			<article>
+				<img src="{% static 'myapp/images/heather.png' %}" class="icon" />
+				<div class="content">
+					<h3>Heather Baier</h3>
+					<p>Map Specialist, CheckMySchool (CMS)<br>hmbaier@email.wm.edu</p>
+					<p>Heather Baier is a senior at the College of William and Mary majoring in Data Science
+						with a minor in Computer Science. Her interests include developing geospatial
+						applications and using data to better inform aid allocation. She started working
+						with CheckMySchool in May 2018 and expects to graduate in May 2020. Heather
+						developed the open data platform and designed the original School Neediness Index.
+					</p>
+				</div>
+			</article>
+			<article>
+				<img src="{% static 'myapp/images/matt.png' %}" class="icon" />
+				<div class="content">
+					<h3>Matthew Crittenden</h3>
+					<p>Data Specialist, CheckMySchool (CMS)<br>micrittenden@email.wm.edu</p>
+					<p>Matthew Crittenden is a James Monroe Scholar at the College of William & Mary
+						double-majoring in International Relations and Data Science. His main research
+						interests include econometric modelling of institutional accountability and aid
+						efficacy, community-based participatory development, and harnessing data to inform
+						policy decisions. He started working with CheckMySchool in May 2019 and expects to
+						graduate in May 2021. Matt devleoped the CheckMySchool app analytics dashboard.</p>
+				</div>
+			</article>
 		</div>
+	</section>
 
-	</div>
+	<!-- Section -->
+	<section>
+		<header class="major">
+			<h2>Ipsum sed dolor</h2>
+		</header>
+		<div class="posts">
+			<article>
+				<a href="#" class="image"><img src="{% static 'myapp/images/pic01.jpg' %}" alt="" /></a>
+				<h3>Interdum aenean</h3>
+				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam
+					facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+				<ul class="actions">
+					<li><a href="#" class="button">More</a></li>
+				</ul>
+			</article>
+			<article>
+				<a href="#" class="image"><img src="{% static 'myapp/images/pic02.jpg' %}" alt="" /></a>
+				<h3>Nulla amet dolore</h3>
+				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam
+					facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+				<ul class="actions">
+					<li><a href="#" class="button">More</a></li>
+				</ul>
+			</article>
+			<article>
+				<a href="#" class="image"><img src="{% static 'myapp/images/pic03.jpg' %}" alt="" /></a>
+				<h3>Tempus ullamcorper</h3>
+				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam
+					facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+				<ul class="actions">
+					<li><a href="#" class="button">More</a></li>
+				</ul>
+			</article>
+			<article>
+				<a href="#" class="image"><img src="{% static 'myapp/images/pic04.jpg' %}" alt="" /></a>
+				<h3>Sed etiam facilis</h3>
+				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam
+					facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+				<ul class="actions">
+					<li><a href="#" class="button">More</a></li>
+				</ul>
+			</article>
+			<article>
+				<a href="#" class="image"><img src="{% static 'myapp/images/pic05.jpg' %}" alt="" /></a>
+				<h3>Feugiat lorem aenean</h3>
+				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam
+					facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+				<ul class="actions">
+					<li><a href="#" class="button">More</a></li>
+				</ul>
+			</article>
+			<article>
+				<a href="#" class="image"><img src="{% static 'myapp/images/pic06.jpg' %}" alt="" /></a>
+				<h3>Amet varius aliquam</h3>
+				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam
+					facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+				<ul class="actions">
+					<li><a href="#" class="button">More</a></li>
+				</ul>
+			</article>
+		</div>
+	</section>
 
-	<!-- Scripts -->
-	<script src="{% static 'myapp/assets/js/jquery.min.js' %}"></script>
-	<script src="{% static 'myapp/assets/js/browser.min.js' %}"></script>
-	<script src="{% static 'myapp/assets/js/breakpoints.min.js' %}"></script>
-	<script src="{% static 'myapp/assets/js/util.js' %}"></script>
-	<script src="{% static 'myapp/assets/js/main.js' %}"></script>
-
-</body>
-
-</html>
+</div>
+{% endblock %}
