@@ -1,62 +1,58 @@
-<!DOCTYPE html>
-<html>
+{% extends "generic.html" %}
+{% load static %}
+{% load my_tags %}
 
-<head>
-    {% load static %}
-    {% load my_tags %}
-    <meta charset="utf-8">
-    <title>CheckMySchool Data Portal</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-</head>
-
-<body>
-    <div class="row">
-        <div>
-            <h1>School Filter Options</h1>
-            <form method="get">
-                {{ year_filter.form.as_p }}
-                <input type="submit" />
-            </form>
-        </div>
-        <div>
-            <ul>
-                {% for obj in response %}
-                <li class="slist">
-                    <a href="/schools_list/{{ obj.school_name }}/{{ obj.region }}/{{ obj.district }}">
-                        {{ obj.school_name }}</a>
-                </li>
-                <table>
-                    <tr>
-                        <th>School ID:</th>
-                        <th>School Region: </th>
-                        <th>School District: </th>
-                        <th>School Division: </th>
-                        <th>School Province:</th>
-                    </tr>
-                    <tr>
-                        <td>{{ obj.school_id }}</td>
-                        <td>{{ obj.region }}</td>
-                        <td>{{ obj.district }}</td>
-                        <td>{{ obj.division }}</td>
-                        <td>{{ obj.province }}</td>
-                    </tr>
-                </table>
-                {% endfor %}
-            </ul>
-            <span>
-                {% if response.has_previous %}
-                <a href="?{% query_transform request page=1 %}">&laquo; first</a>
-                <a href="?{% query_transform request page=response.previous_page_number %}">previous</a>
-                {% endif %}
-                <span class="current">
-                    Page {{ response.number }} of {{ response.paginator.num_pages }}
-                </span>
-
-                {% if response.has_next %}
-                <a href="?{% query_transform request page=response.next_page_number %}">next</a>
-                <a href="?{% query_transform request page=response.paginator.num_pages %}">last &raquo;</a>
-                {% endif %}
+{% block title %}Search for Schools{% endblock %}
+{% block main %}
+<div style="display:flex;">
+    <section style="width:100%;max-width:20rem;">
+        <header class="major">
+            <h2>School Filter Options</h2>
+        </header>
+        <form method="get">
+            {{ year_filter.form.as_p }}
+            <input type="submit" />
+        </form>
+    </section>
+    <section style="overflow-x:auto;flex-grow:1;">
+        <ul>
+            {% for obj in response %}
+            <li class="slist">
+                <a href="/schools_list/{{ obj.school_name }}/{{ obj.region }}/{{ obj.district }}">
+                    {{ obj.school_name }}</a>
+            </li>
+            <table>
+                <tr>
+                    <th>School ID:</th>
+                    <th>School Region: </th>
+                    <th>School District: </th>
+                    <th>School Division: </th>
+                    <th>School Province:</th>
+                </tr>
+                <tr>
+                    <td>{{ obj.school_id }}</td>
+                    <td>{{ obj.region }}</td>
+                    <td>{{ obj.district }}</td>
+                    <td>{{ obj.division }}</td>
+                    <td>{{ obj.province }}</td>
+                </tr>
+            </table>
+            {% endfor %}
+        </ul>
+        <span>
+            {% if response.has_previous %}
+            <a href="?{% query_transform request page=1 %}">&laquo; first</a>
+            <a href="?{% query_transform request page=response.previous_page_number %}">previous</a>
+            {% endif %}
+            <span class="current">
+                Page {{ response.number }} of {{ response.paginator.num_pages }}
             </span>
-        </div>
-    </div>
-</body>
+
+            {% if response.has_next %}
+            <a href="?{% query_transform request page=response.next_page_number %}">next</a>
+            <a href="?{% query_transform request page=response.paginator.num_pages %}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </section>
+</div>
+{% endblock %}

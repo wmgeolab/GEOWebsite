@@ -21,7 +21,21 @@
 
 		<!-- Main -->
 		<div id="main">
-			{% block main %}{% endblock %}
+			<div class="inner">
+				<!-- Header -->
+				<header id="header">
+					<span class="logo"><a href="index.html"><strong>Global Education Observatory</strong></a> by the <a
+							href="http://geolab.wm.edu"><strong>William & Mary geoLab</strong></a></span>
+					<!-- <ul class="icons"> -->
+					<!-- <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li> -->
+					<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> -->
+					<!-- <li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li> -->
+					<!-- <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li> -->
+					<!-- <li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li> -->
+					<!-- </ul> -->
+				</header>
+				{% block main %}{% endblock %}
+			</div>
 		</div>
 
 		<!-- Sidebar -->
@@ -41,9 +55,9 @@
 						<h2>Menu</h2>
 					</header>
 					<ul>
-						<li><a href="index.html">Homepage</a></li>
-						<li><a href="schools_list">Search</a></li>
-						<li><a href="full_map">Map</a></li>
+						<li><a href="/index.html">Homepage</a></li>
+						<li><a href="/schools_list">Search</a></li>
+						<li><a href="/full_map">Map</a></li>
 						<!-- <li>
 							<span class="opener">Submenu</span>
 							<ul>
