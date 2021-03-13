@@ -4,8 +4,8 @@
 
 {% block title %}Search for Schools{% endblock %}
 {% block main %}
-<div style="display:flex;">
-    <section style="width:100%;max-width:20rem;">
+<div>
+    <section>
         <header class="major">
             <h2>School Filter Options</h2>
         </header>
@@ -14,31 +14,29 @@
             <input type="submit" />
         </form>
     </section>
-    <section style="overflow-x:auto;flex-grow:1;">
-        <ul>
+    <section>
+        <table>
+            <tr>
+                <th>School:</th>
+                <th>School ID:</th>
+                <th>School Region: </th>
+                <th>School District: </th>
+                <th>School Division: </th>
+                <th>School Province:</th>
+            </tr>
             {% for obj in response %}
-            <li class="slist">
-                <a href="/schools_list/{{ obj.school_name }}/{{ obj.region }}/{{ obj.district }}">
-                    {{ obj.school_name }}</a>
-            </li>
-            <table>
                 <tr>
-                    <th>School ID:</th>
-                    <th>School Region: </th>
-                    <th>School District: </th>
-                    <th>School Division: </th>
-                    <th>School Province:</th>
-                </tr>
-                <tr>
+                    <td><a href="/schools_list/{{ obj.school_name }}/{{ obj.region }}/{{ obj.district }}">
+                        {{ obj.school_name }}
+                    </a></td>
                     <td>{{ obj.school_id }}</td>
                     <td>{{ obj.region }}</td>
                     <td>{{ obj.district }}</td>
                     <td>{{ obj.division }}</td>
                     <td>{{ obj.province }}</td>
                 </tr>
-            </table>
             {% endfor %}
-        </ul>
+        </table>
         <span>
             {% if response.has_previous %}
             <a href="?{% query_transform request page=1 %}">&laquo; first</a>
