@@ -1,149 +1,97 @@
-<!DOCTYPE html>
-<html>
+{% extends "generic.html" %}
+{% load static %}
 
-    <head>
-        {% load static %}
-         <meta charset="utf-8">
-         <title>CheckMySchool Data Portal</title>
-         <link rel="stylesheet" type="text/css" href="{% static 'myapp/style_here.css' %}">
-         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
-         <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-         <link href="https://fonts.googleapis.com/css?family=Roboto|Bitter|Lobster|Manjari|Schoolbell" rel="stylesheet">
-         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
-         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-         <script src="https://code.highcharts.com/highcharts.src.js"></script>
-         <meta name="viewport" content="width=device-width,initial-scale=1.0">
-     </head>
+{% block title %}GEO - {{ school_id.0.school_name }}{% endblock %}
+{% block imports %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+<script src="https://code.highcharts.com/highcharts.src.js"></script>
+{% endblock %}
 
-
-
-
-
-<body>
-
-
-
-
-
-    <section style="width: 100%; height: 1700px; background-color: #ffffff;">
-        
-        <div id="profile" style="width:70%; float: left">
-                
-            <section style="color: #ffffff; margin: 0 auto; width: 100%; height: 12vh;">
-                <a href="https://www.checkmyschool.org"><img src="{% static "myapp/cms_logo_use.jpg" %}" style="float: left;" width="315vh", height="100vh"></a>
-                <ul>
-                    <li><a href="/" style="color: #002036;">Home</a></li>
-                    <li><a href="/about/" style="color: #002036;">About</a></li>
-                    <li><a href="/schools_list/" style="color: #002036;">School Profiles</a></li>
-                    <li><a href="/full_map/" style="color: #002036;">School Map</a></li>
-                    <!-- <li><a href="/IndexCalculator/" style="color: #002036;">SNI Calculator</a></li> -->
-                    <!-- <li><a href="/OpenData/" style="color: #002036;" >Data</a></li> -->
-                </ul>
-            </section>
-            
-            <br><br><br>
-
-            <h2 style="text-align: center; font-family: Manjari;">{{ school_id.0.school_name }}</h2>
-            <br><br><br>
+{% block main %}
+<section>
+    <div class="row">
+        <div class="col-8 col-12-small">
+            <h2>{{ school_id.0.school_name }}</h2>
             
             <h3>Fast Facts</h3>
-            <hr>
             <p>Region: {{ school_id.0.region }}</p>
             <p>District: {{ school_id.0.district }}</p>
             <p>Division: {{ school_id.0.division }}</p>
             <p>Total Teachers: {{ school_id.0.total_teachers }}</p>
             <p>Total Enrollment: {{ school_id.0.total_enrollment }}</p>
             <p>Students with Disabilities: {{ school_id.0.pwd_total }}</p>
-            <br><br><br>
-            
-            <h3>School Neediness Index Data</h3>
             <hr>
+
+            <h3>School Neediness Index Data</h3>
             <p>Percentage of Students Recieving Conditional Cash Transfers: {{ school_id.0.cct_percentage }}</p>
             <p>Water Access: {{ school_id.0.original_water_boolean }}</p>
             <p>Internet Access: {{ school_id.0.original_internet_boolean }}</p>
             <p>Electricty Access: {{ school_id.0.original_electricity_boolean }}</p>
             <p>Student-Teacher Ratio {{ school_id.0.student_teacher_ratio }}</p>
             <p>Student-Classroom Ratio: {{ school_id.0.student_classroom_ratio }}</p>
-            <br><br><br>
-            
-            <h3>Student Gender Distribution</h3>
             <hr>
-            <div id="container" style="width:50%; height:280px; margin-left: 4vh;"></div>
+
+            <h3>Student Gender Distribution</h3>
+            <div id="chart" style="width:100%; height:auto;"></div>
             <script>
-                    Highcharts.chart('container', {
-                        chart: {
-                            plotBackgroundColor: null,
-                            plotBorderWidth: null,
-                            plotShadow: false,
-                            type: 'pie'
-                        },
-                        title: {
-                            text: ' '
-                        },
-                        tooltip: {
-                            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                        },
-                        plotOptions: {
-                            pie: {
-                                allowPointSelect: true,
-                                cursor: 'pointer',
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-                                }
+                Highcharts.chart('chart', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: ' '
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
                             }
-                        },
-                        series: [{
-                            name: 'Gender',
-                            colorByPoint: true,
-                            data: [{
-                                name: 'Male',
-                                y: {{ school_id.0.total_male }},
-                                sliced: true,
-                                selected: true,
-                                color: "#347dc1"
-                            }, {
-                                name: 'Female',
-                                y: {{ school_id.0.total_female }},
-                                color: "#e6a6c7"
-                            }]
+                        }
+                    },
+                    series: [{
+                        name: 'Gender',
+                        colorByPoint: true,
+                        data: [{
+                            name: 'Male',
+                            y: {{ school_id.0.total_male }},
+                            sliced: true,
+                            selected: true,
+                            color: "#347dc1"
+                        }, {
+                            name: 'Female',
+                            y: {{ school_id.0.total_female }},
+                            color: "#e6a6c7"
                         }]
-                    });
-                
-                </script>
-            </div>
-        <div id="map" style="width:30%; float: right; height:100%">
-            <script type="text/javascript">
-                var map = L.map('map').setView([{{ school_id.0.latitude }}, {{ school_id.0.longitude }}], 14);
-                var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 18
+                    }]
                 });
-                map.addLayer(osmLayer);
-                var marker = L.marker([{{ school_id.0.latitude }}, {{ school_id.0.longitude }}]).addTo(map);
             </script>
         </div>
-    </section>
-
-
-
-
-
-    <footer style="background-color: #002036; height:25vh; padding: 10px; display: flex; flex-direction: column; justify-content: space-around;">
-            <div style=" margin-left: auto; margin-right: auto;">
-                <a href="https://github.com/heatherbaier/cmsDjango" style="color: white; padding: 20px 30px;"><i class="fa fa-github fa-3x" aria-hidden="true"></i></a>
-                <a href="https://www.youtube.com/user/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-youtube fa-3x" aria-hidden="true"></i></a>
-                <a href="https://twitter.com/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-twitter fa-3x" aria-hidden="true"></i></a>
-                <a href="https://www.facebook.com/CheckMySchool/" style="color: white; padding: 20px 30px;"><i class="fa fa-facebook fa-3x" aria-hidden="true"></i></a>
-                <a href="info@checkmyschool.org" style="color: white; padding: 20px 30px;"><i class="fa fa-envelope fa-3x" aria-hidden="true"></i></a>
+        <div class="col-4 col-12-small">
+            <div id="map" style="width:100%;height:50vh;">
+                <script type="text/javascript">
+                    var map = L.map('map').setView([{{ school_id.0.latitude }}, {{ school_id.0.longitude }}], 14);
+                    var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        maxZoom: 18
+                    });
+                    map.addLayer(osmLayer);
+                    var marker = L.marker([{{ school_id.0.latitude }}, {{ school_id.0.longitude }}]).addTo(map);
+                </script>
             </div>
-            <h4 style="color:white; font-family: Manjari; margin-left: auto; margin-right: auto; text-align: center;">
-                ANSA-EAP Satellite Office, 3rd Floor Mansi Bldg, 337 Katipunan Avenue Loyola <br>Heights, Quezon City, Metro Manila Philippines 1108
-            </h4>
-        </footer>
-
-</body>
-
-</html>
-
-
+        </div>
+    </div>
+</section>
+{% endblock %}
