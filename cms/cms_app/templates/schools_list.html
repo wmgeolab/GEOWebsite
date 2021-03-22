@@ -6,16 +6,16 @@
 {% block main %}
 <section>
     <header class="main">
-        <h1>School Filter Options</h2>
+        <h2>School Filter Options</h2>
     </header>
     <div class="row">
-        <div class="col">
+        <div class="col-3 col-12-small">
             <form method="get">
                 {{ year_filter.form.as_p }}
                 <input type="submit" />
             </form>
         </div>
-        <div class="col">
+        <div class="col-9 col-12-small">
             <table>
                 <tr>
                     <th>School</th>
