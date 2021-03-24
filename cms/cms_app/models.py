@@ -4,7 +4,7 @@ import django_filters
 
 class School(models.Model):
     country = models.TextField()
-    school_id = models.IntegerField(unique=True)
+    school_id = models.IntegerField(primary_key=True)
     remoteness_index = models.FloatField()
     total_recieving_cct = models.IntegerField()
     cct_percentage = models.FloatField()

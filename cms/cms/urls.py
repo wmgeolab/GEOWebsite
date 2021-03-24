@@ -21,11 +21,10 @@ from cms_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^$', views.HomePageView.as_view()),
-    url('index.html', views.HomePageView.as_view()),
-    url(r'^about/$', views.AboutPageView.as_view()),
-    path('schools_list/', views.school_list),
-    path('schools_list/<str:school_name>/<str:region>/<str:district>/', views.SchoolProfileView),
-    path('full_map/', views.FullMapData),
+    path('', views.HomePageView.as_view()),
+    path('index.html', views.HomePageView.as_view()),
+    path('schools_list/', views.SchoolListView.as_view()),
+    path('schools/<int:pk>/', views.SchoolProfileView.as_view()),
+    path('full_map/', views.MapView.as_view()),
 ]
 

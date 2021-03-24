@@ -25,54 +25,25 @@
 </style>
 
 <body>
-
-
-        <section style="background-color: #ffffff;  margin: 0 auto; width: 100%; background: #ffffff; height: 12vh;">
-                <section style="background-color: #ffffff;  margin: 0 auto; width: 100%; background: #ffffff; height: 12vh;">
-                    <a href="https://www.checkmyschool.org"><img src="{% static "myapp/cms_logo_use.jpg" %}" style="float: left;" width="315vh", height="100vh"></a>
-                    <ul style="height: 100%; display: flex; justify-content: flex-end; align-items: center; font-family: Manjari; height: 10vh;">
-                        <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/" style="color: #002036; text-decoration: none; font-size: 20px;">Home</a></li>
-                        <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/about/" style="color: #002036; text-decoration: none; font-size: 20px;">About</a></li>
-                        <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/schools_list/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Profiles</a></li>
-                        <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/full_map/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Map</a></li>
-                        <!-- <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/IndexCalculator/"  style="color: #002036; text-decoration: none; font-size: 20px;">SNI Calculator</a></li> -->
-                        <!-- <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/OpenData/"  style="color: #002036; text-decoration: none; font-size: 20px;" >Data</a></li> -->
-                    </ul>
-                </section>
-            </section>
-
-
     <div id="map" style="position: absolute;"></div>
-    <div class="panel panel-default" style="position:absolute;left:40px;top: 150px;z-index:3;">
-        <div class="panel-heading">
-            <h4 style="text-align: center;">Map Filters</h4>
-        </div>
-        <div class="panel-body">
-            <form action="" method="post">
-                {% csrf_token %}
-                <h3 style="text-align: left; margin-left: 3vh; padding:1vh; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ form.visible_fields.0.label }}: {{ form.visible_fields.0 }}</h3>
-                <input type="submit" value="Submit" style = 'font-family: Manjari; margin-left: 4vh;'>
-            </form>
-        </div>
-    </div>
 
     <script>
     
         var map = L.map('map').setView([10.8797, 121.7740], 6);
 
         var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	maxZoom: 19,
-	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+	        maxZoom: 19,
+	        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
 
         var data = {
             "type": "FeatureCollection",
             "features": [
-            {% for obj in filter %}
+            {% for obj in object_list %}
             {
                 "type": "Feature",
                 "properties": {
-                    "School_Name": "{{ obj.school_nam }}",
+                    "School_Name": "{{ obj.school_name }}",
                     "School_ID": "{{ obj.school_id }}",
                     "Region": "{{ obj.region }}",
                     "District": "{{ obj.district }}"
@@ -81,7 +52,7 @@
                     "type": "Point",
                     "coordinates": [{{ obj.longitude }}, {{ obj.latitude }}]
                 }
-            }{% if not loop.last %},{% endif %}
+            },
             {% endfor %}
             ]
         };
@@ -99,7 +70,7 @@
             onEachFeature: function(feature, layer) {
                 layer.bindPopup("<dl><dt><b>School Properties</b></dt>" +
             "<dt>" + "School Name: " +
-            '<a href="' + feature.properties.School_ID + '/" style="font-size:15px;">' +
+            '<a href="/schools/' + feature.properties.School_ID + '/" style="font-size:15px;">' +
                 feature.properties.School_Name + 
             '</a>' + "</dt>" +
             "<dt>" + "Schoool ID: " + feature.properties.School_ID + "</dt>" + 
@@ -115,19 +86,6 @@
         map.addLayer(dataLayer);
     
     </script>
-
-<footer style="background-color: #002036; height:25vh; padding: 10px; display: flex; flex-direction: column; justify-content: space-around;">
-        <div style=" margin-left: auto; margin-right: auto;">
-            <a href="https://github.com/heatherbaier/cmsDjango" style="color: white; padding: 20px 30px;"><i class="fa fa-github fa-3x" aria-hidden="true"></i></a>
-            <a href="https://www.youtube.com/user/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-youtube fa-3x" aria-hidden="true"></i></a>
-            <a href="https://twitter.com/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-twitter fa-3x" aria-hidden="true"></i></a>
-            <a href="https://www.facebook.com/CheckMySchool/" style="color: white; padding: 20px 30px;"><i class="fa fa-facebook fa-3x" aria-hidden="true"></i></a>
-            <a href="info@checkmyschool.org" style="color: white; padding: 20px 30px;"><i class="fa fa-envelope fa-3x" aria-hidden="true"></i></a>
-        </div>
-        <h4 style="color:white; font-family: Manjari; margin-left: auto; margin-right: auto; text-align: center;">
-            ANSA-EAP Satellite Office, 3rd Floor Mansi Bldg, 337 Katipunan Avenue Loyola <br>Heights, Quezon City, Metro Manila Philippines 1108
-        </h4>
-    </footer>
 
 </body>
 

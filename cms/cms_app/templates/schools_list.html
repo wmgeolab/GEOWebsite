@@ -1,6 +1,5 @@
 {% extends "generic.html" %}
 {% load static %}
-{% load my_tags %}
 
 {% block title %}Search for Schools{% endblock %}
 {% block main %}
@@ -11,7 +10,7 @@
     <div class="row">
         <div class="col-3 col-12-small">
             <form method="get">
-                {{ year_filter.form.as_p }}
+                {{ filter.form.as_p }}
                 <input type="submit" />
             </form>
         </div>
@@ -25,9 +24,9 @@
                     <th>School Division</th>
                     <th>School Province</th>
                 </tr>
-                {% for obj in response %}
+                {% for obj in page_obj %}
                     <tr>
-                        <td><a href="/schools_list/{{ obj.school_name }}/{{ obj.region }}/{{ obj.district }}">
+                        <td><a href="/schools/{{ obj.school_id }}">
                             {{ obj.school_name }}
                         </a></td>
                         <td>{{ obj.school_id }}</td>
@@ -39,16 +38,16 @@
                 {% endfor %}
             </table>
             <ul class="pagination">
-                {% if response.has_previous %}
-                <li><a href="?{% query_transform request page=1 %}" class="button">First</a></li>
-                <li><a href="?{% query_transform request page=response.previous_page_number %}" class="page">{{ response.previous_page_number }}</a></li>
+                {% if page_obj.has_previous %}
+                <li><a href="?page=1" class="button">First</a></li>
+                <li><a href="?page={{ page_obj.previous_page_number }}" class="page">{{ page_obj.previous_page_number }}</a></li>
                 {% else %}
                 <li><span class="button disabled">First</span></li>
                 {% endif %}
-                <li><a href="#" class="page active">{{ response.number }}</a></li>
-                {% if response.has_next %}
-                <li><a href="?{% query_transform request page=response.next_page_number %}" class="page">{{ response.next_page_number }}</a></li>
-                <li><a href="?{% query_transform request page=response.paginator.num_pages %}" class="button">Last</a></li>
+                <li><a href="#" class="page active">{{ page_obj.number }}</a></li>
+                {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}" class="page">{{ page_obj.next_page_number }}</a></li>
+                <li><a href="?page={{ page_obj.paginator.num_pages }}" class="button">Last</a></li>
                 {% else %}
                 <li><span class="button disabled">Last</span></li>
                 {% endif %}
