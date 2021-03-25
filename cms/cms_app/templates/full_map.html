@@ -68,15 +68,12 @@
 
         var dataLayer = L.geoJson(data, {
             onEachFeature: function(feature, layer) {
-                layer.bindPopup("<dl><dt><b>School Properties</b></dt>" +
-            "<dt>" + "School Name: " +
-            '<a href="/schools/' + feature.properties.School_ID + '/" style="font-size:15px;">' +
+                layer.bindPopup('<h4><a href="/schools/' + feature.properties.School_ID + '"/>' +
                 feature.properties.School_Name + 
-            '</a>' + "</dt>" +
-            "<dt>" + "Schoool ID: " + feature.properties.School_ID + "</dt>" + 
-            "<dt>" + "Region: " + feature.properties.Region + "</dt>" +
-            "<dt>" + "District: " + feature.properties.District + "</dt>" +
-            "</dl>");
+                '</a></h4>' +
+                "School ID: " + feature.properties.School_ID + 
+                "<br>Region: " + feature.properties.Region +
+                "<br>District: " + feature.properties.District);
             },
             pointToLayer: function (feature, latlng) {
                 return L.circleMarker(latlng, geojsonMarkerOptions);
