@@ -22,7 +22,7 @@ from school_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.HomePageView.as_view()),
-    path('index.html', views.HomePageView.as_view()),
+    path('about/', views.AboutView.as_view()),
     path('schools_list/', views.SchoolListView.as_view()),
     path('schools/<int:pk>/', views.SchoolProfileView.as_view()),
     path('full_map/', views.MapView.as_view()),

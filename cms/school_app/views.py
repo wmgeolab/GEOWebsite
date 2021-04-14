@@ -6,6 +6,9 @@ from .models import School, SchoolResourcesFilter
 class HomePageView(TemplateView):
     template_name = "index.html"
 
+class AboutView(TemplateView):
+    template_name = "about.html"
+
 class SchoolListView(FilterView):
     model = School
     paginate_by = 20
