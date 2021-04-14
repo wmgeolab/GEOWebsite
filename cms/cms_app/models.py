@@ -28,6 +28,9 @@ class School(models.Model):
     total_male = models.IntegerField()
     total_enrollment = models.IntegerField()
 
+    def __str__(self) -> str:
+        return self.school_name
+
 
 # Filters
 class SchoolResourcesFilter(django_filters.FilterSet):
