@@ -7,5 +7,7 @@ urlpatterns = [
     path('schools_list/', views.SchoolListView.as_view()),
     path('schools/<int:pk>/', views.SchoolProfileView.as_view()),
     path('full_map/', views.MapView.as_view()),
+    path('posts/', views.PostList.as_view()),
+    path('posts/<slug:slug>/', views.PostDetail.as_view(), name='post_detail'),
 ]
 

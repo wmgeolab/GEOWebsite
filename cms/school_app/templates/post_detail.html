@@ -1,0 +1,14 @@
+{% extends "generic.html" %}
+{% load static %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block main %}
+    <section>
+        <header class="main">
+            <h2>{{ post.title }}</h1>
+        </header>
+        <p>{{ post.author }} | {{ post.created_on }}</p>
+        <p>{{ post.content | safe }}</p>
+    </section>
+{% endblock %}

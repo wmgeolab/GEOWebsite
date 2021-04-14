@@ -1,0 +1,32 @@
+{% extends "generic.html" %}
+{% load static %}
+
+{% block title %}Posts{% endblock %}
+
+{% block main %}
+    {% for post in post_list %}
+        <section>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.author }} | {{ post.created_on}}</p>
+            <p>{{ post.content|slice:":200" }}</p>
+            <a href="{% url 'post_detail' post.slug  %}">Read More &rarr;</a>
+        </section>
+    {% endfor %}
+    {% if is_paginated %}
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li><a href="?page=1" class="button">First</a></li>
+                <li><a href="?page={{ page_obj.previous_page_number }}" class="page">{{ page_obj.previous_page_number }}</a></li>
+            {% else %}
+                <li><span class="button disabled">First</span></li>
+            {% endif %}
+                <li><a href="#" class="page active">{{ page_obj.number }}</a></li>
+            {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}" class="page">{{ page_obj.next_page_number }}</a></li>
+                <li><a href="?page={{ page_obj.paginator.num_pages }}" class="button">Last</a></li>
+            {% else %}
+                <li><span class="button disabled">Last</span></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+{% endblock %}
