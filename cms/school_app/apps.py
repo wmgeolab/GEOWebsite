@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class CmsAppConfig(AppConfig):
-    name = 'cms_app'
+    name = 'school_app'

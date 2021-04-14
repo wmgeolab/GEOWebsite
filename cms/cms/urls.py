@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
 from django.contrib import admin
-from cms_app import views
+from school_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
