@@ -9,7 +9,7 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
-<script src="https://code.highcharts.com/highcharts.src.js"></script>
+<!-- <script src="https://code.highcharts.com/highcharts.src.js"></script> -->
 {% endblock %}
 
 {% block main %}
@@ -21,24 +21,17 @@
             </header>
             
             <h3>Fast Facts</h3>
-            <p>Region: {{ object.region }}</p>
-            <p>District: {{ object.district }}</p>
-            <p>Division: {{ object.division }}</p>
-            <p>Total Teachers: {{ object.total_teachers }}</p>
-            <p>Total Enrollment: {{ object.total_enrollment }}</p>
-            <p>Students with Disabilities: {{ object.pwd_total }}</p>
-            <hr>
+            <p>Data year: {{ object.data_year }}</p>
+            <p>Country: {{ object.country }}</p>
+            <p>Sector: {{ object.sector }}</p>
+            <p>School level: {{ object.school_level }}</p>
+            <p>Municipality: {{ object.municipality }}</p>
+            <p>Department: {{ object.department }}</p>
+            <p>Zone: {{ object.zone }}</p>
+            <p>Address: {{ object.address }}</p>
+            <p>Total enrollment: {{ object.total_enrollment }}</p>
 
-            <h3>School Neediness Index Data</h3>
-            <p>Percentage of Students Recieving Conditional Cash Transfers: {{ object.cct_percentage }}</p>
-            <p>Water Access: {{ object.original_water_boolean }}</p>
-            <p>Internet Access: {{ object.original_internet_boolean }}</p>
-            <p>Electricty Access: {{ object.original_electricity_boolean }}</p>
-            <p>Student-Teacher Ratio {{ object.student_teacher_ratio }}</p>
-            <p>Student-Classroom Ratio: {{ object.student_classroom_ratio }}</p>
-            <hr>
-
-            <h3>Student Gender Distribution</h3>
+            <!-- <h3>Student Gender Distribution</h3>
             <div id="chart" style="width:100%; height:auto;"></div>
             <script>
                 Highcharts.chart('chart', {
@@ -81,11 +74,11 @@
                     }]
                 });
             </script>
-        </div>
+        </div> -->
         <div class="col-4 col-12-small">
             <div id="map" style="width:100%;height:50vh;">
                 <script type="text/javascript">
-                    var map = L.map('map').setView([{{ object.latitude }}, {{ object.longitude }}], 14);
+                    var map = L.map('map').setView([{{ object.lat }}, {{ object.lon }}], 14);
                     var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         maxZoom: 18
                     });

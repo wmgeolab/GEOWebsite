@@ -21,7 +21,7 @@ class SchoolProfileView(DetailView):
     template_name = "school_profile.html"
 
 class MapView(ListView):
-    model = School
+    queryset = School.objects.exclude(lat=None).exclude(lon=None)
     template_name = "full_map.html"
 
 class PostList(ListView):

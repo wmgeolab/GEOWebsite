@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'cms.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'sample_cms.db'),
+        'NAME': os.path.join(BASE_DIR, 'cms.db'),
     }
 }
 

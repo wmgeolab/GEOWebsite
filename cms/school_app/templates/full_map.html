@@ -29,7 +29,7 @@
 
     <script>
     
-        var map = L.map('map').setView([10.8797, 121.7740], 6);
+        var map = L.map('map').setView([-29.106, 26.150], 6);
 
         var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	        maxZoom: 19,
@@ -44,13 +44,13 @@
                 "type": "Feature",
                 "properties": {
                     "School_Name": "{{ obj.school_name }}",
-                    "School_ID": "{{ obj.school_id }}",
-                    "Region": "{{ obj.region }}",
-                    "District": "{{ obj.district }}"
+                    "School_ID": "{{ obj.id }}",
+                    "Country": "{{ obj.country }}",
+                    "Sector": "{{ obj.sector }}"
                 },
                 "geometry": {
                     "type": "Point",
-                    "coordinates": [{{ obj.longitude }}, {{ obj.latitude }}]
+                    "coordinates": [{{ obj.lon }}, {{ obj.lat }}]
                 }
             },
             {% endfor %}
@@ -72,8 +72,8 @@
                 feature.properties.School_Name + 
                 '</a></h4>' +
                 "School ID: " + feature.properties.School_ID + 
-                "<br>Region: " + feature.properties.Region +
-                "<br>District: " + feature.properties.District);
+                "<br>Country: " + feature.properties.Country +
+                "<br>Sector: " + feature.properties.Sector);
             },
             pointToLayer: function (feature, latlng) {
                 return L.circleMarker(latlng, geojsonMarkerOptions);
