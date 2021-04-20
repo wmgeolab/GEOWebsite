@@ -25,7 +25,7 @@ SECRET_KEY = 'vcluwoabr$ux)(dx(674te_tajb26#79@0$vmbc_z%3c9t!^$#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [u'checkmyschool.pythonanywhere.com', 'localhost']
+ALLOWED_HOSTS = [u'checkmyschool.pythonanywhere.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'cms.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'cms.db'),
+        'NAME': os.path.join(BASE_DIR, 'sample_cms.db'),
     }
 }
 

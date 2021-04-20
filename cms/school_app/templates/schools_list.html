@@ -19,21 +19,21 @@
                 <tr>
                     <th>School</th>
                     <th>School ID</th>
-                    <th>School Region</th>
-                    <th>School District</th>
-                    <th>School Division</th>
-                    <th>School Province</th>
+                    <th>School Country</th>
+                    <th>School Municipality</th>
+                    <th>School Zone</th>
+                    <th>School Sector</th>
                 </tr>
                 {% for obj in page_obj %}
                     <tr>
                         <td><a href="/schools/{{ obj.school_id }}">
                             {{ obj.school_name }}
                         </a></td>
-                        <td>{{ obj.school_id }}</td>
-                        <td>{{ obj.region }}</td>
-                        <td>{{ obj.district }}</td>
-                        <td>{{ obj.division }}</td>
-                        <td>{{ obj.province }}</td>
+                        <td>{{ obj.id }}</td>
+                        <td>{{ obj.country }}</td>
+                        <td>{{ obj.municipality }}</td>
+                        <td>{{ obj.zone }}</td>
+                        <td>{{ obj.sector }}</td>
                     </tr>
                 {% endfor %}
             </table>

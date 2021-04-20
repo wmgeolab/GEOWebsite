@@ -4,34 +4,26 @@ from django.contrib.auth.models import User
 
 
 class School(models.Model):
+    id = models.IntegerField(primary_key=True)
     country = models.TextField()
-    school_id = models.IntegerField(primary_key=True)
-    remoteness_index = models.FloatField()
-    total_recieving_cct = models.IntegerField()
-    cct_percentage = models.FloatField()
-    comments = models.TextField(blank=True, null=True)
-    original_water_boolean = models.IntegerField()
-    original_internet_boolean = models.IntegerField()
-    original_electricity_boolean = models.IntegerField()
-    classroom_count = models.IntegerField()
-    student_classroom_ratio = models.FloatField()
-    total_teachers = models.IntegerField()
-    student_teacher_ratio = models.FloatField()
-    latitude = models.FloatField()
-    longitude = models.FloatField()
+    data_year = models.IntegerField()
     school_name = models.TextField()
-    region = models.TextField()
-    division = models.TextField()
-    province = models.TextField()
+    sector = models.TextField()
+    school_level = models.TextField()
     municipality = models.TextField()
-    district = models.TextField()
-    total_female = models.IntegerField()
-    total_male = models.IntegerField()
+    department = models.TextField()
+    zone = models.TextField()
+    address = models.TextField()
     total_enrollment = models.IntegerField()
+    lon = models.FloatField()
+    lat = models.FloatField()
 
     def __str__(self) -> str:
         return self.school_name
 
+    class Meta:
+        managed = False
+        db_table = 'schools'
 
 STATUS = (
     (0, "Draft"),
@@ -62,11 +54,12 @@ class SchoolResourcesFilter(django_filters.FilterSet):
 
     class Meta:
         model = School
+        db_table = 'schools'
 
         fields = {
             'school_name': ['icontains'],
-            'region': ['icontains'],
-            'district': ['icontains'],
-            'division': ['icontains'],
-            'province': ['icontains']
+            'country': ['icontains'],
+            'municipality': ['icontains'],
+            'department': ['icontains'],
+            'sector': ['icontains']
         }
