@@ -49,16 +49,23 @@ class Post(models.Model):
 
 # Filters
 
+COUNTRIES= [
+    ('South Africa', 'South Africa'),
+    ('Costa Rica', 'Costa Rica'),
+    ('Paraguay', 'Paraguay'),
+    ]
 
 class SchoolResourcesFilter(django_filters.FilterSet):
 
-    class Meta:
+   country = django_filters.ChoiceFilter(choices=COUNTRIES)
+
+   class Meta:
         model = School
         db_table = 'schools'
 
         fields = {
             'school_name': ['icontains'],
-            'country': ['icontains'],
+            #'country': ['icontains'],
             'municipality': ['icontains'],
             'department': ['icontains'],
             'sector': ['icontains']
