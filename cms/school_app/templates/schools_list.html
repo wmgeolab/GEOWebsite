@@ -48,6 +48,7 @@
                 {% if page_obj.has_next %}
                 <li><a href="?page={{ page_obj.next_page_number }}" class="page">{{ page_obj.next_page_number }}</a></li>
                 <li><a href="?page={{ page_obj.paginator.num_pages }}" class="button">Last</a></li>
+                <li><a href="{{ '/downloadcsv' }}" class="button">Download CSV File</a></li>
                 {% else %}
                 <li><span class="button disabled">Last</span></li>
                 {% endif %}

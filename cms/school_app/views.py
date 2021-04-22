@@ -1,6 +1,8 @@
 from django.views.generic import TemplateView, ListView, DetailView
 from django_filters.views import FilterView
 from .models import School, SchoolResourcesFilter, Post
+from django.http import HttpResponse
+import csv
 
 # Create your views here.
 class HomePageView(TemplateView):
@@ -32,3 +34,19 @@ class PostList(ListView):
 class PostDetail(DetailView):
     model = Post
     template_name = 'post_detail.html'
+
+def SchoolListDownload(request):
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+
+    writer = csv.writer(response)
+    field_names = School._meta.fields
+    field_names = [str(field).split('.')[-1] for field in field_names]
+    writer.writerow(field_names)
+    items = School.objects.all()
+    for obj in items:
+        writer.writerow([getattr(obj, field) for field in field_names])
+
+    response['Content-Disposition'] = 'attachment; filename="schools.csv"'
+
+    return response
