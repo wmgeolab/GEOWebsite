@@ -1,0 +1,11 @@
+# This file may be used to create an environment using:
+# $ conda env create -f <this file>
+name: geo
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - autopep8=1.5.*
+  - django=3.2.*
+  - django-filter=2.4.*
+  - sqlite=3.36.*
