@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -119,10 +120,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# default static files settings for PythonAnywhere.
-# see https://help.pythonanywhere.com/pages/DjangoStaticFiles for more info
-MEDIA_ROOT = u'/home/checkmyschool/cms/media'
-MEDIA_URL = '/media/'
-STATIC_ROOT = u'/home/checkmyschool/cms/static'
-STATIC_URL = '/static/'
+# enable compression and caching for Whitenoise
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

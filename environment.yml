@@ -9,3 +9,5 @@ dependencies:
   - django=3.2.*
   - django-filter=2.4.*
   - sqlite=3.36.*
+  - whitenoise=5.3.*
+  
