@@ -23,6 +23,8 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Push to GitLab
+        env:
+          GL_TOKEN: ${{ secrets.GL_TOKEN }}
         run: |
           cd $GITHUB_WORKSPACE
           git config user.name "GHpush"
