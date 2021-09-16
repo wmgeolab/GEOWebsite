@@ -2,4 +2,4 @@
 Website for the Global Education Observatory platform
 
 # Dependencies
-You need conda, either through Anaconda or miniconda. Add the conda-forge channel and set channel_priority to strict. Then make a new conda environment and install the dependencies with `conda install --file requirements.txt`.
+Create a Python 3.9 virtual environment with `python -m venv venv`. Activate the venv and install requirements with `pip install -r requirements.txt`
