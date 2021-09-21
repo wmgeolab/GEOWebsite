@@ -20,12 +20,22 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'vcluwoabr$ux)(dx(674te_tajb26#79@0$vmbc_z%3c9t!^$#'
+SECRET_KEY = os.getenv('SECRET_KEY', 'X')
+if os.path.isfile(SECRET_KEY):
+    with open(SECRET_KEY) as secret_key_file:
+        SECRET_KEY = secret_key_file.read().rstrip()
+
+
+db_password = str(os.getenv('DB_PASSWORD', ''))
+if os.path.isfile(db_password):
+    with open(db_password, 'r') as password_file:
+        db_password = password_file.read().rstrip()
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'false').lower() == 'true'
 
-ALLOWED_HOSTS = [u'checkmyschool.pythonanywhere.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -78,8 +88,12 @@ WSGI_APPLICATION = 'cms.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'cms.db'),
+        'ENGINE': str(os.getenv('DB_ENGINE', '')).rstrip(),
+        'NAME': str(os.getenv('DB_NAME', '')).rstrip(),
+        'USER': str(os.getenv('DB_USER', '')).rstrip(),
+        'PASSWORD': db_password,
+        'HOST': str(os.getenv('DB_HOST', '')).rstrip(),
+        'PORT': int(str(os.getenv('DB_PORT', 3306)).rstrip()),
     }
 }
 
