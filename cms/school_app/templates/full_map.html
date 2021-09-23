@@ -1,91 +1,76 @@
-<!DOCTYPE html>
-<html>
+{% extends "generic.html" %}
+{% load static %}
 
-<head>
-    {% load static %}
-    <title>CheckMySchool Map</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-        crossorigin=""/>
-    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/" /> -->
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-        crossorigin=""></script>
-    <meta charset="utf-8" />
-</head>
+{% block title %}GEO Map{% endblock %}
 
-<style>
-    body {
-        padding: 0;
-        margin: 0;
-    }
-    html, body, #map {
-        height: 100%;
-        width: 100%;
-    }
+{% block imports %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/" /> -->
+{% endblock %}
 
-</style>
+{% block main %}
 
-<body>
-    <div id="map" style="position: absolute;"></div>
+<div id="map" style="height: 80vh;"></div>
 
-    <script>
-    
-        var map = L.map('map').setView([-29.106, 26.150], 6);
+<script>
 
-        var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	        maxZoom: 19,
-	        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
+    var map = L.map('map').setView([-29.106, 26.150], 6);
 
-        var data = {
-            "type": "FeatureCollection",
-            "features": [
-            {% for obj in object_list %}
-            {
-                "type": "Feature",
-                "properties": {
-                    "School_Name": "{{ obj.school_name }}",
-                    "School_ID": "{{ obj.id }}",
-                    "Country": "{{ obj.country }}",
-                    "Sector": "{{ obj.sector }}"
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [{{ obj.lon }}, {{ obj.lat }}]
-                }
+    var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+    var data = {
+        "type": "FeatureCollection",
+        "features": [
+        {% for obj in object_list %}
+        {
+            "type": "Feature",
+            "properties": {
+                "School_Name": "{{ obj.school_name }}",
+                "School_ID": "{{ obj.id }}",
+                "Country": "{{ obj.country }}",
+                "Sector": "{{ obj.sector }}"
             },
-            {% endfor %}
-            ]
-        };
+            "geometry": {
+                "type": "Point",
+                "coordinates": [{{ obj.lon }}, {{ obj.lat }}]
+            }
+        },
+        {% endfor %}
+        ]
+    };
 
-        var geojsonMarkerOptions = {
-            radius: 8,
-            fillColor: "#ff7800",
-            color: "#000",
-            weight: 1,
-            opacity: 1,
-            fillOpacity: 0.8
-        };
+    var geojsonMarkerOptions = {
+        radius: 8,
+        fillColor: "#ff7800",
+        color: "#000",
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.8
+    };
 
-        var dataLayer = L.geoJson(data, {
-            onEachFeature: function(feature, layer) {
-                layer.bindPopup('<h4><a href="/schools/' + feature.properties.School_ID + '"/>' +
-                feature.properties.School_Name + 
-                '</a></h4>' +
-                "School ID: " + feature.properties.School_ID + 
-                "<br>Country: " + feature.properties.Country +
-                "<br>Sector: " + feature.properties.Sector);
-            },
-            pointToLayer: function (feature, latlng) {
-                return L.circleMarker(latlng, geojsonMarkerOptions);
-            },
-        });
+    var dataLayer = L.geoJson(data, {
+        onEachFeature: function(feature, layer) {
+            layer.bindPopup('<h4><a href="/schools/' + feature.properties.School_ID + '"/>' +
+            feature.properties.School_Name + 
+            '</a></h4>' +
+            "School ID: " + feature.properties.School_ID + 
+            "<br>Country: " + feature.properties.Country +
+            "<br>Sector: " + feature.properties.Sector);
+        },
+        pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng, geojsonMarkerOptions);
+        },
+    });
 
-        map.addLayer(dataLayer);
-    
-    </script>
+    map.addLayer(dataLayer);
 
-</body>
-
-</html>
+</script>
+{% endblock %}
