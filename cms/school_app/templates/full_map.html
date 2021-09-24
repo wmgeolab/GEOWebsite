@@ -10,7 +10,9 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
-<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/" /> -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"/>
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 {% endblock %}
 
 {% block main %}
@@ -21,11 +23,13 @@
 
     var map = L.map('map').setView([-29.106, 26.150], 6);
 
-    var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    // Add map tiles to map
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
+    // Generate GeoJSON features from database
     var data = {
         "type": "FeatureCollection",
         "features": [
@@ -47,15 +51,7 @@
         ]
     };
 
-    var geojsonMarkerOptions = {
-        radius: 8,
-        fillColor: "#ff7800",
-        color: "#000",
-        weight: 1,
-        opacity: 1,
-        fillOpacity: 0.8
-    };
-
+    // Build GeoJSON data layer
     var dataLayer = L.geoJson(data, {
         onEachFeature: function(feature, layer) {
             layer.bindPopup('<h4><a href="/schools/' + feature.properties.School_ID + '"/>' +
@@ -64,13 +60,13 @@
             "School ID: " + feature.properties.School_ID + 
             "<br>Country: " + feature.properties.Country +
             "<br>Sector: " + feature.properties.Sector);
-        },
-        pointToLayer: function (feature, latlng) {
-            return L.circleMarker(latlng, geojsonMarkerOptions);
-        },
+        }
     });
 
-    map.addLayer(dataLayer);
+    // Cluster and display on map
+    var cluster = L.markerClusterGroup();
+    cluster.addLayer(dataLayer);
+    map.addLayer(cluster);
 
 </script>
 {% endblock %}
