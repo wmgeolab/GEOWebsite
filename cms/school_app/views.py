@@ -18,6 +18,14 @@ class SchoolListView(FilterView):
     ordering = ['school_name']
     filterset_class = SchoolResourcesFilter
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        get_copy = self.request.GET.copy()
+        if get_copy.get('page'):
+            get_copy.pop('page')
+        context['get_copy'] = get_copy
+        return context
+
 class SchoolProfileView(DetailView):
     model = School
     template_name = "school_profile.html"
