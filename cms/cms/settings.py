@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'school_app.apps.CmsAppConfig',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
