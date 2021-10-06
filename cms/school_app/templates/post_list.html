@@ -8,7 +8,7 @@
         <section>
             <h2>{{ post.title }}</h2>
             <p>{{ post.author.first_name }} {{ post.author.last_name }} | {{ post.created_on}}</p>
-            <p>{{ post.content | truncatewords_html:20 | safe}}</p>
+            <p>{{ post.content | truncatewords_html:100 | safe}}</p>
             <a href="{% url 'post_detail' post.slug  %}">Read More &rarr;</a>
         </section>
     {% endfor %}
