@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'school_app.apps.CmsAppConfig',
     'ckeditor',
+    'cas',
 ]
 
 MIDDLEWARE = [
@@ -61,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'cas.middleware.CASMiddleware',
 ]
 
 ROOT_URLCONF = 'cms.urls'
@@ -141,3 +143,17 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Django 3.2 BigAutoFields
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CAS
+
+CAS_SERVER_URL = str(os.getenv('CAS_SERVER_URL', '')).rstrip()
+CAS_VERSION = os.getenv('CAS_VERSION', '3')
+CAS_LOGOUT_COMPLETELY = True
+CAS_PROVIDE_URL_TO_LOGOUT = True
+CAS_FORCE_SSL_SERVICE_URL = os.getenv('SSL', 'false').lower() == 'true'
+CAS_AUTO_CREATE_USER = False
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'cas.backends.CASBackend',
+)
