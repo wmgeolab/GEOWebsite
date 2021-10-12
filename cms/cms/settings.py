@@ -149,6 +149,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CAS_SERVER_URL = str(os.getenv('CAS_SERVER_URL', '')).rstrip()
 CAS_VERSION = os.getenv('CAS_VERSION', '3')
 CAS_CREATE_USER = True
+CAS_APPLY_ATTRIBUTES_TO_USER = True
+CAS_RENAME_ATTRIBUTES = {'givenName' : 'first_name', 'LastName' : 'last_name', 'mail' : 'email'}
 CAS_IGNORE_REFERER = True
 CAS_LOGOUT_COMPLETELY = True
 CAS_FORCE_SSL_SERVICE_URL = os.getenv('SSL', 'false').lower() == 'true'
