@@ -18,6 +18,8 @@ class School(models.Model):
     total_enrollment = models.IntegerField()
     lon = models.FloatField()
     lat = models.FloatField()
+    test_score = models.FloatField()
+    gender_ratio = models.FloatField()
 
     def __str__(self) -> str:
         return self.school_name
@@ -52,7 +54,7 @@ class Post(models.Model):
 
 COUNTRIES= [
     ('South Africa', 'South Africa'),
-    ('Costa Rica', 'Costa Rica'),
+    ('Peru', 'Peru'),
     ('Paraguay', 'Paraguay'),
     ]
 
