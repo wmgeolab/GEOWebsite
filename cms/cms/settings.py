@@ -91,14 +91,12 @@ WSGI_APPLICATION = 'cms.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'cms.db'),
-        #'NAME': str(os.getenv('DB_NAME', '')).rstrip(),
-        #'ENGINE': str(os.getenv('DB_ENGINE', '')).rstrip(),
-        #'USER': str(os.getenv('DB_USER', '')).rstrip(),
-        #'PASSWORD': db_password,
-        #'HOST': str(os.getenv('DB_HOST', '')).rstrip(),
-        #'PORT': int(str(os.getenv('DB_PORT', 3306)).rstrip()),
+        'NAME': str(os.getenv('DB_NAME', '')).rstrip(),
+        'ENGINE': str(os.getenv('DB_ENGINE', '')).rstrip(),
+        'USER': str(os.getenv('DB_USER', '')).rstrip(),
+        'PASSWORD': db_password,
+        'HOST': str(os.getenv('DB_HOST', '')).rstrip(),
+        'PORT': int(str(os.getenv('DB_PORT', 3306)).rstrip()),
     }
 }
 
