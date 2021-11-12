@@ -56,6 +56,12 @@ COUNTRIES= [
     ('South Africa', 'South Africa'),
     ('Peru', 'Peru'),
     ('Paraguay', 'Paraguay'),
+    ('Bahrain', 'Bahrain'),
+    ('Colombia', 'Colombia'),
+    ('Costa Rica', 'Costa Rica'),
+    ('Guatemala', 'Guatemala'),
+    ('Panama', 'Panama'),
+    ('Mexico', 'Mexico'),
     ]
 
 class SchoolResourcesFilter(django_filters.FilterSet):
