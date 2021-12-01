@@ -11,6 +11,7 @@
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
 <script src="https://unpkg.com/supercluster@7.1.2/dist/supercluster.min.js"></script>
+<link rel="stylesheet" href="{% static 'myapp/assets/css/cluster.css' %}" />
 {% endblock %}
 
 {% block main %}
@@ -32,14 +33,18 @@
     // Build GeoJSON data layer
     console.log('building geoJSON layer: ' + window.performance.now())
     var markers = L.geoJson(null, {
-        // onEachFeature: function(feature, layer) {
-        //     layer.bindPopup('<h4><a href="/schools/' + feature.properties.School_ID + '"/>' +
-        //     feature.properties.School_Name + 
-        //     '</a></h4>' +
-        //     "School ID: " + feature.properties.School_ID + 
-        //     "<br>Country: " + feature.properties.Country +
-        //     "<br>Sector: " + feature.properties.Sector);
-        // },
+        onEachFeature: function(feature, layer)
+        {
+            if (feature.properties.School_ID)
+            {
+                layer.bindPopup('<h4><a href="/schools/' + feature.properties.School_ID + '"/>' +
+                feature.properties.School_Name + 
+                '</a></h4>' +
+                "School ID: " + feature.properties.School_ID + 
+                "<br>Country: " + feature.properties.Country +
+                "<br>Sector: " + feature.properties.Sector);
+            }
+        },
         pointToLayer: createClusterIcon
     }).addTo(map);
     
@@ -64,8 +69,8 @@
     // Cluster and display on map
     console.log('start clustering: ' + window.performance.now())
     const index = new Supercluster({
-        radius: 40,
-        maxZoom: 16
+        radius: 100,
+        maxZoom: 19
     });
     index.load(data['features']);
     console.log(`loaded ${ data['features'].length } points`);
@@ -76,14 +81,18 @@
     console.log('end clustering: ' + window.performance.now())
 
     function update() {
-        console.log('updating');
         var bounds = map.getBounds();
         var bbox = [bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()];
         var zoom = map.getZoom();
         var clusters = index.getClusters(bbox, zoom);
-        console.log(clusters);
         markers.clearLayers();
         markers.addData(clusters);
     }
+
+    markers.on('click', (e) => {
+        if (e.layer.feature.properties.cluster_id) {
+            map.flyTo(e.latlng, index.getClusterExpansionZoom(e.layer.feature.properties.cluster_id));
+        }
+    });
 </script>
 {% endblock %}
