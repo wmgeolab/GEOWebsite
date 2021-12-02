@@ -12,7 +12,7 @@ class AboutView(TemplateView):
     template_name = "about.html"
 
 class SchoolListView(FilterView):
-    queryset = School.objects.exclude(test_score=None).exclude(gender_ratio=None)
+    model = School
     paginate_by = 20
     template_name = "schools_list.html"
     ordering = ['school_name']
@@ -31,7 +31,7 @@ class SchoolProfileView(DetailView):
     template_name = "school_profile.html"
 
 class MapView(ListView):
-    queryset = School.objects.exclude(lat=None).exclude(lon=None).exclude(test_score=None).exclude(gender_ratio=None)
+    queryset = School.objects.exclude(lat=None).exclude(lon=None)
     template_name = "full_map.html"
 
 class PostList(ListView):
