@@ -70,7 +70,7 @@
     console.log('start clustering: ' + window.performance.now())
     const index = new Supercluster({
         radius: 100,
-        maxZoom: 19
+        maxZoom: 18
     });
     index.load(data['features']);
     console.log(`loaded ${ data['features'].length } points`);
