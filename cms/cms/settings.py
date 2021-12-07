@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django_cas_ng',
     'school_app.apps.CmsAppConfig',
     'ckeditor',
+    'compressor',
 ]
 
 MIDDLEWARE = [
