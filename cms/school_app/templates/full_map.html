@@ -15,10 +15,9 @@
 {% endblock %}
 
 {% block main %}
-<script src="{% static 'myapp/assets/js/geo_full.js' %}"></script>
+<script src="{% static 'myapp/assets/js/geo_full.min.js' %}"></script>
 <div id="map" style="height: 80vh;"></div>
 <script>
-    console.log('script start: ' + window.performance.now())
     var map = L.map('map').setView([-29.106, 26.150], 6);
 
     // Add map tiles to map
@@ -27,11 +26,6 @@
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-    // Generate GeoJSON features from database
-    // console.log('generating from db: ' + window.performance.now())
-  
-    // Build GeoJSON data layer
-    console.log('building geoJSON layer: ' + window.performance.now())
     var markers = L.geoJson(null, {
         onEachFeature: function(feature, layer)
         {
@@ -67,7 +61,6 @@
     }
 
     // Cluster and display on map
-    console.log('start clustering: ' + window.performance.now())
     const index = new Supercluster({
         radius: 100,
         maxZoom: 18
@@ -77,8 +70,6 @@
     update();
     // Update the displayed clusters after user pan / zoom.
     map.on('moveend', update);
-
-    console.log('end clustering: ' + window.performance.now())
 
     function update() {
         var bounds = map.getBounds();
