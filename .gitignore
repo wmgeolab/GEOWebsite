@@ -100,3 +100,6 @@ GitHub.sublime-settings
 
 # Processed static files
 cms/staticfiles/
+
+# Environment variables
+envs
