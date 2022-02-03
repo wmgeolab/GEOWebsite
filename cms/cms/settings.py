@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django_cas_ng',
     'school_app.apps.CmsAppConfig',
     'ckeditor',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_cas_ng.middleware.CASMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'cms.urls'
@@ -159,3 +161,6 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'django_cas_ng.backends.CASBackend',
 )
+
+# Debug toolbar only allowed for internal IPs
+INTERNAL_IPS = ['127.0.0.1']

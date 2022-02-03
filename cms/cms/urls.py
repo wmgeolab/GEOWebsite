@@ -23,5 +23,6 @@ urlpatterns = [
     path('accounts/login/', django_cas_ng.views.LoginView.as_view(), name='cas_ng_login'),
     path('accounts/logout/', django_cas_ng.views.LogoutView.as_view(), name='cas_ng_logout'),
     path('', include('school_app.urls')),
+    path('__debug__/', include('debug_toolbar.urls')),
 ]
 
