@@ -12,7 +12,6 @@ django-js-asset==1.2.2
 idna==3.3
 lxml==4.7.1
 mysqlclient==2.1.0
-pkg_resources==0.0.0
 pycodestyle==2.8.0
 python-cas==1.6.0
 requests==2.27.1
