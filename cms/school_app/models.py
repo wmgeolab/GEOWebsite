@@ -16,8 +16,8 @@ class School(models.Model):
     zone = models.TextField()
     address = models.TextField()
     total_enrollment = models.IntegerField()
-    lon = models.FloatField()
-    lat = models.FloatField()
+    lon = models.DecimalField(max_digits=9, decimal_places=6)
+    lat = models.DecimalField(max_digits=9, decimal_places=6)
     test_score = models.FloatField()
     gender_ratio = models.FloatField()
 

@@ -102,4 +102,4 @@ GitHub.sublime-settings
 cms/staticfiles/
 
 # Environment variables
-envs
+envs.sh
