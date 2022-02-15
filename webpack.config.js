@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BundleTracker = require("webpack-bundle-tracker");
 
 module.exports = {
+  mode: "production",
   entry: "./cms/assets/js/main.js",
   output: {
     filename: "[name]-[fullhash].js",

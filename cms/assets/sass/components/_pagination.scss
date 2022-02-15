@@ -1,3 +1,8 @@
+@use "sass:color";
+@use "../libs/breakpoints";
+@use "../libs/functions";
+@use "../libs/vendor";
+
 ///
 /// Editorial by HTML5 UP
 /// html5up.net | @ajlkn
@@ -17,15 +22,15 @@
 			vertical-align: middle;
 
 			> .page {
-				@include vendor('transition', (
-					'background-color #{_duration(transition)} ease-in-out',
-					'color #{_duration(transition)} ease-in-out'
+				@include vendor.vendor('transition', (
+					'background-color #{functions.duration(transition)} ease-in-out',
+					'color #{functions.duration(transition)} ease-in-out'
 				));
 				border-bottom: 0;
-				border-radius: _size(border-radius);
+				border-radius: functions.size(border-radius);
 				display: inline-block;
 				font-size: 0.8em;
-				font-weight: _font(weight-bold);
+				font-weight: functions.font(weight-bold);
 				height: 2em;
 				line-height: 2em;
 				margin: 0 0.125em;
@@ -34,15 +39,15 @@
 				text-align: center;
 
 				&.active {
-					background-color: _palette(accent);
-					color: _palette(bg) !important;
+					background-color: functions.palette(accent);
+					color: functions.palette(bg) !important;
 
 					&:hover {
-						background-color: lighten(_palette(accent), 3);
+						background-color: color.adjust(functions.palette(accent), $lightness: 3%);
 					}
 
 					&:active {
-						background-color: darken(_palette(accent), 3);
+						background-color: color.adjust(functions.palette(accent), $lightness: -3%);
 					}
 				}
 			}
@@ -56,7 +61,7 @@
 			}
 		}
 
-		@include breakpoint('<=xsmall') {
+		@include breakpoints.breakpoint('<=xsmall') {
 			li {
 				&:nth-child(n+2):nth-last-child(n+2) {
 					display: none;
