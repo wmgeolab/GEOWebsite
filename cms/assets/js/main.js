@@ -8,6 +8,7 @@
 import breakpoints from './breakpoints.min'
 import browser from './browser.min'
 import jQuery from 'expose-loader?exposes=$,jQuery!./jquery.min'
+import '../sass/main.scss'
 
 (function ($) {
   var $window = $(window),

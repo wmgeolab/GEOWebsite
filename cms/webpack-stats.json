@@ -1,0 +1,83 @@
+{
+  "status": "done",
+  "assets": {
+    "85917bf21118aa3f2e14.eot": {
+      "name": "85917bf21118aa3f2e14.eot",
+      "path": "/home/dev/GEOWebsite/cms/dist/webpack_bundles/85917bf21118aa3f2e14.eot"
+    },
+    "dd7467859e54d3b9dae6.woff2": {
+      "name": "dd7467859e54d3b9dae6.woff2",
+      "path": "/home/dev/GEOWebsite/cms/dist/webpack_bundles/dd7467859e54d3b9dae6.woff2"
+    },
+    "cac133c03011645ba509.woff": {
+      "name": "cac133c03011645ba509.woff",
+      "path": "/home/dev/GEOWebsite/cms/dist/webpack_bundles/cac133c03011645ba509.woff"
+    },
+    "70150a2b3a50f84aff70.ttf": {
+      "name": "70150a2b3a50f84aff70.ttf",
+      "path": "/home/dev/GEOWebsite/cms/dist/webpack_bundles/70150a2b3a50f84aff70.ttf"
+    },
+    "83494ca2906755eeae18.svg": {
+      "name": "83494ca2906755eeae18.svg",
+      "path": "/home/dev/GEOWebsite/cms/dist/webpack_bundles/83494ca2906755eeae18.svg"
+    },
+    "6810be1da91e3f344935.eot": {
+      "name": "6810be1da91e3f344935.eot",
+      "path": "/home/dev/GEOWebsite/cms/dist/webpack_bundles/6810be1da91e3f344935.eot"
+    },
+    "a3f7358b4bd2b708c04d.woff2": {
+      "name": "a3f7358b4bd2b708c04d.woff2",
+      "path": "/home/dev/GEOWebsite/cms/dist/webpack_bundles/a3f7358b4bd2b708c04d.woff2"
+    },
+    "8a7914c9eb0f44af5d33.woff": {
+      "name": "8a7914c9eb0f44af5d33.woff",
+      "path": "/home/dev/GEOWebsite/cms/dist/webpack_bundles/8a7914c9eb0f44af5d33.woff"
+    },
+    "a3b4cd30799e10f5fbc2.ttf": {
+      "name": "a3b4cd30799e10f5fbc2.ttf",
+      "path": "/home/dev/GEOWebsite/cms/dist/webpack_bundles/a3b4cd30799e10f5fbc2.ttf"
+    },
+    "024286359541b224631b.svg": {
+      "name": "024286359541b224631b.svg",
+      "path": "/home/dev/GEOWebsite/cms/dist/webpack_bundles/024286359541b224631b.svg"
+    },
+    "2f6dbd9f998fa1413ff7.eot": {
+      "name": "2f6dbd9f998fa1413ff7.eot",
+      "path": "/home/dev/GEOWebsite/cms/dist/webpack_bundles/2f6dbd9f998fa1413ff7.eot"
+    },
+    "acc6b6bf6c3214aeb3ef.woff2": {
+      "name": "acc6b6bf6c3214aeb3ef.woff2",
+      "path": "/home/dev/GEOWebsite/cms/dist/webpack_bundles/acc6b6bf6c3214aeb3ef.woff2"
+    },
+    "e4efd599b7afce2f7b21.woff": {
+      "name": "e4efd599b7afce2f7b21.woff",
+      "path": "/home/dev/GEOWebsite/cms/dist/webpack_bundles/e4efd599b7afce2f7b21.woff"
+    },
+    "9b4d14a5508e9cc4ca88.ttf": {
+      "name": "9b4d14a5508e9cc4ca88.ttf",
+      "path": "/home/dev/GEOWebsite/cms/dist/webpack_bundles/9b4d14a5508e9cc4ca88.ttf"
+    },
+    "c8a5f7410ef2a4d63988.svg": {
+      "name": "c8a5f7410ef2a4d63988.svg",
+      "path": "/home/dev/GEOWebsite/cms/dist/webpack_bundles/c8a5f7410ef2a4d63988.svg"
+    },
+    "main.css": {
+      "name": "main.css",
+      "path": "/home/dev/GEOWebsite/cms/dist/webpack_bundles/main.css"
+    },
+    "main-2eda833e0a3eb7e305f1.js": {
+      "name": "main-2eda833e0a3eb7e305f1.js",
+      "path": "/home/dev/GEOWebsite/cms/dist/webpack_bundles/main-2eda833e0a3eb7e305f1.js"
+    },
+    "main-2eda833e0a3eb7e305f1.js.LICENSE.txt": {
+      "name": "main-2eda833e0a3eb7e305f1.js.LICENSE.txt",
+      "path": "/home/dev/GEOWebsite/cms/dist/webpack_bundles/main-2eda833e0a3eb7e305f1.js.LICENSE.txt"
+    }
+  },
+  "chunks": {
+    "main": [
+      "main.css",
+      "main-2eda833e0a3eb7e305f1.js"
+    ]
+  }
+}

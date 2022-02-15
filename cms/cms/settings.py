@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'school_app.apps.CmsAppConfig',
     'ckeditor',
     'debug_toolbar',
+    'webpack_loader',
 ]
 
 MIDDLEWARE = [
@@ -141,6 +142,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'dist')]
 
 # Django 3.2 BigAutoFields
 
@@ -164,3 +166,12 @@ AUTHENTICATION_BACKENDS = (
 
 # Debug toolbar only allowed for internal IPs
 INTERNAL_IPS = ['127.0.0.1']
+
+WEBPACK_LOADER = {
+  'DEFAULT': {
+    'CACHE': not DEBUG,
+    'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+    'POLL_INTERVAL': 0.1,
+    'IGNORE': [r'.+\.hot-update.js', r'.+\.map'],
+  }
+}
