@@ -94,6 +94,9 @@ Control.ca-bundle
 Control.system-ca-bundle 
 GitHub.sublime-settings 
 
+# Node
+node_modules
+
 # Visual Studio Code
 .vscode
 .history

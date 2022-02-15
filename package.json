@@ -1,0 +1,23 @@
+{
+  "name": "geowebsite",
+  "version": "1.0.0",
+  "description": "Website for the Global Education Observatory platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wmgeolab/GEOWebsite.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wmgeolab/GEOWebsite/issues"
+  },
+  "homepage": "https://github.com/wmgeolab/GEOWebsite#readme",
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "eslint-config-prettier": "^8.3.0"
+  }
+}
