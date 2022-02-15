@@ -1,5 +1,5 @@
 {% extends "generic.html" %}
-{% load static %}
+{% load render_bundle from webpack_loader %}
 
 {% block title %}GEO Map{% endblock %}
 
@@ -10,12 +10,9 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
-<script src="https://unpkg.com/supercluster@7.1.2/dist/supercluster.min.js"></script>
-<link rel="stylesheet" href="{% static 'myapp/assets/css/cluster.css' %}" />
 {% endblock %}
 
 {% block main %}
 <div id="map" style="height: 80vh;"></div>
-<script src="{% static 'myapp/assets/js/geo_full.js' %}"></script>
-<script src="{% static 'myapp/assets/js/map.js' %}"></script>
+{% render_bundle 'map' 'js' %}
 {% endblock %}

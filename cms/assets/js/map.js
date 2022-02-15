@@ -1,3 +1,8 @@
+import Supercluster from "supercluster";
+import { data } from "./geo_full";
+import "../css/cluster.css";
+
+var L = window.L;
 var map = L.map("map").setView([-29.106, 26.15], 6);
 
 // Add map tiles to map

@@ -4,10 +4,11 @@ const BundleTracker = require("webpack-bundle-tracker");
 
 module.exports = {
   mode: "production",
-  entry: "./cms/assets/js/main.js",
+  entry: { main: "./cms/assets/js/main.js", map: "./cms/assets/js/map.js" },
   output: {
     filename: "[name]-[fullhash].js",
     path: path.resolve(__dirname, "cms/dist/webpack_bundles"),
+    clean: true,
   },
   plugins: [
     new MiniCssExtractPlugin({ filename: "[name]-[fullhash].css" }),
@@ -18,6 +19,10 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
       },
     ],
   },

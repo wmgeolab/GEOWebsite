@@ -5,10 +5,10 @@
 	Modified by Kerry Wang
 */
 
-import breakpoints from './breakpoints.min'
-import browser from './browser.min'
-import jQuery from './jquery.min'
-import '../sass/main.scss'
+import breakpoints from "./breakpoints.min";
+import browser from "./browser.min";
+import jQuery from "./jquery.min";
+import "../sass/main.scss";
 
 (function ($) {
   var $window = $(window),
@@ -145,7 +145,7 @@ import '../sass/main.scss'
   });
 
   // Hide panel on body click/tap.
-  $body.on("click touchend", function (event) {
+  $body.on("click touchend", function () {
     // >large? Bail.
     if (breakpoints.active(">large")) return;
 
@@ -158,7 +158,7 @@ import '../sass/main.scss'
   // trigger 'resize.sidebar-lock' on $window so stuff doesn't get out of sync.
 
   $window.on("load.sidebar-lock", function () {
-    var sh, wh, st;
+    var sh, wh;
 
     // Reset scroll position to 0 if it's 1.
     if ($window.scrollTop() == 1) $window.scrollTop(0);

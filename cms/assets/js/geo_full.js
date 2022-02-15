@@ -1,4 +1,4 @@
-var data = {
+export var data = {
     "type": "FeatureCollection",
     "features": [
     
