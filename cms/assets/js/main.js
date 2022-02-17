@@ -9,6 +9,8 @@ import breakpoints from "./breakpoints.min";
 import browser from "./browser.min";
 import jQuery from "./jquery.min";
 import "../sass/main.scss";
+import "@fortawesome/fontawesome-free/scss/fontawesome.scss"
+import "@fortawesome/fontawesome-free/scss/solid.scss"
 
 (function ($) {
   var $window = $(window),
