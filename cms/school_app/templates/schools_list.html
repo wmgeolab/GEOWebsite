@@ -47,9 +47,6 @@
                 <li><a href="#" class="page active">{{ page_obj.number }}</a></li>
                 {% if page_obj.has_next %}
                 <li><a href="?page={{ page_obj.next_page_number }}&{{ get_copy.urlencode }}" class="page">{{ page_obj.next_page_number }}</a></li>
-                <li><a href="?page={{ page_obj.paginator.num_pages }}&{{ get_copy.urlencode }}" class="button">Last</a></li>
-                {% else %}
-                <li><span class="button disabled">Last</span></li>
                 {% endif %}
                 <li><a href="{{ '/downloadcsv' }}" class="button">Download CSV File</a></li>
             </ul>
