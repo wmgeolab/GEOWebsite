@@ -21,15 +21,30 @@ class SchoolListView(FilterView):
     model = School
     paginate_by = 20
     template_name = "schools_list.html"
-    # ordering = ['school_name']
+    # ordering = ['school_name'] # Ordering without index is slow for large offsets
     filterset_class = SchoolResourcesFilter
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        # Preserve filter options
         get_copy = self.request.GET.copy()
         if get_copy.get('page'):
             get_copy.pop('page')
         context['get_copy'] = get_copy
+        # Get list of surrounding pages for navigation buttons
+        if context['is_paginated']:
+            paginator = context['paginator']
+            page_num = context['page_obj'].number
+            page_range = paginator.page_range
+            page_list = [page_num]
+            i = 1
+            while len(page_list) < min(5, paginator.num_pages):
+                if page_num + i in page_range:
+                    page_list.append(page_num + i)
+                if page_num - i in page_range:
+                    page_list.insert(0, page_num - i)
+                i += 1
+            context['page_list'] = page_list
         return context
 
 
