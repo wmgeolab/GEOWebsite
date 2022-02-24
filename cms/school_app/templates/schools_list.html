@@ -37,22 +37,28 @@
                     </tr>
                 {% endfor %}
             </table>
+            {% if page_obj.has_other_pages %}
             <ul class="pagination">
                 {% if page_obj.has_previous %}
-                <li><a href="?page=1&{{ get_copy.urlencode }}" class="button">First</a></li>
-                <li><a href="?page={{ page_obj.previous_page_number }}&{{ get_copy.urlencode }}" class="page">{{ page_obj.previous_page_number }}</a></li>
+                <li><a href="?page={{ page_obj.previous_page_number }}&{{ get_copy.urlencode }}" class="page">&laquo;</a></li>
                 {% else %}
-                <li><span class="button disabled">First</span></li>
+                <li><span class="page disabled">&laquo;</span></li>
                 {% endif %}
-                <li><a href="#" class="page active">{{ page_obj.number }}</a></li>
+                {% for i in page_list %}
+                {% if page_obj.number == i %}
+                    <li><a href="#" class="page active">{{ i }}</a></li>
+                {% else %}
+                    <li><a href="?page={{ i }}&{{ get_copy.urlencode }}" class="page">{{ i }}</a></li>
+                {% endif %}
+                {% endfor %}
                 {% if page_obj.has_next %}
-                <li><a href="?page={{ page_obj.next_page_number }}&{{ get_copy.urlencode }}" class="page">{{ page_obj.next_page_number }}</a></li>
-                <li><a href="?page={{ page_obj.paginator.num_pages }}&{{ get_copy.urlencode }}" class="button">Last</a></li>
+                <li><a href="?page={{ page_obj.next_page_number }}&{{ get_copy.urlencode }}" class="page">&raquo;</a></li>
                 {% else %}
-                <li><span class="button disabled">Last</span></li>
+                <li><span class="page disabled">&raquo;</span></li>
                 {% endif %}
-                <li><a href="{{ '/downloadcsv' }}" class="button">Download CSV File</a></li>
             </ul>
+            {% endif %}
+            <a href="{{ '/downloadcsv' }}" class="button">Download CSV File</a>
         </div>
     </div>
 </section>
