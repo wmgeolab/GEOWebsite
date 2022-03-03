@@ -33,5 +33,5 @@ jobs:
           git config user.email "GHpush@example.com"
           git remote rename origin old-origin
           git remote add origin https://GHpush:$GL_TOKEN@code.wm.edu/data-science/geolab/geowebsite.git
-          git push -u origin --all
+          git push -u origin --force --all
           git push -u origin --tags
