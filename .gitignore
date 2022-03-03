@@ -103,7 +103,6 @@ node_modules
 
 # Processed static files
 cms/staticfiles/
-cms/webpack-stats.json
 
 # Environment variables
 envs.sh

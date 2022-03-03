@@ -1,4 +1,3 @@
-{% load render_bundle from webpack_loader %}
 <!DOCTYPE HTML>
 <!--
 	Editorial by HTML5 UP
@@ -12,7 +11,7 @@
 	<title>{% block title %}{% endblock %}</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	{% render_bundle 'main' 'css' %}
+	<link rel="stylesheet" href="{% static 'myapp/assets/css/main.css' %}" />
 	{% block imports %}{% endblock %}
 </head>
 
@@ -76,7 +75,11 @@
 	</div>
 
 	<!-- Scripts -->
-	{% render_bundle 'main' 'js' %}
+	<script src="{% static 'myapp/assets/js/jquery.min.js' %}"></script>
+	<script src="{% static 'myapp/assets/js/browser.min.js' %}"></script>
+	<script src="{% static 'myapp/assets/js/breakpoints.min.js' %}"></script>
+	<script src="{% static 'myapp/assets/js/util.js' %}"></script>
+	<script src="{% static 'myapp/assets/js/main.js' %}"></script>
 
 </body>
 
