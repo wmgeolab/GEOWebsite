@@ -13,5 +13,6 @@ USER app
 COPY --chown=app:app . /app/
 WORKDIR /app/cms
 RUN python manage.py collectstatic --noinput
+RUN python manage.py writecsv
 
 CMD ["gunicorn", "-w 2", "-b 0.0.0.0:8000", "cms.wsgi", "--timeout", "300"]

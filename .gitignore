@@ -106,3 +106,6 @@ cms/staticfiles/
 
 # Environment variables
 envs.sh
+
+# Cached files
+schools.csv
