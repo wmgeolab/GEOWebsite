@@ -10,4 +10,5 @@ urlpatterns = [
     path('posts/', views.PostList.as_view()),
     path('posts/<slug:slug>/', views.PostDetail.as_view(), name='post_detail'),
     path('downloadcsv/', views.SchoolListDownload, name='SchoolListDownload'),
+    path('pong', views.pong),
 ]
