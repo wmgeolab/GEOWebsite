@@ -1,5 +1,7 @@
+from os.path import exists
 from django.http import FileResponse
 from django.views.generic import DetailView, ListView, TemplateView
+from django.core.management import call_command
 from django_filters.views import FilterView
 
 from .models import Post, School, SchoolResourcesFilter
@@ -67,4 +69,6 @@ class PostDetail(DetailView):
 
 
 def SchoolListDownload(request):
+    if not exists('schools.csv'):
+        call_command('writecsv')
     return FileResponse(open('schools.csv', 'rb'), as_attachment=True)
