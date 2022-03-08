@@ -8,7 +8,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         now = time.time()
         count = 0
-        with open('schools.csv', 'w') as f:
+        with open('schools.csv', 'w', encoding='utf-8-sig') as f:
             field_names = School._meta.fields
             field_names = [str(field).split('.')[-1] for field in field_names]
             writer = csv.DictWriter(f, field_names)
