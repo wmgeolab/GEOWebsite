@@ -106,8 +106,8 @@ def school_list_download(request):
 @require_POST
 def pong(request):
     try:
-        content = json.loads(request.body)['pong']
-    except:
+        content = json.loads(request.body)["pong"]
+    except json.JSONDecodeError:
         return HttpResponseBadRequest
     print(content)
-    return JsonResponse({'ping': f'{content} ping'})
+    return JsonResponse({"ping": f"{content} ping"})
