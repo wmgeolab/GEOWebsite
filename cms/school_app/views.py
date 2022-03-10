@@ -69,6 +69,6 @@ class PostDetail(DetailView):
 
 
 def SchoolListDownload(request):
-    if not exists('schools.csv'):
+    if not exists('csv/schools.csv'):
         call_command('writecsv')
-    return FileResponse(open('schools.csv', 'rb'), as_attachment=True)
+    return FileResponse(open('csv/schools.csv', 'rb'), as_attachment=True)
