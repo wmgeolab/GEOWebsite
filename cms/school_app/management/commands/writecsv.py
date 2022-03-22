@@ -11,7 +11,7 @@ class Command(BaseCommand):
         count = 0
         try:
             os.mkdir('csv')
-        except OSError:
+        except FileExistsError:
             # Folder already exists
             pass
         with open('csv/schools.csv', 'w', encoding='utf-8-sig') as f:
