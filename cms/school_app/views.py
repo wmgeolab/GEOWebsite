@@ -1,7 +1,9 @@
-from os.path import exists
+import time
+from os.path import exists, getmtime
+
+from django.core.management import call_command
 from django.http import FileResponse
 from django.views.generic import DetailView, ListView, TemplateView
-from django.core.management import call_command
 from django_filters.views import FilterView
 
 from .models import Post, School, SchoolResourcesFilter
@@ -69,6 +71,30 @@ class PostDetail(DetailView):
 
 
 def SchoolListDownload(request):
-    if not exists('csv/schools.csv'):
+    now = time.time()
+    if not exists('csv/schools.csv') or now - getmtime('csv/schools.csv') > 7200: # 7200 seconds = 2 hours
         call_command('writecsv')
-    return FileResponse(open('csv/schools.csv', 'rb'), as_attachment=True)
+    encodings = [s.strip().upper()
+                 for s in request.META['HTTP_ACCEPT_ENCODING'].split(',')]
+    print(encodings)
+    if 'BR' in encodings:
+        # Ideally serve brotli
+        print('Serving BR')
+        response = FileResponse(
+            open('csv/schools.csv.br', 'rb'), as_attachment=True, filename='schools.csv')
+        response['Content-Encoding'] = 'br'
+        response['Vary'] = 'Accept-Encoding'
+    elif 'GZIP' in encodings:
+        print('Serving GZ')
+        # Fallback on gzip
+        response = FileResponse(
+            open('csv/schools.csv.gz', 'rb'), as_attachment=True, filename='schools.csv')
+        response['Content-Encoding'] = 'gzip'
+        response['Vary'] = 'Accept-Encoding'
+    else:
+        print('Serving text')
+        # Fallback on no compression
+        response = FileResponse(
+            open('csv/schools.csv', 'rb'), as_attachment=True)
+    response['Content-Type'] = 'text/csv'
+    return response
