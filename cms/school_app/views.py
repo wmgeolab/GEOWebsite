@@ -76,23 +76,19 @@ def SchoolListDownload(request):
         call_command('writecsv')
     encodings = [s.strip().upper()
                  for s in request.META['HTTP_ACCEPT_ENCODING'].split(',')]
-    print(encodings)
     if 'BR' in encodings:
         # Ideally serve brotli
-        print('Serving BR')
         response = FileResponse(
             open('csv/schools.csv.br', 'rb'), as_attachment=True, filename='schools.csv')
         response['Content-Encoding'] = 'br'
         response['Vary'] = 'Accept-Encoding'
     elif 'GZIP' in encodings:
-        print('Serving GZ')
         # Fallback on gzip
         response = FileResponse(
             open('csv/schools.csv.gz', 'rb'), as_attachment=True, filename='schools.csv')
         response['Content-Encoding'] = 'gzip'
         response['Vary'] = 'Accept-Encoding'
     else:
-        print('Serving text')
         # Fallback on no compression
         response = FileResponse(
             open('csv/schools.csv', 'rb'), as_attachment=True)
