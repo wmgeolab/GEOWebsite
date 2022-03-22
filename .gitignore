@@ -108,4 +108,4 @@ cms/staticfiles/
 envs.sh
 
 # Cached files
-schools.csv
+csv
