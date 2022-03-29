@@ -4,8 +4,10 @@ env:
 extends:
   - eslint:recommended
   - prettier
+plugins:
+  - html
+  - template
 parserOptions:
   ecmaVersion: latest
-  sourceType: module
 ignorePatterns: ["**/vendor/*.js"]
 rules: {}

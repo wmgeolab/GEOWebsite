@@ -1,0 +1,15 @@
+# Prettier breaks Django templates
+*.html
+
+# Don't touch these folders
+.venv
+venv
+node_modules
+vendor
+csv
+
+# Don't format minimized files
+*.min.*
+
+# Just don't.
+geo_full.js

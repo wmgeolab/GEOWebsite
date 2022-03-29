@@ -6,7 +6,7 @@
 {% block main %}
     <section>
         <header class="main">
-            <h2>{{ post.title }}</h1>
+            <h2>{{ post.title }}</h2>
         </header>
         <p>{{ post.author.first_name }} {{ post.author.last_name }} | {{ post.created_on }}</p>
         <p>{{ post.content | safe }}</p>
