@@ -22,14 +22,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY", "X")
 if os.path.isfile(SECRET_KEY):
-    with open(SECRET_KEY) as secret_key_file:
+    with open(SECRET_KEY, "r", encoding="utf-8") as secret_key_file:
         SECRET_KEY = secret_key_file.read().rstrip()
 
 
-db_password = str(os.getenv("DB_PASSWORD", ""))
-if os.path.isfile(db_password):
-    with open(db_password, "r") as password_file:
-        db_password = password_file.read().rstrip()
+DB_PASSWORD = str(os.getenv("DB_PASSWORD", ""))
+if os.path.isfile(DB_PASSWORD):
+    with open(DB_PASSWORD, "r", encoding="utf-8") as password_file:
+        DB_PASSWORD = password_file.read().rstrip()
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -96,9 +96,9 @@ DATABASES = {
         "NAME": str(os.getenv("DB_NAME", "")).rstrip(),
         "ENGINE": str(os.getenv("DB_ENGINE", "")).rstrip(),
         "USER": str(os.getenv("DB_USER", "")).rstrip(),
-        "PASSWORD": db_password,
+        "PASSWORD": DB_PASSWORD,
         "HOST": str(os.getenv("DB_HOST", "")).rstrip(),
-        "PORT": int(str(os.getenv("DB_PORT", 3306)).rstrip()),
+        "PORT": int(os.getenv("DB_PORT", "3306").rstrip()),
     }
 }
 
@@ -108,6 +108,7 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
+        # pylint: disable-next=line-too-long
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
