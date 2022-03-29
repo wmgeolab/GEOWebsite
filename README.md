@@ -5,7 +5,7 @@ Website for the Global Education Observatory platform. Built with Django 4 on Py
 ## Development
 
 - Clone this repo
-- Create a Python 3.9 virtual environment with `python -m venv .venv`.
+- Create a Python 3.9 virtual environment with `python -m venv .venv`
 - Activate the venv
   - Windows/Powershell: `.venv/Scripts/Activate.ps1`
   - Linux/Most shells: `source .venv/bin/activate`
@@ -16,7 +16,7 @@ Website for the Global Education Observatory platform. Built with Django 4 on Py
   - `DEBUG` Set to `true` for testing. Enables the debug sidebar and outputs stacktrace to the browser. Set to `false` for production. Defaults to `true`.
     - Note: These are all-lowercase strings.
   - `SECRET_KEY` Long random string used to add entropy to cryptography. Not required when testing.
-  - `DB_NAME` Name of the table (production), or full path of the sqlite file (test)
+  - `DB_NAME` Name of the database schema (production), or full path of the sqlite file (test)
   - `DB_ENGINE` Use `django.db.backends.mysql` (production) or `django.db.backends.sqlite3` (test). Note that SQLite does not support spatial data types by default.
   - `DB_USER` Username for MySQL. Not used for SQLite.
   - `DB_PASSWORD` Password for MySQL. Not used for SQLite.
