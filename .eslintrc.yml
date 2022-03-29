@@ -1,10 +1,11 @@
 env:
   browser: true
   es2021: true
-extends: 
+extends:
   - eslint:recommended
   - prettier
 parserOptions:
   ecmaVersion: latest
   sourceType: module
+ignorePatterns: ["**/vendor/*.js"]
 rules: {}
