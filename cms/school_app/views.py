@@ -32,13 +32,13 @@ class SchoolListView(FilterView):
         context = super().get_context_data(**kwargs)
         # Preserve filter options
         get_copy = self.request.GET.copy()
-        if get_copy.get('page'):
-            get_copy.pop('page')
-        context['get_copy'] = get_copy
+        if get_copy.get("page"):
+            get_copy.pop("page")
+        context["get_copy"] = get_copy
         # Get list of surrounding pages for navigation buttons
-        if context['is_paginated']:
-            paginator = context['paginator']
-            page_num = context['page_obj'].number
+        if context["is_paginated"]:
+            paginator = context["paginator"]
+            page_num = context["page_obj"].number
             page_range = paginator.page_range
             page_list = [page_num]
             i = 1
@@ -48,7 +48,7 @@ class SchoolListView(FilterView):
                 if page_num - i in page_range:
                     page_list.insert(0, page_num - i)
                 i += 1
-            context['page_list'] = page_list
+            context["page_list"] = page_list
         return context
 
 
@@ -62,42 +62,43 @@ class MapView(TemplateView):
 
 
 class PostList(ListView):
-    queryset = Post.objects.filter(status=1).order_by('-created_on')
+    queryset = Post.objects.filter(status=1).order_by("-created_on")
     paginate_by = 3
-    template_name = 'post_list.html'
+    template_name = "post_list.html"
 
 
 class PostDetail(DetailView):
     model = Post
-    template_name = 'post_detail.html'
+    template_name = "post_detail.html"
 
 
 def SchoolListDownload(request):
     now = time.time()
-    # 7200 seconds = 2 hours
-    if not exists('csv/schools.csv') or now - getmtime('csv/schools.csv') > 7200:
-        call_command('writecsv')
-
-    encodings = [s.strip().upper()
-                 for s in request.META['HTTP_ACCEPT_ENCODING'].split(',')]
-
-    if 'BR' in encodings:
+    if (
+        not exists("csv/schools.csv") or now - getmtime("csv/schools.csv") > 7200
+    ):  # 7200 seconds = 2 hours
+        call_command("writecsv")
+    encodings = [
+        s.strip().upper() for s in request.META["HTTP_ACCEPT_ENCODING"].split(",")
+    ]
+    if "BR" in encodings:
         # Ideally serve brotli
         response = FileResponse(
-            open('csv/schools.csv.br', 'rb'), as_attachment=True, filename='schools.csv')
-        response['Content-Encoding'] = 'br'
-        response['Vary'] = 'Accept-Encoding'
-    elif 'GZIP' in encodings:
+            open("csv/schools.csv.br", "rb"), as_attachment=True, filename="schools.csv"
+        )
+        response["Content-Encoding"] = "br"
+        response["Vary"] = "Accept-Encoding"
+    elif "GZIP" in encodings:
         # Fallback on gzip
         response = FileResponse(
-            open('csv/schools.csv.gz', 'rb'), as_attachment=True, filename='schools.csv')
-        response['Content-Encoding'] = 'gzip'
-        response['Vary'] = 'Accept-Encoding'
+            open("csv/schools.csv.gz", "rb"), as_attachment=True, filename="schools.csv"
+        )
+        response["Content-Encoding"] = "gzip"
+        response["Vary"] = "Accept-Encoding"
     else:
         # Fallback on no compression
-        response = FileResponse(
-            open('csv/schools.csv', 'rb'), as_attachment=True)
-    response['Content-Type'] = 'text/csv'
+        response = FileResponse(open("csv/schools.csv", "rb"), as_attachment=True)
+    response["Content-Type"] = "text/csv"
     return response
 
 
