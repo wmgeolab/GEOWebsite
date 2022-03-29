@@ -70,7 +70,8 @@ class PostDetail(DetailView):
     template_name = "post_detail.html"
 
 
-def SchoolListDownload(request):
+def school_list_download(request):
+    # pylint: disable=consider-using-with
     now = time.time()
     if (
         not exists("csv/schools.csv") or now - getmtime("csv/schools.csv") > 7200

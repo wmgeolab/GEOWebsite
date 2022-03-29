@@ -7,9 +7,17 @@ ignore = "migrations"
 recursive = "yes"
 load-plugins = "pylint_django"
 django-settings-module = "cms.settings"
+jobs = 0
+max-parents = 10
 
 [tool.pylint.messages_control]
-disable = "C0330, C0326"
+disable = [
+    "C0326", "C0330", # Recommended by Black
+    "missing-module-docstring",
+    "missing-class-docstring",
+    "missing-function-docstring",
+    "imported-auth-user"
+]
 
 [tool.pylint.format]
-max-line-length = "88"
+max-line-length = 88
