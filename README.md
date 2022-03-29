@@ -1,6 +1,6 @@
 # GEOWebsite
 
-Website for the Global Education Observatory platform. Built with Django 4 on Python 3.9. HTML template is [Editorial by HTML5 UP](https://html5up.net/editorial). Integrates with W&M CAS for authentication using `django-cas-ng`. Serves static files using `whitenoise`. Any pushes to `main` branch is mirrored to an internal repo at <https://code.wm.edu>, which builds a Docker container using the Dockerfile and uploads it to the W&M Docker registry. Updates get picked up from the registry and become live at <https://geo.ds.wm.edu> within a few minutes.
+Website for the Global Education Observatory platform. Built with Django 4 on Python 3.9. HTML template is [Editorial by HTML5 UP](https://html5up.net/editorial). Integrates with W&M CAS for authentication using [django-cas-ng](https://pypi.org/project/django-cas-ng/). Serves static files using [whitenoise](https://pypi.org/project/whitenoise/). Any pushes to `main` branch is mirrored to an internal repo at <https://code.wm.edu>, which builds a Docker container using the Dockerfile and uploads it to the W&M Docker registry. Updates get picked up from the registry and become live at <https://geo.ds.wm.edu> within a few minutes.
 
 ## Development
 
