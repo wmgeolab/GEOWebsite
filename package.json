@@ -4,8 +4,8 @@
   "description": "Website for the Global Education Observatory platform",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "black . && pylint cms && prettier -c . && eslint --ext .js,.html ."
+    "test": "black --check . && pylint cms && prettier -c . && eslint --ext .js,.html .",
+    "lint": "black . && pylint cms && prettier -w . && eslint --ext .js,.html --fix ."
   },
   "repository": {
     "type": "git",
