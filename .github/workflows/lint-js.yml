@@ -16,4 +16,4 @@ jobs:
         node-version: lts/*
     - run: npm ci
     - run: npx eslint --ext .js,.html .
-    - run: npx prettier .
+    - run: npx prettier -c .
