@@ -1,4 +1,4 @@
-name: lint-js
+name: lint
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  lint:
+  lint-js:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -17,3 +17,14 @@ jobs:
       - run: npm ci
       - run: npx eslint --ext .js,.html .
       - run: npx prettier -c .
+  lint-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.9"
+      - run: pip install -r requirements.txt
+      - run: pylint cms
+      - run: black .
