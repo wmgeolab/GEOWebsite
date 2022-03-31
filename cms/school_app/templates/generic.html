@@ -1,86 +1,94 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <!--
 	Editorial by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
+  <head>
+    {% load static %}
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="{% static 'myapp/assets/css/main.css' %}" />
+    {% block imports %}{% endblock %}
+  </head>
 
-<head>
-	{% load static %}
-	<title>{% block title %}{% endblock %}</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="{% static 'myapp/assets/css/main.css' %}" />
-	{% block imports %}{% endblock %}
-</head>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Main -->
+      <div id="main">
+        <div class="inner">
+          <!-- Header -->
+          <header id="header">
+            <span class="logo"
+              ><a href="/"><strong>Global Education Observatory</strong></a> by
+              the
+              <a href="http://geolab.wm.edu"
+                ><strong>William & Mary geoLab</strong></a
+              ></span
+            >
+          </header>
+          {% block main %}{% endblock %}
+        </div>
+      </div>
 
-<body class="is-preload">
+      <!-- Sidebar -->
+      <div id="sidebar">
+        <div class="inner">
+          <!-- Menu -->
+          <nav id="menu">
+            <header class="major">
+              <h2>Menu</h2>
+            </header>
+            <ul>
+              <li><a href="/">Homepage</a></li>
+              <li><a href="/posts/">Posts</a></li>
+              <li><a href="/schools_list">Search</a></li>
+              <li><a href="/full_map">Map</a></li>
+              <li><a href="/about">About</a></li>
+            </ul>
+          </nav>
 
-	<!-- Wrapper -->
-	<div id="wrapper">
+          <!-- Section -->
+          <section>
+            <header class="major">
+              <h2>Get in touch</h2>
+            </header>
+            <ul class="contact">
+              <li class="icon solid fa-envelope">
+                <a href="mailto:globaleducationobservatory@gmail.com"
+                  >globaleducationobservatory@gmail.com</a
+                >
+              </li>
+              <li class="icon solid fa-home">
+                540 Landrum Dr<br />
+                Williamsburg, VA 23185
+              </li>
+            </ul>
+          </section>
 
-		<!-- Main -->
-		<div id="main">
-			<div class="inner">
-				<!-- Header -->
-				<header id="header">
-					<span class="logo"><a href="/"><strong>Global Education Observatory</strong></a> by the <a
-							href="http://geolab.wm.edu"><strong>William & Mary geoLab</strong></a></span>
-				</header>
-				{% block main %}{% endblock %}
-			</div>
-		</div>
+          <!-- Footer -->
+          <footer id="footer">
+            <p class="copyright">
+              &copy; Untitled. All rights reserved. Demo Images:
+              <a href="https://unsplash.com">Unsplash</a>. Design:
+              <a href="https://html5up.net">HTML5 UP</a>.
+            </p>
+          </footer>
+        </div>
+      </div>
+    </div>
 
-		<!-- Sidebar -->
-		<div id="sidebar">
-			<div class="inner">
-
-				<!-- Menu -->
-				<nav id="menu">
-					<header class="major">
-						<h2>Menu</h2>
-					</header>
-					<ul>
-						<li><a href="/">Homepage</a></li>
-						<li><a href="/posts/">Posts</a></li>
-						<li><a href="/schools_list">Search</a></li>
-						<li><a href="/full_map">Map</a></li>
-						<li><a href="/about">About</a></li>
-					</ul>
-				</nav>
-
-				<!-- Section -->
-				<section>
-					<header class="major">
-						<h2>Get in touch</h2>
-					</header>
-					<ul class="contact">
-						<li class="icon solid fa-envelope"><a href="mailto:globaleducationobservatory@gmail.com">globaleducationobservatory@gmail.com</a></li>
-						<li class="icon solid fa-home">540 Landrum Dr<br />
-							Williamsburg, VA 23185</li>
-					</ul>
-				</section>
-
-				<!-- Footer -->
-				<footer id="footer">
-					<p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a
-							href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5
-							UP</a>.</p>
-				</footer>
-
-			</div>
-		</div>
-
-	</div>
-
-	<!-- Scripts -->
-	<script src="{% static 'myapp/assets/js/jquery.min.js' %}"></script>
-	<script src="{% static 'myapp/assets/js/browser.min.js' %}"></script>
-	<script src="{% static 'myapp/assets/js/breakpoints.min.js' %}"></script>
-	<script src="{% static 'myapp/assets/js/util.js' %}"></script>
-	<script src="{% static 'myapp/assets/js/main.js' %}"></script>
-
-</body>
-
+    <!-- Scripts -->
+    <script src="{% static 'myapp/assets/js/vendor/jquery.min.js' %}"></script>
+    <script src="{% static 'myapp/assets/js/vendor/browser.min.js' %}"></script>
+    <script src="{% static 'myapp/assets/js/vendor/breakpoints.min.js' %}"></script>
+    <script src="{% static 'myapp/assets/js/vendor/util.js' %}"></script>
+    <script src="{% static 'myapp/assets/js/vendor/main.js' %}"></script>
+  </body>
 </html>

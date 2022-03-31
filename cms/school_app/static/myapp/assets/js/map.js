@@ -1,3 +1,5 @@
+/* global L Supercluster data */
+
 var map = L.map("map").setView([-29.106, 26.15], 6);
 
 // Add map tiles to map

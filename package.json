@@ -4,7 +4,8 @@
   "description": "Website for the Global Education Observatory platform",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "black . && pylint cms && prettier -c . && eslint --ext .js,.html ."
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,9 @@
   "homepage": "https://github.com/wmgeolab/GEOWebsite#readme",
   "devDependencies": {
     "eslint": "^8.9.0",
-    "eslint-config-prettier": "^8.3.0"
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-html": "^6.2.0",
+    "eslint-plugin-template": "^0.6.0",
+    "prettier": "^2.6.1"
   }
 }

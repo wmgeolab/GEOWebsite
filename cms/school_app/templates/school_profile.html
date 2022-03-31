@@ -82,13 +82,13 @@
         <div class="col-4 col-12-small">
             <div id="map" style="width:100%;height:50vh;">
                 <script type="text/javascript">
-                    // console.log({{ object.lat }}, {{ object.lon }})
+                    /* global L */
                     var map = L.map('map').setView([{{ object.lat }}, {{ object.lon }}], 14);
                     var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         maxZoom: 18
                     });
                     map.addLayer(osmLayer);
-                    var marker = L.marker([{{ object.lat }}, {{ object.lon }}]).addTo(map);
+                    L.marker([{{ object.lat }}, {{ object.lon }}]).addTo(map);
                 </script>
             </div>
         </div>
