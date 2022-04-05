@@ -1,10 +1,9 @@
-import json
 import time
 from os.path import exists, getmtime
 
 from django.core.management import call_command
-from django.http import FileResponse, HttpResponseBadRequest, JsonResponse
-from django.views.decorators.http import require_POST
+from django.http import FileResponse, HttpResponseNotFound, JsonResponse
+from django.views.decorators.http import require_GET
 from django.views.generic import DetailView, ListView, TemplateView
 from django_filters.views import FilterView
 
@@ -103,11 +102,16 @@ def school_list_download(request):
     return response
 
 
-@require_POST
-def pong(request):
+@require_GET
+def api(request, pk):
     try:
-        content = json.loads(request.body)["pong"]
-    except json.JSONDecodeError:
-        return HttpResponseBadRequest
-    print(content)
-    return JsonResponse({"ping": f"{content} ping"})
+        requested_school = School.objects.get(id=pk)
+    except School.DoesNotExist:
+        return HttpResponseNotFound
+    return JsonResponse(
+        {
+            "name": requested_school.school_name,
+            "country": requested_school.country,
+            "sector": requested_school.sector,
+        }
+    )

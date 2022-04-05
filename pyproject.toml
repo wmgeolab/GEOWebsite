@@ -8,7 +8,6 @@ recursive = "yes"
 load-plugins = "pylint_django"
 django-settings-module = "cms.settings"
 jobs = 0
-max-parents = 10
 
 [tool.pylint.messages_control]
 disable = [
@@ -18,6 +17,8 @@ disable = [
     "missing-function-docstring",
     "imported-auth-user"
 ]
+max-parents = 10
+good-names = ["i","j","k","ex","Run","_","id","pk"]
 
 [tool.pylint.format]
 max-line-length = 88
