@@ -1,31 +1,41 @@
 import django_filters
 from ckeditor.fields import RichTextField
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 
 class School(models.Model):
     id = models.IntegerField(primary_key=True)
     country = models.TextField()
-    data_year = models.IntegerField()
+    data_year = models.DecimalField(max_digits=10, decimal_places=0, null=True)
     school_name = models.TextField()
-    sector = models.TextField()
-    school_level = models.TextField()
-    municipality = models.TextField()
-    department = models.TextField()
-    zone = models.TextField()
-    address = models.TextField()
-    total_enrollment = models.IntegerField()
-    lon = models.DecimalField(max_digits=9, decimal_places=6)
-    lat = models.DecimalField(max_digits=9, decimal_places=6)
-    test_score = models.FloatField()
-    gender_ratio = models.FloatField()
+    sector = models.TextField(blank=True)
+    school_level = models.TextField(blank=True)
+    municipality = models.TextField(blank=True)
+    department = models.TextField(blank=True)
+    zone = models.TextField(blank=True)
+    address = models.TextField(blank=True)
+    total_enrollment = models.DecimalField(max_digits=10, decimal_places=0, null=True)
+    lon = models.DecimalField(
+        max_digits=8,
+        decimal_places=5,
+        null=True,
+        validators=[MaxValueValidator(180), MinValueValidator(-180)],
+    )
+    lat = models.DecimalField(
+        max_digits=8,
+        decimal_places=5,
+        null=True,
+        validators=[MaxValueValidator(90), MinValueValidator(-90)],
+    )
+    test_score = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    gender_ratio = models.DecimalField(max_digits=10, decimal_places=0, null=True)
 
     def __str__(self) -> str:
         return self.school_name
 
     class Meta:
-        managed = False
         db_table = "schools"
 
 
