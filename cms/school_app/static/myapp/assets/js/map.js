@@ -12,11 +12,30 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 var markers = L.geoJson(null, {
   onEachFeature: function (feature, layer) {
     if (feature.properties.id) {
-      layer.bindPopup(feature.properties.id.toString());
+      // Create empty popup for each feature and add school ID as a property of the popup
+      // We will use the ID to fetch the content to load when the popup is opened
+      let p = L.popup();
+      p.school_id = feature.properties.id;
+      layer.bindPopup(p);
     }
   },
   pointToLayer: createClusterIcon,
 }).addTo(map);
+
+// Fetch popup contents on open
+map.on("popupopen", (event) => {
+  let p = event.popup;
+  // Only do a new fetch if we haven't already filled in the contents
+  if (p.getContent() === undefined) {
+    fetch(`/api/${p.school_id}/`)
+      .then((response) => response.json())
+      .then((data) => {
+        event.popup.setContent(
+          `<h4><a href="/schools/${p.school_id}/">${data.name}</a></h4>School ID: ${p.school_id}<br>Country: ${data.country}<br>Sector: ${data.sector}`
+        );
+      });
+  }
+});
 
 function createClusterIcon(feature, latlng) {
   if (!feature.properties.cluster) return L.marker(latlng);
