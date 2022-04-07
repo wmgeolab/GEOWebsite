@@ -1,4 +1,4 @@
-/* global L Supercluster data */
+/* global L Supercluster */
 
 var map = L.map("map").setView([-29.106, 26.15], 6);
 
@@ -11,20 +11,8 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
 var markers = L.geoJson(null, {
   onEachFeature: function (feature, layer) {
-    if (feature.properties.School_ID) {
-      layer.bindPopup(
-        '<h4><a href="/schools/' +
-          feature.properties.School_ID +
-          '"/>' +
-          feature.properties.School_Name +
-          "</a></h4>" +
-          "School ID: " +
-          feature.properties.School_ID +
-          "<br>Country: " +
-          feature.properties.Country +
-          "<br>Sector: " +
-          feature.properties.Sector
-      );
+    if (feature.properties.id) {
+      layer.bindPopup(feature.properties.id.toString());
     }
   },
   pointToLayer: createClusterIcon,
@@ -54,15 +42,22 @@ const index = new Supercluster({
   radius: 100,
   maxZoom: 18,
 });
-index.load(data["features"]);
-console.log(`loaded ${data["features"].length} points`);
-update();
+
+// Fetch data from server
+fetch("/geojson/")
+  .then((response) => response.json())
+  .then((data) => {
+    index.load(data["features"]);
+    console.log(`loaded ${data["features"].length} points`);
+    update();
+  })
+  .catch((error) => console.log(error));
+
 // Update the displayed clusters after user pan / zoom.
 map.on("moveend", update);
 
 function update() {
   var bounds = map.getBounds();
-  console.log(bounds);
   var bbox = [
     bounds.getWest(),
     bounds.getSouth(),
