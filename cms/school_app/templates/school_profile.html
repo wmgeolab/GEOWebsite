@@ -9,7 +9,6 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
-<!-- <script src="https://code.highcharts.com/highcharts.src.js"></script> -->
 {% endblock %}
 
 {% block main %}
@@ -18,80 +17,64 @@
         <div class="col-8 col-12-small">
             <header class="main">
                 <h2>{{ object.school_name }}</h2>
+                {% if object.address is not None %}
+                <p>{{object.address}}</p>
+                {% endif %}
             </header>
             
             <h3>Fast Facts</h3>
-            <p>Data year: {{ object.data_year }}</p>
-            <p>Country: {{ object.country }}</p>
-            <p>Sector: {{ object.sector }}</p>
-            <p>School level: {{ object.school_level }}</p>
-            <p>Municipality: {{ object.municipality }}</p>
-            <p>Department: {{ object.department }}</p>
-            <p>Zone: {{ object.zone }}</p>
-            <p>Address: {{ object.address }}</p>
-            <p>Total enrollment: {{ object.total_enrollment }}</p>
-            {% comment %}
-            <p>Test Score: {{ object.test_score }}</p>
-            <p>Gender Ratio: {{ object.gender_ratio }}</p>
-            {% endcomment %}
+            <table>
+                <tr>
+                    <th>Country</th>
+                    <th>Sector</th>
+                    <th>School Level</th>
+                    <th>Municipality</th>
+                    <th>Department</th>
+                    <th>Zone</th>
+                </tr>
+                <tr>
+                    <td>{{ object.country }}</td>
+                    <td>{{ object.sector }}</td>
+                    <td>{{ object.school_level }}</td>
+                    <td>{{ object.municipality }}</td>
+                    <td>{{ object.department }}</td>
+                    <td>{{ object.zone }}</td>
+                </tr>
+            </table>
 
-            <!-- <h3>Student Gender Distribution</h3>
-            <div id="chart" style="width:100%; height:auto;"></div>
-            <script>
-                Highcharts.chart('chart', {
-                    chart: {
-                        plotBackgroundColor: null,
-                        plotBorderWidth: null,
-                        plotShadow: false,
-                        type: 'pie'
-                    },
-                    title: {
-                        text: ' '
-                    },
-                    tooltip: {
-                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                    },
-                    plotOptions: {
-                        pie: {
-                            allowPointSelect: true,
-                            cursor: 'pointer',
-                            dataLabels: {
-                                enabled: true,
-                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-                            }
-                        }
-                    },
-                    series: [{
-                        name: 'Gender',
-                        colorByPoint: true,
-                        data: [{
-                            name: 'Male',
-                            y: {{ object.total_male }},
-                            sliced: true,
-                            selected: true,
-                            color: "#347dc1"
-                        }, {
-                            name: 'Female',
-                            y: {{ object.total_female }},
-                            color: "#e6a6c7"
-                        }]
-                    }]
-                });
-            </script>
-        </div> -->
+            <table>
+                <tr>
+                    <th>Session</th>
+                    <th>Year</th>
+                    <th>Total Enrollment</th>
+                    <th>Test Score</th>
+                    <th>Gender Ratio</th>
+                </tr>
+                {% for session in object.sessions.all %}
+                    <tr>
+                        <td>{{ session.session }}</td>
+                        <td>{{ session.data_year }}</td>
+                        <td>{{ session.total_enrollment }}</td>
+                        <td>{{ session.test_score }}</td>
+                        <td>{{ session.gender_ratio }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
         <div class="col-4 col-12-small">
-            <div id="map" style="width:100%;height:50vh;">
-                <script type="text/javascript">
-                    /* global L */
-                    var map = L.map('map').setView([{{ object.lat }}, {{ object.lon }}], 14);
-                    var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        maxZoom: 18
-                    });
-                    map.addLayer(osmLayer);
-                    L.marker([{{ object.lat }}, {{ object.lon }}]).addTo(map);
-                </script>
-            </div>
+            <div id="map" style="width:100%;height:50vh;"></div>
         </div>
     </div>
 </section>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+    /* global L */
+    var map = L.map('map').setView([{{ object.lat }}, {{ object.lon }}], 14);
+    var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18
+    });
+    map.addLayer(osmLayer);
+    L.marker([{{ object.lat }}, {{ object.lon }}]).addTo(map);
+</script>
 {% endblock %}

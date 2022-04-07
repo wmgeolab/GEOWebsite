@@ -40,7 +40,7 @@ class SchoolV2(models.Model):
 
 class SchoolV2Session(models.Model):
     # primary key is implied
-    school = models.ForeignKey(SchoolV2, models.CASCADE)
+    school = models.ForeignKey(SchoolV2, models.CASCADE, related_name="sessions")
     session = models.TextField(blank=True)
     data_year = models.DecimalField(
         max_digits=4, decimal_places=0, blank=True, null=True
@@ -131,8 +131,8 @@ class SchoolResourcesFilter(django_filters.FilterSet):
     country = django_filters.ChoiceFilter(choices=COUNTRIES)
 
     class Meta:
-        model = School
-        db_table = "schools"
+        model = SchoolV2
+        db_table = "schoolv2"
 
         fields = {
             "school_name": ["icontains"],

@@ -8,7 +8,7 @@ from django.views.decorators.http import require_GET
 from django.views.generic import DetailView, ListView, TemplateView
 from django_filters.views import FilterView
 
-from .models import Post, School, SchoolResourcesFilter
+from .models import Post, SchoolResourcesFilter, SchoolV2
 
 # Create your views here.
 
@@ -22,7 +22,7 @@ class AboutView(TemplateView):
 
 
 class SchoolListView(FilterView):
-    model = School
+    model = SchoolV2
     paginate_by = 20
     template_name = "schools_list.html"
     # ordering = ['school_name'] # Ordering without index is slow for large offsets
@@ -53,7 +53,7 @@ class SchoolListView(FilterView):
 
 
 class SchoolProfileView(DetailView):
-    model = School
+    model = SchoolV2
     template_name = "school_profile.html"
 
 
@@ -137,8 +137,8 @@ def serve_geojson(request):
 @require_GET
 def api(request, pk):
     try:
-        requested_school = School.objects.get(id=pk)
-    except School.DoesNotExist:
+        requested_school = SchoolV2.objects.get(id=pk)
+    except SchoolV2.DoesNotExist:
         return HttpResponseNotFound
     return JsonResponse(
         {
