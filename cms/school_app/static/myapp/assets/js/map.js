@@ -31,7 +31,10 @@ map.on("popupopen", (event) => {
       .then((response) => response.json())
       .then((data) => {
         event.popup.setContent(
-          `<h4><a href="/schools/${p.school_id}/">${data.name}</a></h4>School ID: ${p.school_id}<br>Country: ${data.country}<br>Sector: ${data.sector}`
+          `<a href="/schools/${p.school_id}/">${data.name}</a>
+          <p>School ID: ${p.school_id}</p>
+          <p>Country: ${data.country}</p>
+          <p>Sector: ${data.sector}</p>`
         );
       });
   }
