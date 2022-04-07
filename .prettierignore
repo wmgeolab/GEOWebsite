@@ -8,6 +8,7 @@ node_modules
 vendor
 csv
 json
+staticfiles
 
 # Don't format minimized files
 *.min.*
