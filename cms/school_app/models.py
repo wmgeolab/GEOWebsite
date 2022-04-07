@@ -19,12 +19,14 @@ class SchoolV2(models.Model):
     lon = models.DecimalField(
         max_digits=8,
         decimal_places=5,
+        blank=True,
         null=True,
         validators=[MaxValueValidator(180), MinValueValidator(-180)],
     )
     lat = models.DecimalField(
         max_digits=7,
         decimal_places=5,
+        blank=True,
         null=True,
         validators=[MaxValueValidator(90), MinValueValidator(-90)],
     )
@@ -40,10 +42,12 @@ class SchoolV2Session(models.Model):
     # primary key is implied
     school = models.ForeignKey(SchoolV2, models.CASCADE)
     session = models.TextField(blank=True)
-    data_year = models.DecimalField(max_digits=4, decimal_places=0, null=True)
-    total_enrollment = models.DecimalField(max_digits=10, decimal_places=0, null=True)
-    test_score = models.DecimalField(max_digits=5, decimal_places=2, null=True)
-    gender_ratio = models.DecimalField(max_digits=5, decimal_places=2, null=True)
+    data_year = models.DecimalField(
+        max_digits=4, decimal_places=0, blank=True, null=True
+    )
+    total_enrollment = models.IntegerField(blank=True, null=True)
+    test_score = models.FloatField(blank=True, null=True)
+    gender_ratio = models.FloatField(blank=True, null=True)
 
     def __str__(self) -> str:
         return f"{self.school}_{self.data_year}_{self.session}"
