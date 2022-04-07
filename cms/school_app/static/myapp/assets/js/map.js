@@ -1,4 +1,4 @@
-/* global L Supercluster data */
+/* global L Supercluster */
 
 var map = L.map("map").setView([-29.106, 26.15], 6);
 
@@ -11,24 +11,34 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
 var markers = L.geoJson(null, {
   onEachFeature: function (feature, layer) {
-    if (feature.properties.School_ID) {
-      layer.bindPopup(
-        '<h4><a href="/schools/' +
-          feature.properties.School_ID +
-          '"/>' +
-          feature.properties.School_Name +
-          "</a></h4>" +
-          "School ID: " +
-          feature.properties.School_ID +
-          "<br>Country: " +
-          feature.properties.Country +
-          "<br>Sector: " +
-          feature.properties.Sector
-      );
+    if (feature.properties.id) {
+      // Create empty popup for each feature and add school ID as a property of the popup
+      // We will use the ID to fetch the content to load when the popup is opened
+      let p = L.popup();
+      p.school_id = feature.properties.id;
+      layer.bindPopup(p);
     }
   },
   pointToLayer: createClusterIcon,
 }).addTo(map);
+
+// Fetch popup contents on open
+map.on("popupopen", (event) => {
+  let p = event.popup;
+  // Only do a new fetch if we haven't already filled in the contents
+  if (p.getContent() === undefined) {
+    fetch(`/api/${p.school_id}/`)
+      .then((response) => response.json())
+      .then((data) => {
+        event.popup.setContent(
+          `<a href="/schools/${p.school_id}/">${data.name}</a>
+          <p>School ID: ${p.school_id}</p>
+          <p>Country: ${data.country}</p>
+          <p>Sector: ${data.sector}</p>`
+        );
+      });
+  }
+});
 
 function createClusterIcon(feature, latlng) {
   if (!feature.properties.cluster) return L.marker(latlng);
@@ -54,15 +64,22 @@ const index = new Supercluster({
   radius: 100,
   maxZoom: 18,
 });
-index.load(data["features"]);
-console.log(`loaded ${data["features"].length} points`);
-update();
+
+// Fetch data from server
+fetch("/geojson/")
+  .then((response) => response.json())
+  .then((data) => {
+    index.load(data["features"]);
+    console.log(`loaded ${data["features"].length} points`);
+    update();
+  })
+  .catch((error) => console.log(error));
+
 // Update the displayed clusters after user pan / zoom.
 map.on("moveend", update);
 
 function update() {
   var bounds = map.getBounds();
-  console.log(bounds);
   var bbox = [
     bounds.getWest(),
     bounds.getSouth(),
