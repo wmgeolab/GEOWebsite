@@ -109,6 +109,8 @@ def school_list_download(request):
 
 def serve_geojson(request):
     # pylint: disable=consider-using-with
+    if not exists("json/coords.geojson"):
+        call_command("writejson")
     encodings = [
         s.strip().upper() for s in request.META["HTTP_ACCEPT_ENCODING"].split(",")
     ]
