@@ -9,5 +9,5 @@ plugins:
   - template
 parserOptions:
   ecmaVersion: latest
-ignorePatterns: ["**/vendor/*.js"]
+ignorePatterns: ["**/vendor/*.js", "**/staticfiles/**"]
 rules: {}

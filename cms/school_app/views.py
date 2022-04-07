@@ -3,6 +3,7 @@ from os.path import exists, getmtime
 
 from django.core.management import call_command
 from django.http import FileResponse, HttpResponseNotFound, JsonResponse
+from django.utils.cache import patch_vary_headers
 from django.views.decorators.http import require_GET
 from django.views.generic import DetailView, ListView, TemplateView
 from django_filters.views import FilterView
@@ -88,18 +89,21 @@ def school_list_download(request):
             open("csv/schools.csv.br", "rb"), as_attachment=True, filename="schools.csv"
         )
         response["Content-Encoding"] = "br"
-        response["Vary"] = "Accept-Encoding"
+        patch_vary_headers(response, ("Accept-Encoding",))
     elif "GZIP" in encodings:
         # Fallback on gzip
         response = FileResponse(
             open("csv/schools.csv.gz", "rb"), as_attachment=True, filename="schools.csv"
         )
         response["Content-Encoding"] = "gzip"
-        response["Vary"] = "Accept-Encoding"
+        patch_vary_headers(response, ("Accept-Encoding",))
     else:
         # Fallback on no compression
         response = FileResponse(open("csv/schools.csv", "rb"), as_attachment=True)
     response["Content-Type"] = "text/csv"
+    response["Last-Modified"] = time.strftime(
+        "%a, %d %b %Y %H:%M:%S %Z", time.gmtime(getmtime("csv/schools.csv"))
+    )
     return response
 
 
@@ -112,16 +116,19 @@ def serve_geojson(request):
         # Ideally serve brotli
         response = FileResponse(open("json/coords.geojson.br", "rb"))
         response["Content-Encoding"] = "br"
-        response["Vary"] = "Accept-Encoding"
+        patch_vary_headers(response, ("Accept-Encoding",))
     elif "GZIP" in encodings:
         # Fallback on gzip
         response = FileResponse(open("json/coords.geojson.gz", "rb"))
         response["Content-Encoding"] = "gzip"
-        response["Vary"] = "Accept-Encoding"
+        patch_vary_headers(response, ("Accept-Encoding",))
     else:
         # Fallback on no compression
         response = FileResponse(open("json/coords.geojson", "rb"))
     response["Content-Type"] = "application/geo+json"
+    response["Last-Modified"] = time.strftime(
+        "%a, %d %b %Y %H:%M:%S %Z", time.gmtime(getmtime("json/coords.geojson"))
+    )
     return response
 
 
