@@ -26,7 +26,7 @@
                 </tr>
                 {% for obj in page_obj %}
                     <tr>
-                        <td><a href="/schools/{{ obj.id }}">
+                        <td><a href="/schools/{{ obj.id }}/">
                             {{ obj.school_name }}
                         </a></td>
                         <td>{{ obj.id }}</td>
@@ -58,7 +58,7 @@
                 {% endif %}
             </ul>
             {% endif %}
-            <a href="{{ '/downloadcsv' }}" class="button">Download CSV File</a>
+            <a href="/downloadcsv/" class="button">Download CSV File</a>
         </div>
     </div>
 </section>
