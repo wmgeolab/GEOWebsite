@@ -78,6 +78,7 @@ def school_list_download(request):
         not exists("csv/schools.csv") or now - getmtime("csv/schools.csv") > 7200
     ):  # 7200 seconds = 2 hours
         call_command("writecsv")
+        call_command("writejson")
     encodings = [
         s.strip().upper() for s in request.META["HTTP_ACCEPT_ENCODING"].split(",")
     ]
@@ -99,6 +100,28 @@ def school_list_download(request):
         # Fallback on no compression
         response = FileResponse(open("csv/schools.csv", "rb"), as_attachment=True)
     response["Content-Type"] = "text/csv"
+    return response
+
+
+def serve_geojson(request):
+    # pylint: disable=consider-using-with
+    encodings = [
+        s.strip().upper() for s in request.META["HTTP_ACCEPT_ENCODING"].split(",")
+    ]
+    if "BR" in encodings:
+        # Ideally serve brotli
+        response = FileResponse(open("json/coords.geojson.br", "rb"))
+        response["Content-Encoding"] = "br"
+        response["Vary"] = "Accept-Encoding"
+    elif "GZIP" in encodings:
+        # Fallback on gzip
+        response = FileResponse(open("json/coords.geojson.gz", "rb"))
+        response["Content-Encoding"] = "gzip"
+        response["Vary"] = "Accept-Encoding"
+    else:
+        # Fallback on no compression
+        response = FileResponse(open("json/coords.geojson", "rb"))
+    response["Content-Type"] = "application/geo+json"
     return response
 
 

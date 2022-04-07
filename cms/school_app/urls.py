@@ -10,5 +10,6 @@ urlpatterns = [
     path("posts/", views.PostList.as_view()),
     path("posts/<slug:slug>/", views.PostDetail.as_view(), name="post_detail"),
     path("downloadcsv/", views.school_list_download, name="school_list_download"),
+    path("geojson/", views.serve_geojson, name="serve_geojson"),
     path("api/<int:pk>/", views.api),
 ]
