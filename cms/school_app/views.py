@@ -1,6 +1,7 @@
 import time
 from datetime import datetime
 from os.path import exists, getmtime
+from typing import Union
 
 from django.conf import settings
 from django.core.management import call_command
@@ -75,10 +76,16 @@ class PostDetail(DetailView):
     template_name = "post_detail.html"
 
 
+def get_last_modified(filename: str) -> Union[datetime, None]:
+    if exists(filename):
+        return datetime.utcfromtimestamp(getmtime(filename))
+    return None
+
+
 @require_GET
 @vary_on_headers("Accept-Encoding")
 @cache_control(max_age=3600)
-@last_modified(lambda _: datetime.utcfromtimestamp(getmtime("csv/schools.csv")))
+@last_modified(lambda _: get_last_modified("csv/schools.csv"))
 def school_list_download(request):
     # pylint: disable=consider-using-with
     now = time.time()
@@ -112,7 +119,7 @@ def school_list_download(request):
 @require_GET
 @vary_on_headers("Accept-Encoding")
 @cache_control(max_age=3600)
-@last_modified(lambda _: datetime.utcfromtimestamp(getmtime("json/coords.geojson")))
+@last_modified(lambda _: get_last_modified("json/coords.geojson"))
 def serve_geojson(request):
     # pylint: disable=consider-using-with
     if not exists("json/coords.geojson"):
