@@ -1,10 +1,13 @@
 import time
+from datetime import datetime
 from os.path import exists, getmtime
 
+from django.conf import settings
 from django.core.management import call_command
 from django.http import FileResponse, HttpResponseNotFound, JsonResponse
-from django.utils.cache import patch_vary_headers
-from django.views.decorators.http import require_GET
+from django.views.decorators.cache import cache_control
+from django.views.decorators.http import last_modified, require_GET
+from django.views.decorators.vary import vary_on_headers
 from django.views.generic import DetailView, ListView, TemplateView
 from django_filters.views import FilterView
 
@@ -72,6 +75,10 @@ class PostDetail(DetailView):
     template_name = "post_detail.html"
 
 
+@require_GET
+@vary_on_headers("Accept-Encoding")
+@cache_control(max_age=3600)
+@last_modified(lambda _: datetime.utcfromtimestamp(getmtime("csv/schools.csv")))
 def school_list_download(request):
     # pylint: disable=consider-using-with
     now = time.time()
@@ -83,30 +90,29 @@ def school_list_download(request):
     encodings = [
         s.strip().upper() for s in request.META["HTTP_ACCEPT_ENCODING"].split(",")
     ]
-    if "BR" in encodings:
+    if "BR" in encodings and not settings.DEBUG:
         # Ideally serve brotli
         response = FileResponse(
             open("csv/schools.csv.br", "rb"), as_attachment=True, filename="schools.csv"
         )
         response["Content-Encoding"] = "br"
-        patch_vary_headers(response, ("Accept-Encoding",))
     elif "GZIP" in encodings:
         # Fallback on gzip
         response = FileResponse(
             open("csv/schools.csv.gz", "rb"), as_attachment=True, filename="schools.csv"
         )
         response["Content-Encoding"] = "gzip"
-        patch_vary_headers(response, ("Accept-Encoding",))
     else:
         # Fallback on no compression
         response = FileResponse(open("csv/schools.csv", "rb"), as_attachment=True)
     response["Content-Type"] = "text/csv"
-    response["Last-Modified"] = time.strftime(
-        "%a, %d %b %Y %H:%M:%S %Z", time.gmtime(getmtime("csv/schools.csv"))
-    )
     return response
 
 
+@require_GET
+@vary_on_headers("Accept-Encoding")
+@cache_control(max_age=3600)
+@last_modified(lambda _: datetime.utcfromtimestamp(getmtime("json/coords.geojson")))
 def serve_geojson(request):
     # pylint: disable=consider-using-with
     if not exists("json/coords.geojson"):
@@ -114,23 +120,19 @@ def serve_geojson(request):
     encodings = [
         s.strip().upper() for s in request.META["HTTP_ACCEPT_ENCODING"].split(",")
     ]
-    if "BR" in encodings:
+    if "BR" in encodings and not settings.DEBUG:
         # Ideally serve brotli
+        # brotli is time-intensive, don't bother when testing
         response = FileResponse(open("json/coords.geojson.br", "rb"))
         response["Content-Encoding"] = "br"
-        patch_vary_headers(response, ("Accept-Encoding",))
     elif "GZIP" in encodings:
         # Fallback on gzip
         response = FileResponse(open("json/coords.geojson.gz", "rb"))
         response["Content-Encoding"] = "gzip"
-        patch_vary_headers(response, ("Accept-Encoding",))
     else:
         # Fallback on no compression
         response = FileResponse(open("json/coords.geojson", "rb"))
     response["Content-Type"] = "application/geo+json"
-    response["Last-Modified"] = time.strftime(
-        "%a, %d %b %Y %H:%M:%S %Z", time.gmtime(getmtime("json/coords.geojson"))
-    )
     return response
 
 
