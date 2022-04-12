@@ -21,7 +21,9 @@ class Command(BaseCommand):
         # Write new files next to the old ones, then atomically replace
         with open("json/coords.geojson.tmp", "w", encoding="utf-8") as f:
             records = (
-                School.objects.filter(lat__isnull=False, lon__isnull=False)
+                School.objects.exclude(lat__isnull=True)
+                .exclude(lon__isnull=True)
+                .exclude(lat=0, lon=0)
                 .values("id", "lat", "lon")
                 .iterator()
             )
