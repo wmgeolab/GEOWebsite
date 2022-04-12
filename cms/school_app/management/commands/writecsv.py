@@ -3,6 +3,7 @@ import csv
 import time
 import gzip
 import brotli
+from django.conf import settings
 from django.core.management.base import BaseCommand
 from school_app.models import School
 
@@ -42,15 +43,21 @@ class Command(BaseCommand):
             self.stdout.write(
                 self.style.SUCCESS(f"Finished in {round(time.time()-now, 3)} seconds")
             )
-            # brotli
-            self.stdout.write("Compressing with brotli...")
-            now = time.time()
-            with open("csv/schools.csv.br.tmp", "wb") as b:
-                b.write(brotli.compress(data, mode=brotli.MODE_TEXT))
-            self.stdout.write(
-                self.style.SUCCESS(f"Finished in {round(time.time()-now, 3)} seconds")
-            )
+            # brotli takes a long time, don't bother when testing
+            if not settings.DEBUG:
+                self.stdout.write("Compressing with brotli...")
+                now = time.time()
+                with open("csv/schools.csv.br.tmp", "wb") as b:
+                    b.write(brotli.compress(data, mode=brotli.MODE_TEXT))
+                self.stdout.write(
+                    self.style.SUCCESS(
+                        f"Finished in {round(time.time()-now, 3)} seconds"
+                    )
+                )
+            else:
+                self.stdout.write("Skipping brotli...")
         # Replace
         os.replace("csv/schools.csv.tmp", "csv/schools.csv")
         os.replace("csv/schools.csv.gz.tmp", "csv/schools.csv.gz")
-        os.replace("csv/schools.csv.br.tmp", "csv/schools.csv.br")
+        if not settings.DEBUG:
+            os.replace("csv/schools.csv.br.tmp", "csv/schools.csv.br")

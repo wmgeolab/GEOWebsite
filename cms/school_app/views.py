@@ -2,6 +2,7 @@ import time
 from datetime import datetime
 from os.path import exists, getmtime
 
+from django.conf import settings
 from django.core.management import call_command
 from django.http import FileResponse, HttpResponseNotFound, JsonResponse
 from django.views.decorators.cache import cache_control
@@ -89,7 +90,7 @@ def school_list_download(request):
     encodings = [
         s.strip().upper() for s in request.META["HTTP_ACCEPT_ENCODING"].split(",")
     ]
-    if "BR" in encodings:
+    if "BR" in encodings and not settings.DEBUG:
         # Ideally serve brotli
         response = FileResponse(
             open("csv/schools.csv.br", "rb"), as_attachment=True, filename="schools.csv"
@@ -119,8 +120,9 @@ def serve_geojson(request):
     encodings = [
         s.strip().upper() for s in request.META["HTTP_ACCEPT_ENCODING"].split(",")
     ]
-    if "BR" in encodings:
+    if "BR" in encodings and not settings.DEBUG:
         # Ideally serve brotli
+        # brotli is time-intensive, don't bother when testing
         response = FileResponse(open("json/coords.geojson.br", "rb"))
         response["Content-Encoding"] = "br"
     elif "GZIP" in encodings:
