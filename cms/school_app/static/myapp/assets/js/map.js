@@ -66,15 +66,27 @@ const index = new Supercluster({
 });
 
 // Fetch data from server
-fetch("/geojson/")
-  .then((response) => response.json())
-  .then((data) => {
-    index.load(data["features"]);
-    console.log(`loaded ${data["features"].length} points`);
-    update();
-  })
-  .catch((error) => console.log(error));
-
+{
+  let startTime = performance.now();
+  let numPoints;
+  fetch("/geojson/")
+    .then((response) => {
+      console.log(`fetched in ${performance.now() - startTime} ms`);
+      return response.json();
+    })
+    .then((data) => {
+      startTime = performance.now();
+      index.load(data["features"]);
+      numPoints = data["features"].length;
+      update();
+    })
+    .catch((error) => console.log(error))
+    .finally(() => {
+      console.log(
+        `loaded ${numPoints} points in ${performance.now() - startTime} ms`
+      );
+    });
+}
 // Update the displayed clusters after user pan / zoom.
 map.on("moveend", update);
 
