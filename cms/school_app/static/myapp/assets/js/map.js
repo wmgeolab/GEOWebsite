@@ -3,8 +3,8 @@
 var map = L.map("map").setView([-29.106, 26.15], 6);
 
 // Add map tiles to map
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  maxZoom: 19,
+L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  maxZoom: 17,
   attribution:
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
@@ -62,7 +62,7 @@ function createClusterIcon(feature, latlng) {
 // Cluster and display on map
 const index = new Supercluster({
   radius: 100,
-  maxZoom: 18,
+  maxZoom: 17,
 });
 
 // Fetch data from server
