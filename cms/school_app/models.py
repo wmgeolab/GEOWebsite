@@ -5,6 +5,57 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 
+class SchoolV2(models.Model):
+    # primary key is implied
+    school_id = models.TextField()
+    country = models.TextField()
+    school_name = models.TextField()
+    sector = models.TextField(blank=True)
+    school_level = models.TextField(blank=True)
+    municipality = models.TextField(blank=True)
+    department = models.TextField(blank=True)
+    zone = models.TextField(blank=True)
+    address = models.TextField(blank=True)
+    lon = models.DecimalField(
+        max_digits=8,
+        decimal_places=5,
+        blank=True,
+        null=True,
+        validators=[MaxValueValidator(180), MinValueValidator(-180)],
+    )
+    lat = models.DecimalField(
+        max_digits=7,
+        decimal_places=5,
+        blank=True,
+        null=True,
+        validators=[MaxValueValidator(90), MinValueValidator(-90)],
+    )
+
+    def __str__(self) -> str:
+        return self.school_name
+
+    class Meta:
+        db_table = "schoolv2"
+
+
+class SchoolV2Session(models.Model):
+    # primary key is implied
+    school = models.ForeignKey(SchoolV2, models.CASCADE, related_name="sessions")
+    session = models.TextField(blank=True)
+    data_year = models.DecimalField(
+        max_digits=4, decimal_places=0, blank=True, null=True
+    )
+    total_enrollment = models.IntegerField(blank=True, null=True)
+    test_score = models.FloatField(blank=True, null=True)
+    gender_ratio = models.FloatField(blank=True, null=True)
+
+    def __str__(self) -> str:
+        return f"{self.school}_{self.data_year}_{self.session}"
+
+    class Meta:
+        db_table = "schoolv2session"
+
+
 class School(models.Model):
     id = models.IntegerField(primary_key=True)
     country = models.TextField()
@@ -80,8 +131,8 @@ class SchoolResourcesFilter(django_filters.FilterSet):
     country = django_filters.ChoiceFilter(choices=COUNTRIES)
 
     class Meta:
-        model = School
-        db_table = "schools"
+        model = SchoolV2
+        db_table = "schoolv2"
 
         fields = {
             "school_name": ["icontains"],
