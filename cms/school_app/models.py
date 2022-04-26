@@ -37,6 +37,11 @@ class SchoolV2(models.Model):
     class Meta:
         db_table = "schoolv2"
         verbose_name = "school"
+        constraints = [
+            models.UniqueConstraint(
+                fields=["country", "school_id"], name="country_unique_id"
+            )
+        ]
 
 
 class SchoolV2Session(models.Model):
@@ -56,6 +61,12 @@ class SchoolV2Session(models.Model):
     class Meta:
         db_table = "schoolv2session"
         verbose_name = "school session"
+        constraints = [
+            models.UniqueConstraint(
+                fields=["school", "data_year", "session"],
+                name="school_unique_year_session",
+            )
+        ]
 
 
 class School(models.Model):
