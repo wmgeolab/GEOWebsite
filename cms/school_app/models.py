@@ -36,6 +36,7 @@ class SchoolV2(models.Model):
 
     class Meta:
         db_table = "schoolv2"
+        verbose_name = "school"
 
 
 class SchoolV2Session(models.Model):
@@ -54,6 +55,7 @@ class SchoolV2Session(models.Model):
 
     class Meta:
         db_table = "schoolv2session"
+        verbose_name = "school session"
 
 
 class School(models.Model):
@@ -88,6 +90,8 @@ class School(models.Model):
 
     class Meta:
         db_table = "schools"
+        verbose_name = "school (old)"
+        verbose_name_plural = "schools (old)"
 
 
 STATUS = ((0, "Draft"), (1, "Publish"))
