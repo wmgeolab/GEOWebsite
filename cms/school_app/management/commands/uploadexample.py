@@ -47,7 +47,10 @@ def import_csv(filename):
             results = header_dict
             counter = 0
             for result in results:
-                results[result] = row[counter]
+                if len(row[counter]) == 0:
+                    results[result] = None
+                else:
+                    results[result] = row[counter]
                 counter += 1
             line_count += 1
             print(results)
