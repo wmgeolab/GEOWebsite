@@ -106,6 +106,7 @@ cms/staticfiles/
 
 # Environment variables
 envs.sh
+env.ps1
 
 # Cached files
 csv
