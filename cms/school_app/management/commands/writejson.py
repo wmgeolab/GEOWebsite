@@ -6,7 +6,7 @@ import brotli
 import simplejson as json
 from django.conf import settings
 from django.core.management.base import BaseCommand
-from school_app.models import School
+from school_app.models import SchoolV2
 
 
 class Command(BaseCommand):
@@ -21,7 +21,7 @@ class Command(BaseCommand):
         # Write new files next to the old ones, then atomically replace
         with open("json/coords.geojson.tmp", "w", encoding="utf-8") as f:
             records = (
-                School.objects.exclude(lat__isnull=True)
+                SchoolV2.objects.exclude(lat__isnull=True)
                 .exclude(lon__isnull=True)
                 .exclude(lat=0, lon=0)
                 .values("id", "lat", "lon")
