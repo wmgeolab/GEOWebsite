@@ -110,3 +110,6 @@ envs.sh
 # Cached files
 csv
 json
+
+# Test database
+*.sqlite3
