@@ -4,7 +4,7 @@ from django.core.management.base import BaseCommand
 from school_app.models import SchoolV2, SchoolV2Session
 
 # Example management command to add a single record to the database
-# Run with `python manage.py uploadexample`
+# Run with `python manage.py uploadexample <filename>`
 
 
 class Command(BaseCommand):
