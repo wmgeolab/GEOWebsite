@@ -42,6 +42,7 @@ class SchoolV2(models.Model):
                 fields=["country", "school_id"], name="country_unique_id"
             )
         ]
+        indexes = [models.Index(fields=["country", "school_id"], name="school_idx")]
 
 
 class SchoolV2Session(models.Model):
@@ -67,6 +68,7 @@ class SchoolV2Session(models.Model):
                 name="school_unique_year_session",
             )
         ]
+        indexes = [models.Index(fields=["school", "data_year"], name="session_idx")]
 
 
 class School(models.Model):
