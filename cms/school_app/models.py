@@ -7,8 +7,8 @@ from django.db import models
 
 class SchoolV2(models.Model):
     # primary key is implied
-    school_id = models.TextField()
-    country = models.TextField()
+    school_id = models.CharField(max_length=255)
+    country = models.CharField(max_length=255)
     school_name = models.TextField()
     sector = models.TextField(blank=True)
     school_level = models.TextField(blank=True)
@@ -48,7 +48,7 @@ class SchoolV2(models.Model):
 class SchoolV2Session(models.Model):
     # primary key is implied
     school = models.ForeignKey(SchoolV2, models.CASCADE, related_name="sessions")
-    session = models.TextField(blank=True)
+    session = models.CharField(max_length=255, blank=True)
     data_year = models.DecimalField(
         max_digits=4, decimal_places=0, blank=True, null=True
     )
