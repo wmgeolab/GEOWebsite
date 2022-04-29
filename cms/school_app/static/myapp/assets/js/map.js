@@ -1,6 +1,6 @@
 /* global L Supercluster */
 
-var map = L.map("map").setView([-29.106, 26.15], 6);
+var map = L.map("map").setView([15.1, 121.4], 7);
 
 // Add map tiles to map
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {

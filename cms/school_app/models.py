@@ -140,6 +140,7 @@ COUNTRIES = [
     ("Guatemala", "Guatemala"),
     ("Panama", "Panama"),
     ("Mexico", "Mexico"),
+    ("Philippines", "Philippines"),
 ]
 
 
