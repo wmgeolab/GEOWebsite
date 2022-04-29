@@ -15,6 +15,9 @@ from school_app.models import SchoolV2, SchoolV2Session
 # Then, do a second pass to add each Session. School lookups are fast because they are
 # indexed and cached. Insert with bulk_create(). This inserts ~1000 records per second.
 
+# ...until you actually try to insert to the MySQL database, and it bogs down to
+# ~50 records per second. Wtf.
+
 
 class Command(BaseCommand):
     def add_arguments(self, parser):
