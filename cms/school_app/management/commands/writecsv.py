@@ -28,6 +28,7 @@ class Command(BaseCommand):
                 for field in SchoolV2Session._meta.fields
             ]
             field_names = school_field_names + session_field_names
+            field_names.remove("id")
             field_names.remove("sessions__id")
             field_names.remove("sessions__school")
             query = SchoolV2.objects.all().select_related("school").values(*field_names)
