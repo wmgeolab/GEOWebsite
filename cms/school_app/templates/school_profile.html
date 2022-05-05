@@ -70,9 +70,9 @@
 {% block scripts %}
 <script type="text/javascript">
     /* global L */
-    var map = L.map('map').setView([{{ object.lat }}, {{ object.lon }}], 14);
-    var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 18
+    var map = L.map("map").setView([{{ object.lat }}, {{ object.lon }}], 14);
+    var osmLayer = new L.TileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 17
     });
     map.addLayer(osmLayer);
     L.marker([{{ object.lat }}, {{ object.lon }}]).addTo(map);
