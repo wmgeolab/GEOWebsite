@@ -22,18 +22,16 @@
                     <th>School Country</th>
                     <th>School Zone</th>
                     <th>School Sector</th>
-                    <th>School Test Score</th>
                 </tr>
                 {% for obj in page_obj %}
                     <tr>
                         <td><a href="/schools/{{ obj.id }}/">
                             {{ obj.school_name }}
                         </a></td>
-                        <td>{{ obj.id }}</td>
+                        <td>{{ obj.school_id }}</td>
                         <td>{{ obj.country }}</td>
                         <td>{{ obj.zone }}</td>
                         <td>{{ obj.sector }}</td>
-                        <td>{{ obj.test_score}}</td>
                     </tr>
                 {% endfor %}
             </table>

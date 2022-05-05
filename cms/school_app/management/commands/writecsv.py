@@ -1,18 +1,18 @@
-import os
 import csv
-import time
 import gzip
+import os
+import time
+
 import brotli
 from django.conf import settings
 from django.core.management.base import BaseCommand
-from school_app.models import School
+from school_app.models import SchoolV2, SchoolV2Session
 
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
         self.stdout.write("Generating CSV...")
         now = time.time()
-        count = 0
         try:
             os.mkdir("csv")
         except FileExistsError:
@@ -20,11 +20,22 @@ class Command(BaseCommand):
             pass
         # Write new files next to the old ones, then atomically replace
         with open("csv/schools.csv.tmp", "w", encoding="utf-8-sig") as f:
-            field_names = School._meta.fields
-            field_names = [str(field).split(".")[-1] for field in field_names]
+            school_field_names = [
+                str(field).split(".")[-1] for field in SchoolV2._meta.fields
+            ]
+            session_field_names = [
+                "sessions__" + str(field).split(".")[-1]
+                for field in SchoolV2Session._meta.fields
+            ]
+            field_names = school_field_names + session_field_names
+            field_names.remove("id")
+            field_names.remove("sessions__id")
+            field_names.remove("sessions__school")
+            query = SchoolV2.objects.all().select_related("school").values(*field_names)
             writer = csv.DictWriter(f, field_names)
             writer.writeheader()
-            for obj in School.objects.all().values().iterator():
+            count = 0
+            for obj in query:
                 writer.writerow(obj)
                 count += 1
         self.stdout.write(
